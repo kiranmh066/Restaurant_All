@@ -91,6 +91,7 @@ namespace RestaurantMVCUI.Controllers
             }
             employee.EmpPassword = a;
             using (HttpClient client = new HttpClient())
+                //my name
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";//api controller name and its function

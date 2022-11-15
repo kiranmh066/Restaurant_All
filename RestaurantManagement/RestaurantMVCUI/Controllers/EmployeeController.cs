@@ -114,5 +114,12 @@ namespace RestaurantMVCUI.Controllers
             return View();
 
         }
+        public IActionResult MeLearn()
+        {
+
+            return View();
+        }
+
+
     }
 }

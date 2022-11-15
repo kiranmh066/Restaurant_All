@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "AddOrder";
+}
+
+<h1>AddOrder</h1>
+
+@model RestaurantEntity.Order
+
+
+<div>
+    <a asp-controller="Customer" asp-action="Index">Index</a>
+    <hr />
+</div>
+<form method="post" enctype="multipart/form-data">
+    <h2>Add Order </h2>
+    <div class="form-group">
+        @*  form group for automatic audjustment for various screen sizes*@
+        <label>Order Quantity</label>
+        <input type="number" asp-for="Quantity" min="0" max="10" class="form-control" placeholder="Enter Order quantity" />
+    </div>
+    <div class="form-group">
+        <label>Order Time</label>
+        <input type="datetime-local" asp-for="OrderDate" class="form-control" placeholder="Enter Order Time" required />
+    </div>
+    <div class="form-group">
+        <label>Food Id</label>
+        <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required />
+    </div>
+    <div class="form-group">
+        <label>Hall Table Id</label>
+        <select asp-for="HallTableId" asp-items="@ViewBag.tablelist" class="form-control" placeholder="Select Hall Table ID" required></select>
+  
+    </div>
+   
+
+
+    @* <div class="form-group">
+    <label>Order Poster</label>
+    <input type="file" id="poster" name="poster" class="form-control" required />
+    </div>
+    *@ 
+   
+    <input type="submit" value="Save" class="btn btn-success" />
+     @*submit display message for required option required works only with submit*@
+    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+
+    <hr />
+    @*submit sends form to server thats why we use submit not button type  *@
+    @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Ordercontroller *@
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>
+
+    

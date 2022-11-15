@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RestaurantEntity.Order>
+@{
+    ViewData["Title"] = "ViewOrdered";
+}
+
+<h1>ViewOrdered</h1>
+
+
+
+
+    <div class="row">
+        <div class="col-12">
+            <h3>Orders</h3>
+            <hr />
+            <table class="table table-light table-bordered table-hover">
+                <thead>
+                    <tr>
+                        
+                        <th>Order Quantity</th>-
+                        <th>Order OrderTotal</th>
+                       
+                        <th>Order FoodId</th>
+                        <th>Order Date</th>
+
+
+                  
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
+                    which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//
+                    *@
+                    {
+                        @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
+                        <tr>
+                         
+                            <td>@Order.Quantity</td>
+                            <td>@Order.OrderTotal</td>
+                            
+                            <td>@Order.FoodId</td>
+                            <td>@Order.HallTableId</td>
+                            <td>@Order.OrderDate</td>
+                        <td><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@Order.OrderId" class="btn btn-success">Update Order</a></td>
+                        </tr>
+
+                    }
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>

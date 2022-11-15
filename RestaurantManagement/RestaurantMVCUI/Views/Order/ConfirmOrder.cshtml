@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmOrder";
+}
+
+
+@if (ViewBag.status == "Ok")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+}

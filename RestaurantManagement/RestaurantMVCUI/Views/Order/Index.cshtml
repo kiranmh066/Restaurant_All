@@ -1,0 +1,55 @@
+﻿@model IEnumerable<RestaurantEntity.Food>
+
+<body style="background-color:black">
+
+    <div >
+
+        <h2 class="text-light text-center">Foods  <p class="text-right text-light"><a asp-controller="Order" asp-action="GetOrders1" class="btn btn-primary ">View List</a></p></h2>
+        <br/>
+
+      
+     
+        
+              
+                <div class=" row">
+                    
+                      @foreach (var food in Model)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                        string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+
+                        <div class="col-md-3">
+
+                            <div class="col-md-3">
+                                <div class="card" style="width: 15rem;">
+                                    <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                     data-mdb-ripple-color="light">
+                                        <img height="150" src="@imageDataURL" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@food.FoodName</h5>
+                                            <p class="card-text">Type(Veg/NonVeg):@food.FoodType &nbsp;&nbsp;&nbsp;&nbsp; Food Cusine: @food.FoodCuisine</p>
+
+                                            <p class="card-text">Cost:₹@food.FoodCost</p>
+                
+                                          <a asp-controller="Order" asp-action="AddOrder1"asp-route-FoodId="@food.FoodId" type="button" class="btn btn-success">Add to Cart</a>
+         
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+
+
+                    }
+                    
+                </div>
+
+</div>
+           </body>  
+
+
+       
+
+

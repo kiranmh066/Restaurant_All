@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RestaurantEntity.Food>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
+
+}
+<div>
+    <a asp-controller="Admin1" asp-action="Index">Admin Section</a>
+    <hr />
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <h3>Foods</h3>
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
+                    
+                    <th>Food Id</th>
+                    <th>Food Name</th>-
+                    <th>Food Type</th>
+                    <th>Food Cost</th>
+                    <th>Food Cuisine</th>
+                    <th>Food Image</th>
+                   
+
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Food in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editFood of Foodcontroller (route name) here which is FoodId
+                which can be written as http://localhost:32344/Foods/edit Food?Foodid=2//
+                *@
+                {
+                     string imageBase64Data = Convert.ToBase64String(Food.FoodImage);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                    <tr>
+                        <td>@Food.FoodId</td>
+                        <td>@Food.FoodName</td>
+                        <td>@Food.FoodType</td>
+                        <td>@Food.FoodCost</td>
+                        <td>@Food.FoodCuisine</td>
+                  
+                          <td><img height="50" width="50" src="@imageDataURL" /></td>
+
+                        <td>
+                            <a asp-controller="Admin1" asp-action="EditFood"
+                           asp-route-FoodId="@Food.FoodId">Edit</a>
+                        </td>
+
+                        <td>
+                            <a asp-controller="Admin1" asp-action="DeleteFood"
+                           asp-route-FoodId="@Food.FoodId">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

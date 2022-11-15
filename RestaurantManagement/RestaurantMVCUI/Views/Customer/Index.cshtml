@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RestaurantEntity.Food>;
+
+<html>
+    <head>
+    </head>
+    <body>
+        <div>
+            <hr />
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3>Menu Items</h3>
+                <hr />
+                <table class="table table-light table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Food Name</th>
+                            <th>Food Type</th>
+                            <th>Food Cost</th>
+                            <th>Food Cuisine</th>
+                            <th>Add</th>
+                            <th></th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FoodName</td>
+                                <td>@item.FoodType</td>
+                                <td>@item.FoodCost</td>
+                                <td>@item.FoodCuisine</td>
+
+                                <td><button type="button" class="btn btn-green"><span class="glyphicon glyphicon-plus"></span>plus</button>
+                                <td><input onclick="myFunction()" type="number" id="myNumber" name="quantity" min="1" max="10"></td>
+                                <td><button type="button" class="btn btn-green"><span class="glyphicon glyphicon-minus"></span>minus</button>
+                            </tr>
+                        }
+                        <p id="demo"></p>                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myNumber");
+                var defaultVal = x.defaultValue;
+                var currentVal = x.value;
+
+                
+                    document.getElementById("demo").innerHTML = "The default value was: " + defaultVal
+                        + "<br>The new, current value is: " + currentVal;
+                
+            }
+        </script>
+    </body>
+</html>

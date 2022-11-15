@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RestaurantEntity.Employee>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
+
+}
+<div>
+    <a asp-controller="Admin1" asp-action="Index">Admin Section</a>
+    <hr />
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <h3>Employees</h3>
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Employee Name</th>-
+                    <th>Employee Email</th>
+                    <th>Employee Password</th>
+                    <th>Employee Designation</th>
+                    <th>Employee Speciality</th>
+                    <th>Employee Phone</th>
+                    <th>Employee Gender</th>
+           
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Employee in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editEmployee of Employeecontroller (route name) here which is EmployeeId
+                which can be written as http://localhost:32344/Employees/edit Employee?Employeeid=2//
+                *@
+                {
+                   @* string imageBase64Data = Convert.ToBase64String(Employee.ImgPoster);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
+                    <tr>
+                        <td>@Employee.EmpId</td>
+                        <td>@Employee.EmpName</td>
+                        <td>@Employee.EmpEmail</td>
+                        <td>@Employee.EmpPassword</td>
+                        <td>@Employee.EmpDesignation</td>
+                        <td>@Employee.EmpSpeciality</td>
+                        <td>@Employee.EmpPhone</td>
+                        <td>@Employee.EmpGender</td>
+                      @*  <td><img height="50" width="50" src="@imageDataURL" /></td>*@
+
+                        <td>
+                            <a asp-controller="Admin1" asp-action="EditEmployee"
+                           asp-route-EmployeeId="@Employee.EmpId">Edit</a>
+                        </td>
+
+                        <td>
+                            <a asp-controller="Admin1" asp-action="DeleteEmployee"
+                           asp-route-EmployeeId="@Employee.EmpId">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

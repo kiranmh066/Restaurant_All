@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RestaurantEntity.Order>
+    @{
+        ViewData["Title"] = "ConfirmOrder";
+    }
+
+    <h1>ConfirmOrder</h1>
+    <div class="row">
+        <div class="col-12">
+            <h3>Orders</h3>
+            <hr />
+            <table class="table table-light table-bordered table-hover">
+                <thead>
+                    <tr>
+                        
+                        <th>Order Quantity</th>
+                        <th>Order OrderTotal</th>
+                       
+                        <th>Order FoodId</th>
+                        <th>Order Date</th>
+                        
+
+                  
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                {
+                    <a asp-controller="Order" asp-action="ConfirmOrder" class="btn btn-success">Confirm Order</a>
+                    <tr>&nbsp;</tr>
+                    <a asp-controller="Order" asp-action="ViewOrdered" asp-route-HallId="@item.HallTableId" class="btn btn-success">View Ordered</a>
+                    <tr>&nbsp;</tr>
+                 
+                   
+                    <a asp-controller="Order" asp-action="CancelOrder" asp-route-HallId="@item.HallTableId" class="btn btn-danger">Cancel All Order</a>
+                    <tr>&nbsp;</tr>
+                    <a asp-controller="Bill" asp-action="GetBill" class="btn btn-outline-success">Get Bill</a>
+
+
+
+                    break;
+                }
+
+                    @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
+                    which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//
+                    *@
+                    {
+                        @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
+                        <tr>
+                         
+                            <td>@Order.Quantity</td>
+                            <td>@Order.OrderTotal</td>
+                            
+                            <td>@Order.FoodId</td>
+                            <td>@Order.HallTableId</td>
+                            <td>@Order.OrderDate</td>
+                     
+                         
+
+                        </tr>
+
+                    }
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>

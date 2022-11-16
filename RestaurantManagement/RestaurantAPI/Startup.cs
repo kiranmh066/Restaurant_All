@@ -53,6 +53,10 @@ namespace RestaurantAPI
             services.AddTransient<AssignWorkService, AssignWorkService>();//adding services
             services.AddTransient<IAssignWorkRepost, AssignWorkRepost>();
 
+            services.AddTransient<FeedbackService, FeedbackService>();//adding services
+            services.AddTransient<IFeedbackRepost, FeedbackRepost>();
+
+
             services.AddControllers();
 
             services.AddSwaggerGen();

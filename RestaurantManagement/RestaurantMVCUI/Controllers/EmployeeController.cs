@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestaurantEntity;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -21,6 +22,26 @@ namespace RestaurantMVCUI.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Profile()
+        {
+            int employeeId = Convert.ToInt32(TempData["EmpId"]);
+            TempData.Keep();
+
+            Employee employee = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employeeId;
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        employee = JsonConvert.DeserializeObject<Employee>(result);
+                    }
+                }
+            }
+            return View(employee);
+        }
 
         public IActionResult Login1()
         {
@@ -30,6 +51,8 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> Login1(Employee employee)
         {
+            //var x = TempData["EmpId"] = .ToString();
+            //TempData.Keep();
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -37,8 +60,11 @@ namespace RestaurantMVCUI.Controllers
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
-                    string employee_designation = await response.Content.ReadAsStringAsync();
-                    TempData["employee_designation"] = employee_designation;
+                    var result = await response.Content.ReadAsStringAsync();
+                    employee = JsonConvert.DeserializeObject<Employee>(result);
+                    string employee_designation = (employee.EmpDesignation).ToString();
+                   TempData["employee_designation"] = employee.EmpDesignation;
+                    TempData["EmpId"] = employee.EmpId;
                     TempData.Keep();
                     if (employee_designation == "CHEF")
                         return RedirectToAction("Index", "Chef");

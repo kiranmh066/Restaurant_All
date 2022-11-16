@@ -11,7 +11,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3 " >
             <div class="container"  >
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Restaurant</a>
+                <img style="width:75px;height:75px" class="img-fluid" src="~/14.jfif" alt=" ">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,17 +27,21 @@
                             <a class="nav-link text-light " asp-area="" asp-controller="Order" asp-action="Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Index">Contact Us</a>
+                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Contactus">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="">About us</a>
+                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Aboutus">About us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light " asp-area="" asp-controller="Feedback" asp-action="AddFeedback1">Feedback</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -43,6 +49,7 @@
 
     <footer class="border-top footer text-muted bg-secondary">
         <div class="container text-light">
+            <img style="width:75px;height:75px" class="img-fluid" src="~/14.jfif" alt=" ">
             &copy; 2022 - RestaurantMVCUI - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

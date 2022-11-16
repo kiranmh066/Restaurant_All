@@ -51,21 +51,22 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> Login1(Employee employee)
         {
-            //var x = TempData["EmpId"] = .ToString();
-            //TempData.Keep();
-            ViewBag.status = "";
+
+           ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
+        
+                    
                     var result = await response.Content.ReadAsStringAsync();
                     employee = JsonConvert.DeserializeObject<Employee>(result);
                     string employee_designation = (employee.EmpDesignation).ToString();
-                   TempData["employee_designation"] = employee.EmpDesignation;
+                    TempData["employee_designation"] = employee.EmpDesignation;
                     TempData["EmpId"] = employee.EmpId;
-                    TempData.Keep();
+                    TempData.Keep();                   
                     if (employee_designation == "CHEF")
                         return RedirectToAction("Index", "Chef");
                     else if (employee_designation == "HEADCHEF")
@@ -140,12 +141,5 @@ namespace RestaurantMVCUI.Controllers
             return View();
 
         }
-        public IActionResult MeLearn()
-        {
-            // nothing to return
-            return View();
-        }
-
-
     }
 }

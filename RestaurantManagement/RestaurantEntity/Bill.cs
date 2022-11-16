@@ -12,12 +12,13 @@ namespace RestaurantEntity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BillId { get; set; }
 
-        [ForeignKey("HallTable")]
-        public int HallTableId { get; set; }
+        public string UserName { get; set; }
 
-        public HallTable HallTable { get; set; }
+        public string UserEmail { get; set; }
 
-        public bool BillStatus { get; set; }
+        public DateTime BillDate { get; set; }
+
+
 
 
         [ForeignKey("Order")]

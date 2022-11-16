@@ -1,0 +1,44 @@
+﻿@model List<RestaurantEntity.Employee>
+@{
+    Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Employees</h3>
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Employee Email</th>
+                    <th>Employee Password</th>
+                    <th>Employee Designation</th>
+                    <th>Employee Speciality</th>
+                    <th>Employee Phone</th>
+                    <th>Assign Work</th>
+
+
+            </thead>
+            <tbody>
+                @foreach (var Employee in Model)
+                {
+
+                    <tr>
+                        <td>@Employee.EmpId</td>
+                        <td>@Employee.EmpName</td>
+                        <td>@Employee.EmpEmail</td>
+                        <td>@Employee.EmpPassword</td>
+                        <td>@Employee.EmpDesignation</td>
+                        <td>@Employee.EmpSpeciality</td>
+                        <td>@Employee.EmpPhone</td>
+                        <td><a asp-controller="AssignWork" asp-action="Index" asp-route-EmpId="@Employee.EmpId" class="btn btn-success">Assign Work</a></td>
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

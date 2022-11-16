@@ -52,13 +52,13 @@ namespace RestaurantAPI.Controllers
             return Ok("Register successfully!!");
         }
         [HttpPost("Login")]
-        public string Login([FromBody] Employee employeeInfo)
+        public Employee Login([FromBody] Employee employeeInfo)
         {
             Employee Employee = _employeeService.Login(employeeInfo);
             if (Employee != null)
-                return Employee.EmpDesignation;
+                return Employee;
             else
-                return "notfound";
+                return null;
         }
     }
 }

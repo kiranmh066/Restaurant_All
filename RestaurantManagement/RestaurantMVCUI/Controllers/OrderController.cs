@@ -195,8 +195,9 @@ namespace RestaurantMVCUI.Controllers
                         }
 
                     }
-
+                    
                 }
+                orders.Clear();
                 return View();
             }
            

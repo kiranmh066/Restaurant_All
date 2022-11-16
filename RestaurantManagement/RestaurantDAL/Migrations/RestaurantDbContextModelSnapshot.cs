@@ -40,6 +40,28 @@ namespace RestaurantDAL.Migrations
                     b.ToTable("tbl_Admin");
                 });
 
+            modelBuilder.Entity("RestaurantEntity.AssignWork", b =>
+                {
+                    b.Property<int>("AssignId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignId");
+
+                    b.HasIndex("EmpId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("tbl_AssignWork");
+                });
+
             modelBuilder.Entity("RestaurantEntity.Bill", b =>
                 {
                     b.Property<int>("BillId")
@@ -47,18 +69,19 @@ namespace RestaurantDAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<bool>("BillStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("HallTableId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("BillDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("OrderId1")
                         .HasColumnType("int");
 
-                    b.HasKey("BillId");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("HallTableId");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BillId");
 
                     b.HasIndex("OrderId1");
 
@@ -213,19 +236,30 @@ namespace RestaurantDAL.Migrations
                     b.ToTable("tbl_Order");
                 });
 
-            modelBuilder.Entity("RestaurantEntity.Bill", b =>
+            modelBuilder.Entity("RestaurantEntity.AssignWork", b =>
                 {
-                    b.HasOne("RestaurantEntity.HallTable", "HallTable")
+                    b.HasOne("RestaurantEntity.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("HallTableId")
+                        .HasForeignKey("EmpId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RestaurantEntity.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId1");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("HallTable");
+                    b.Navigation("Employee");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("RestaurantEntity.Bill", b =>
+                {
+                    b.HasOne("RestaurantEntity.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId1");
 
                     b.Navigation("Order");
                 });

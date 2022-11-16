@@ -57,5 +57,11 @@ namespace RestaurantAPI.Controllers
         {
             return _orderService.GetOrderByHallId(HallId);
         }
+
+        [HttpGet("GetOrdersByTableId")]//
+        public IEnumerable<Order> GetOrdersByTableId(int hallTableId)
+        {
+            return _orderService.GetOrdersByTableId(hallTableId);
+        }
     }
 }

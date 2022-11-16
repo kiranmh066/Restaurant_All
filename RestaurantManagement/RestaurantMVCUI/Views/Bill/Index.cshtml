@@ -1,7 +1,27 @@
-﻿
+﻿@model RestaurantEntity.Order;
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Get Orders By Hall Table Id</h1>
+<form method="post" enctype="multipart/form-data">
 
+
+    <div class="form-group">
+        <label>Specify Hall Table Numbetrl</label>
+        <input type="text" asp-controller="Employee" asp-for="HallTableId" class="form-control" placeholder="Enter Table number" required />
+    </div>
+    <input type="submit" value="Generate Bill" class="btn btn-success" />
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>

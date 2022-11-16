@@ -23,7 +23,7 @@ namespace RestaurantDAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2179; Initial Catalog = Restaurant_Chandan1; Integrated Security=True;");
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2159; Initial Catalog = Restaurant_Harsh; Integrated Security=True;");
         }
     }
 }

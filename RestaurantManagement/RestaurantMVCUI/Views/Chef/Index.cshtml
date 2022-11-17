@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<RestaurantEntity.AssignWork>
+@{
     ViewData["Title"] = "Index";
 }
 @{
@@ -6,3 +7,39 @@
 
 }
 <h1>Index of chef</h1>
+
+<div class="row">
+    <div class="col-12">
+        <h3>AssignWorks</h3>
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Assign Id</th>
+                    <th>Order Id</th>
+                    <th>Food Name</th>
+                    <th>Food Cuisine</th>
+                    <th>Quantity</th>
+                    
+
+
+            </thead>
+            <tbody>
+                @foreach (var AssignWork in Model)
+                {
+
+                    <tr>
+                        <td>@AssignWork.AssignId</td>
+                        <td>@AssignWork.Order.OrderId</td>
+                        <td>@AssignWork.Order.Food.FoodName</td>
+                        <td>@AssignWork.Order.Food.FoodCuisine</td>
+                        <td>@AssignWork.Order.Quantity</td>
+                
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

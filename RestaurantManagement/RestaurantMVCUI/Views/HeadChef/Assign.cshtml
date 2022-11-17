@@ -1,0 +1,43 @@
+﻿@model IEnumerable<RestaurantEntity.Employee>
+@{
+    Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
+}
+<div>
+    <a asp-controller="HeadChef" asp-action="Index">Home</a>
+    <hr />
+</div>
+<h1>Index of HeadChef</h1>
+@foreach(var item in Model)
+{   
+    string a =Convert.ToString(TempData["speciality"]);
+    TempData.Keep();
+    if (item.EmpSpeciality == a)
+    {
+        <table>
+            <thead><tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Employee Speciality</th>
+                <th>Assign</th>
+        </tr>
+         
+        </thead>
+        <tbody>
+            <tr> 
+                <td>@item.EmpId</td>
+                <td>@item.EmpName</td>
+                <td>@item.EmpSpeciality</td>
+
+                    <td>
+                        <a asp-controller="Chef" asp-action="Index"
+                   asp-route-EmpId="@item.EmpId">Assign to Chef</a>
+                    </td>
+
+            </tr>
+          
+        
+           
+        </tbody>
+
+    </table>}
+}

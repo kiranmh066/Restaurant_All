@@ -103,9 +103,10 @@ namespace RestaurantMVCUI.Controllers
             {
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
             }
-   
-            ViewBag.TableId = tableId;  
-        
+          
+            ViewBag.TableId = tableId; 
+            order.OrderDate = DateTime.Now;
+
             return View(order);
 
         } 
@@ -161,7 +162,7 @@ namespace RestaurantMVCUI.Controllers
            
             }
 
-
+            
             using (HttpClient client = new HttpClient())
             {
                 var foodcost = Convert.ToInt32(TempData["foodcost1"]);

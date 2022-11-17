@@ -155,8 +155,4 @@ namespace RestaurantMVCUI.Controllers
         }
 
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419

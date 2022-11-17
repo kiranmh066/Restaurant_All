@@ -9,9 +9,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3 " >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 " style="background-color:#D1B001">
             <div class="container"  >
-                <img style="width:75px;height:75px" class="img-fluid" src="~/14.jfif" alt=" ">
+                <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
             </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -21,36 +21,42 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Index" >Home</a>
+                            <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                    @*    <li class="nav-item">
+                            <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Order" asp-action="Index">Menu</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Order" asp-action="Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Order" asp-action="Index">Menu</a>
+                            <a class ="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Home" asp-action="Contactus">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Contactus">Contact Us</a>
+                            <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Home" asp-action="Aboutus">About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Aboutus">About us</a>
+                            <a class ="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Feedback" asp-action="AddFeedback1">Feedback</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light " asp-area="" asp-controller="Feedback" asp-action="AddFeedback1">Feedback</a>
-                        </li>
-
+                        
+                       
                     </ul>
+                    
                 </div>
+                
             </div>
         </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid " style="color:#5A3B5D">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted bg-secondary">
+    <footer class="border-top footer text-muted " style="background-color:#D1B001">
         <div class="container text-light">
-            <img style="width:75px;height:75px" class="img-fluid" src="~/14.jfif" alt=" ">
-            &copy; 2022 - RestaurantMVCUI - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
+            &copy; 2022 - RestaurantMVCUI - <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

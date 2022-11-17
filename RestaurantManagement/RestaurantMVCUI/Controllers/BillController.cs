@@ -6,10 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using Microsoft.Extensions.Configuration;
-<<<<<<< HEAD
 using System.Text;
-=======
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
 
 namespace RestaurantMVCUI.Controllers
 {
@@ -20,15 +17,11 @@ namespace RestaurantMVCUI.Controllers
         {
             _configuration = configuration;
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
+
         public IActionResult Index()
         {
             return View();
         }
-<<<<<<< HEAD
         [HttpPost]
         public async Task<IActionResult> Index(Bill bill)
         {
@@ -49,22 +42,22 @@ namespace RestaurantMVCUI.Controllers
                     }
                 }
             }
-            double total1=0;
-            foreach(var item in orderresult)
+            double total1 = 0;
+            foreach (var item in orderresult)
             {
                 total1 += item.OrderTotal;
             }
-            
+
             ViewBag.status = "";
 
-           
+
             bill1.BillStatus = false;
-            bill1.HallTableId= hallTableId1;
+            bill1.HallTableId = hallTableId1;
             bill1.BillTotal = total1;
-            bill1.BillDate=DateTime.Now;
+            bill1.BillDate = DateTime.Now;
             bill1.UserName = bill.UserName;
             bill1.UserEmail = bill.UserEmail;
-    
+
 
             using (HttpClient client = new HttpClient())
             {
@@ -96,17 +89,6 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> GenerateBill()
         {
 
-=======
-     /*   [HttpPost]
-        public IActionResult Index(int hallTableId)
-        {
-            TempData["hallTableId"] = hallTableId;
-            return RedirectToAction("GenerateBill", "Bill");
-        }*/
-        public async Task<IActionResult> GenerateBill()
-        {
-            /*int hallTableId1 = Convert.ToInt32(TempData["hallTableId"]);*/
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             IEnumerable<Order> orderresult = null;
@@ -124,28 +106,25 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderresult);
         }
-<<<<<<< HEAD
-       /* public async Task<IActionResult> GenerateBill()
-        {
-           
-            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
-            TempData.Keep();
-            IEnumerable<Order> orderresult = null;
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByTableId?hallTableId=" + hallTableId1;
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
-                    }
-                }
-            }
-            return View(orderresult);
-        }*/
-=======
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
+        /* public async Task<IActionResult> GenerateBill()
+         {
+
+             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
+             TempData.Keep();
+             IEnumerable<Order> orderresult = null;
+             using (HttpClient client = new HttpClient())
+             {
+                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByTableId?hallTableId=" + hallTableId1;
+                 using (var response = await client.GetAsync(endPoint))
+                 {
+                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                     {
+                         var result = await response.Content.ReadAsStringAsync();
+                         orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
+                     }
+                 }
+             }
+             return View(orderresult);
+         }*/
     }
 }

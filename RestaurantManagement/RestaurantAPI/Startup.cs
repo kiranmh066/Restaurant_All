@@ -50,6 +50,12 @@ namespace RestaurantAPI
             services.AddTransient<HallTableService, HallTableService>();//adding services
             services.AddTransient<IHallTableRepost, HallTableRepost>();
 
+            services.AddTransient<AssignWorkService, AssignWorkService>();//adding services
+            services.AddTransient<IAssignWorkRepost, AssignWorkRepost>();
+
+            services.AddTransient<BillService, BillService>();//adding services
+            services.AddTransient<IBillRepost, BillRepost>();
+
             services.AddControllers();
 
             services.AddSwaggerGen();

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestaurantEntity;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -30,6 +31,7 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> Login1(Employee employee)
         {
+            Employee employee1 = null ;
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -37,8 +39,13 @@ namespace RestaurantMVCUI.Controllers
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
-                    string employee_designation = await response.Content.ReadAsStringAsync();
+                  
+                    var result = await response.Content.ReadAsStringAsync();
+                    employee1 = JsonConvert.DeserializeObject<Employee>(result);
+                    string employee_designation = (employee1.EmpDesignation).ToString();
                     TempData["employee_designation"] = employee_designation;
+                    TempData.Keep();
+                    TempData["empId"] = Convert.ToInt32(employee1.EmpId);
                     TempData.Keep();
                     if (employee_designation == "CHEF")
                         return RedirectToAction("Index", "Chef");
@@ -114,12 +121,5 @@ namespace RestaurantMVCUI.Controllers
             return View();
 
         }
-        public IActionResult MeLearn()
-        {
-
-            return View();
-        }
-
-
     }
 }

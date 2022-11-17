@@ -7,28 +7,56 @@
 
 }
 <div>
-    <a asp-controller="Employee" asp-action="Index">Employee Section</a>
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Employee Section</a>
+    &nbsp;
+    <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
+
     <hr />
 </div>
 
 
-<h1>Index of Hall Manager</h1>
-
-@foreach (var hallTable in Model) {
 
 
-   
-
-       
-    if (hallTable.HallTableStatus == false)
-    {
-        <div class="square rounded p-5" style="background-color:green;width:100px">@hallTable.HallTableSize</div>
-    }
-    else
-    {
-        <div class="square rounded p-5" style="background-color:red;width:100px">@hallTable.HallTableSize</div>
-    }
+<body style="background-color:black">
+    <center>
+        <h2 class ="text-light text-center">Index of Hall Manager</h2>
+    <div>
 
 
-}
+        <div class=" row">
+
+            @foreach (var hallTable in Model)
+            {
+              
+
+                <div class="col-md-3">
+
+                    <div class="col-md-3">
+                        @if (hallTable.HallTableStatus == true)
+                        {
+                                <p class="square rounded p-5" style="background-color:green;width:100px">No:@hallTable.HallTableId</p>
+                                <div class ="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
+                        }
+                        else
+                        {
+                        <p class="square rounded p-5" style="background-color:red;width:100px">@hallTable.HallTableSize</p>
+                        }
+                        
+                    </div>
+                    <br />
+                </div>
+              
+
+
+            }
+
+        </div>
+
+    </div>
+     </center>
+</body>
+
+
+
+
 

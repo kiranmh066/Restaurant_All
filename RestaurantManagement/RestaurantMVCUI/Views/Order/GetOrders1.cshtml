@@ -11,6 +11,24 @@
             <table class="table table-light table-bordered table-hover">
                 <thead>
                     <tr>
+                    <a asp-controller="Order" asp-action="ClearCart" class="btn btn-primary">Clear Cart</a>
+                <tr>&nbsp;</tr>
+                <a asp-controller="Order" asp-action="ConfirmOrder" class="btn btn-primary">Confirm Order</a>
+                <tr>&nbsp;</tr>
+
+                <a asp-controller="Order" asp-action="ViewOrdered" class="btn btn-primary">View Ordered</a>
+                <tr>&nbsp;</tr>
+
+
+
+                <a asp-controller="Bill" asp-action="GenerateBill" class="btn btn-primary">Get Bill</a>
+                <tr>&nbsp;</tr>
+
+                <a asp-controller="Order" asp-action="CancelOrder"  class="btn btn-danger">Cancel All Order</a>
+                <tr>&nbsp;</tr>
+                    </tr>
+
+                    <tr>
                         
                         <th>Order Quantity</th>
                         <th>Order OrderTotal</th>
@@ -23,13 +41,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in Model)
-                {
-                    <a asp-controller="Order" asp-action="ConfirmOrder" class="btn btn-success">Confirm Order</a>
-                    <tr>&nbsp;</tr>
-                    <a asp-controller="Order" asp-action="ViewOrdered" asp-route-HallId="@item.HallTableId" class="btn btn-success">View Ordered</a>
-                    <tr>&nbsp;</tr>
                  
+<<<<<<< HEAD
+=======
                    
                     <a asp-controller="Order" asp-action="CancelOrder" asp-route-HallId="@item.HallTableId" class="btn btn-danger">Cancel All Order</a>
                     <tr>&nbsp;</tr>
@@ -39,6 +53,7 @@
 
                     break;
                 }
+>>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
 
                     @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
                     which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//

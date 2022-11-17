@@ -24,11 +24,11 @@
     </div>
     <div class="form-group">
         <label>Food Id</label>
-        <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required />
+        <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required disabled />
     </div>
     <div class="form-group">
         <label>Hall Table Id</label>
-        <select asp-for="HallTableId" asp-items="@ViewBag.tablelist" class="form-control" placeholder="Select Hall Table ID" required></select>
+        <select asp-for="HallTableId" asp-items="@ViewBag.TableId" class="form-control" placeholder="Select Hall Table ID" required></select>
   
     </div>
    

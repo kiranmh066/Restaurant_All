@@ -41,8 +41,11 @@
                             <td>@Order.FoodId</td>
                             <td>@Order.HallTableId</td>
                             <td>@Order.OrderDate</td>
-                        <td><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@Order.OrderId" class="btn btn-success">Update Order</a></td>
-                        </tr>
+                            <td><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@Order.OrderId" class="btn btn-success">Update Order</a></td>
+                            <td><a asp-controller="Order" asp-action="DeleteOrder1" asp-route-OrderId="@Order.OrderId" class="btn btn-danger">Delete Order</a></td>
+                        
+                    
+                    </tr>
 
                     }
                   

@@ -14,6 +14,8 @@ namespace RestaurantEntity
 
         public int HallTableSize { get; set; }
 
-        public bool HallTableStatus { get; set; }       
+        public bool HallTableStatus { get; set; }
+
+    
     }
 }

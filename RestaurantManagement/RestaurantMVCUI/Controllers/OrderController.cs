@@ -17,7 +17,7 @@ namespace RestaurantMVCUI.Controllers
     {
         public static List<Order> orders = new List<Order>();
 
-        
+
         private IConfiguration _configuration;
 
         public OrderController(IConfiguration configuration)
@@ -96,23 +96,27 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
 
-            List<SelectListItem> tableId = new List<SelectListItem>()
+            List<SelectListItem> tableId = new List<SelectListItem>();
+
+            tableId.Add(new SelectListItem { Value = "Select", Text = "select" });
+            foreach (var item in halltable)
             {
-                new SelectListItem{Value="Select",Text="select"},
-                new SelectListItem{Value="1",Text="1"},
-                new SelectListItem{Value="2",Text="2"},
-                new SelectListItem{Value="3",Text="3"},
-
-            };
-
-
-            ViewBag.tablelist = tableId;
-
-
+                tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
+            }
+   
+            ViewBag.TableId = tableId;  
+        
             return View(order);
 
+        } 
 
-        }
+
+
+
+            
+
+
+        
 
         [HttpPost]
         public async Task<IActionResult> AddOrder1(Order order)
@@ -125,6 +129,39 @@ namespace RestaurantMVCUI.Controllers
                             Orderv.ImgPoster = ms.ToArray();
                         }*/
             //using grabage collection only for inbuilt classes
+
+            //to make Employee employee = null;
+
+            HallTable hallTable = null;
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTableById?hallTableId=" + order.HallTableId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        hallTable = JsonConvert.DeserializeObject<HallTable>(result);
+                    }
+
+
+
+                }
+            }
+            hallTable.HallTableStatus = false;
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
+
+                using (var response = await client.PutAsync(endPoint, content)) ;
+           
+            }
+
+
             using (HttpClient client = new HttpClient())
             {
                 var foodcost = Convert.ToInt32(TempData["foodcost1"]);
@@ -238,15 +275,15 @@ namespace RestaurantMVCUI.Controllers
             return View(orders);
         }
 
-        public async Task<IActionResult> CancelOrder(int HallId)
+        public async Task<IActionResult> CancelOrder()
         {
-
+            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             IEnumerable<Order> orderresult = null;
             using (HttpClient client = new HttpClient())
             {
 
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + HallId;//api controller name and httppost name given inside httppost in moviecontroller of api
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;//api controller name and httppost name given inside httppost in moviecontroller of api
 
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -296,15 +333,16 @@ namespace RestaurantMVCUI.Controllers
 
         }
 
-        public async Task<IActionResult> ViewOrdered(int HallId)
+        public async Task<IActionResult> ViewOrdered()
         {
+            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             IEnumerable<Order> orderresult = null;
             using (HttpClient client = new HttpClient())
             {
 
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + HallId;//api controller name and httppost name given inside httppost in moviecontroller of api
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;//api controller name and httppost name given inside httppost in moviecontroller of api
 
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -390,7 +428,7 @@ namespace RestaurantMVCUI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
                         ViewBag.status = "Ok";
-                        ViewBag.message = "Orders Details Updated Successfull!!";
+                        ViewBag.message = "Order Details Updated Successfull!!";
                     }
 
                     else
@@ -404,6 +442,94 @@ namespace RestaurantMVCUI.Controllers
             return View();
 
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteOrder1(int OrderId)
+        {
+
+            ViewBag.status = "";
+            Order order = null;
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + OrderId;//OrderId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Ordercontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        order = JsonConvert.DeserializeObject<Order>(result);
+                    }
+
+
+
+                }
+            }
+            Food food = null;
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Food/GetFoodById?foodId=" + order.FoodId;//OrderId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Ordercontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        food = JsonConvert.DeserializeObject<Food>(result);
+                    }
+
+
+
+                }
+            }
+            //using grabage collection only for inbuilt classes
+            using (HttpClient client = new HttpClient())
+            {
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + OrderId;  //api controller name and its function
+
+                using (var response = await client.DeleteAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        ViewBag.status = "Ok";
+                        ViewBag.message = food.FoodName+" Order Deleted Successfully!!";
+                    }
+
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Wrong Entries";
+                    }
+
+                }
+            }
+            return View();
+
+        }
+      
+
+
+        public IActionResult ClearCart()
+        {
+            orders.Clear();
+            if (orders.Count == 0)
+            {
+                ViewBag.status = "Ok";
+                ViewBag.message = "Cart Emptied Successfully!!";
+            }
+            else
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "Cart not Emptied";
+            }
+
+            return View();
         }
     }
     }

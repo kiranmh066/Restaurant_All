@@ -6,7 +6,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using Microsoft.Extensions.Configuration;
+<<<<<<< HEAD
 using System.Text;
+=======
+>>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
 
 namespace RestaurantMVCUI.Controllers
 {
@@ -17,11 +20,15 @@ namespace RestaurantMVCUI.Controllers
         {
             _configuration = configuration;
         }
+<<<<<<< HEAD
         
+=======
+>>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
         public IActionResult Index()
         {
             return View();
         }
+<<<<<<< HEAD
         [HttpPost]
         public async Task<IActionResult> Index(Bill bill)
         {
@@ -89,6 +96,17 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> GenerateBill()
         {
 
+=======
+     /*   [HttpPost]
+        public IActionResult Index(int hallTableId)
+        {
+            TempData["hallTableId"] = hallTableId;
+            return RedirectToAction("GenerateBill", "Bill");
+        }*/
+        public async Task<IActionResult> GenerateBill()
+        {
+            /*int hallTableId1 = Convert.ToInt32(TempData["hallTableId"]);*/
+>>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             IEnumerable<Order> orderresult = null;
@@ -106,6 +124,7 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderresult);
         }
+<<<<<<< HEAD
        /* public async Task<IActionResult> GenerateBill()
         {
            
@@ -126,5 +145,7 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderresult);
         }*/
+=======
+>>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
     }
 }

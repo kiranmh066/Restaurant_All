@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "AddOrder";
+}
+
+<h1>AddOrder</h1>
+
+@model RestaurantEntity.Order
+
+<div>
+    <a asp-controller="Customer" asp-action="Index">Index</a>
+    <hr />
+</div>
+<form method="post" enctype="multipart/form-data">
+    <h2>Add Order </h2>
+    <div class="form-group">
+        @*  form group for automatic audjustment for various screen sizes*@
+        <label>Order Quantity</label>
+        <input type="text" asp-for="Quantity" class="form-control" placeholder="Enter Quantity" required />
+    </div>
+    <div class="form-group">
+        <label>Order Time</label>
+        <input type="datetime-local" asp-for="OrderDate" class="form-control" placeholder="Enter Order Time" required />
+    </div>
+    <div class="form-group">
+        <label>Food Id</label>
+        <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required />
+    </div>
+    <div class="form-group">
+        <label>Hall Table Id</label>
+        <input type="text" asp-for="HallTableId" class="form-control" placeholder="Enter Hall Table ID" required />
+    </div>
+    <div class="form-group">
+        <label>Order Status</label>
+        <input type="text" asp-for="OrderStatus" class="form-control" placeholder="Enter Order Status" required />
+    </div>
+    <div class="form-group">
+        <label>Order Total</label>
+        <input type="text" asp-for="OrderTotal" class="form-control" placeholder="Enter Order Total" required />
+    </div>
+
+    @* <div class="form-group">
+    <label>Order Poster</label>
+    <input type="file" id="poster" name="poster" class="form-control" required />
+    </div>
+    *@
+    <input type="submit" value="Save" class="btn btn-outline-success" /> @*submit display message for required option required works only with submit*@
+    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+    <hr />
+    @*submit sends form to server thats why we use submit not button type  *@
+    @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Ordercontroller *@
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>

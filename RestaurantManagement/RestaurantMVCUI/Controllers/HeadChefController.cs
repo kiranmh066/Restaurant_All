@@ -37,6 +37,10 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderResult);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
         public async Task<IActionResult> cheflist(int OrderId)
         {
             Order order = new Order();

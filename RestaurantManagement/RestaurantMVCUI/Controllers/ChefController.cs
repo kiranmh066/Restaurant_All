@@ -25,6 +25,7 @@ namespace RestaurantMVCUI.Controllers
             {
 
                 int EmpId =Convert.ToInt32(TempData["empId"]);
+                TempData.Keep();
                 string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorkByEmpId?empId=" + EmpId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
 
                 using (var response = await client.GetAsync(endPoint))

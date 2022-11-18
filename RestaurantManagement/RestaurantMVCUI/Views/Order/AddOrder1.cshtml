@@ -2,31 +2,36 @@
     ViewData["Title"] = "AddOrder";
 }
 
-<h1>AddOrder</h1>
+
 
 @model RestaurantEntity.Order
+<script type="text/javascript">
+    function fun() {
 
 
-<div>
-    <a asp-controller="Customer" asp-action="Index">Index</a>
-    <hr />
-</div>
+        alert("Food addded succefully");
+    }
+</script>
+<body style="background-color:#5A3B5D">
+<div class="container" >
+    
 <form method="post" enctype="multipart/form-data">
     <h2>Add Order </h2>
-    <div class="form-group">
+  
+    <div class="form-group text-white">
         @*  form group for automatic audjustment for various screen sizes*@
         <label>Order Quantity</label>
         <input type="number" asp-for="Quantity" min="0" max="10" class="form-control" placeholder="Enter Order quantity" />
     </div>
-    <div class="form-group">
+            <div class="form-group text-white">
         <label>Order Time</label>
-        <input type="datetime-local" asp-for="OrderDate" class="form-control" placeholder="Enter Order Time" required />
+        <input type="datetime" asp-for="OrderDate" class="form-control" placeholder="Enter Order Time" required />
     </div>
-    <div class="form-group">
+            <div class="form-group text-white">
         <label>Food Id</label>
         <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required disabled />
     </div>
-    <div class="form-group">
+            <div class="form-group text-white">
         <label>Hall Table Id</label>
         <select asp-for="HallTableId" asp-items="@ViewBag.TableId" class="form-control" placeholder="Select Hall Table ID" required></select>
   
@@ -38,9 +43,9 @@
     <label>Order Poster</label>
     <input type="file" id="poster" name="poster" class="form-control" required />
     </div>
-    *@ 
-   
-    <input type="submit" value="Save" class="btn btn-success" />
+    *@
+
+            <input type="submit" value="Save" onclick="fun();" class="btn btn-success" />
      @*submit display message for required option required works only with submit*@
     <input type="button" value="Reset" class="btn btn-outline-secondary" />
 
@@ -61,4 +66,5 @@
     }
 </form>
 
-    
+ </div>
+ </body>

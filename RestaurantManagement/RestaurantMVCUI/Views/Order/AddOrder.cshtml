@@ -7,10 +7,7 @@
 
 @model RestaurantEntity.Order
 
-<div>
-    <a asp-controller="Customer" asp-action="Index">Index</a>
-    <hr />
-</div>
+<div class="container" style="color:#5A3B5D">
 <form method="post" enctype="multipart/form-data">
     <h2>Add Order </h2>
     <div class="form-group">
@@ -61,4 +58,5 @@
             @ViewBag.message
         </div>
     }
-</form>
+    </form>
+</div>

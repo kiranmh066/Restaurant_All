@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3">
             <div class="container">
                 <img style="width:75px;height:75px" class="img-fluid" src="~/14.jfif" alt=" ">
-                <a class="navbar-brand" asp-area="" asp-controller="HallManager" asp-action="Index"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Admin1" asp-action="Index"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,9 +30,13 @@
 
                     </ul>
                 </div>
+
             </div>
-            <a asp-area="" asp-controller="Employee" asp-action="Profile" type="button" class="btn btn-outline-danger text-light">My Profile</a>
+            @* <button asp-controller="Employee" asp-action="Profile" type="button" class="btn btn-elegant"><i class="far fa-user pr-2" aria-hidden="true"></i>User</button>*@
+
             <a asp-area="" asp-controller="Home" asp-action="Index" type="button" class="btn btn-outline-danger text-light">Sign Out</a>
+            <a asp-area="" asp-controller="Employee" asp-action="Profile" type="button" class="btn btn-elegant"><i class="far fa-user pr-2" aria-hidden="true"></i>My Profile</a>
+
         </nav>
     </header>
     <div>
@@ -40,10 +44,9 @@
     </div>
     <footer class="border-top footer text-muted bg-secondary">
         <div class="container text-light">
-<<<<<<< HEAD
-=======
+
             <img style="width:75px;height:75px" class="img-fluid" src="~/14.jfif" alt=" ">
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
+
             &copy; 2022 - RestaurantMVCUI - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

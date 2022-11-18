@@ -14,43 +14,48 @@
 
 </head>
 
-<body style="background-color:black">
+<body style="background-color:#5A3B5D">
+    <br />
+    <div class=" container">
+        <center> <h2 class="display-5 text-light">Index of Admin</h2></center>
+        <br />
+        
+    <div class="row">
+           
+       
+        <div class="col-md-6">
+                <a asp-controller="Admin1" asp-action="AddEmployee" type="button " class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/22049/add-user.svg" /><span>&nbsp;</span> Add Employee </a>
+            <span> <br /></span>
 
-    
-    <div class="text-center">
-        <h2 class="display-5 text-light">Index of Admin</h2>
-        @*<h1 class="display-4 text-light" >Welcome To Restaurant</h1>*@
-        <a asp-controller="Admin1" asp-action="AddEmployee" type="button " class="btn btn-success" style="width:200px">Add Employee </a>
-         <hr />
+                <a asp-controller="Admin1" asp-action="EditEmployee" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/61278/edit.svg" /><span>&nbsp;</span>Update Employee</a>
+      
         <br />
-        <a asp-controller="Admin1" asp-action="EditEmployee" type="button" class="btn btn-success" style="width:200px">Update Employee</a>
-        <hr />
-        <br />
-        <a asp-controller="Admin1" asp-action="DeleteEmployee" type="button" class="btn btn-success" style="width:200px">Delete Employee</a>
-        <hr />
-        <br />
-
-        <a asp-controller="Admin1" asp-action="GetAllEmployees" type="button" class="btn btn-success" style="width:200px">Get All Employees</a>
-        <hr />
-        <br />
-
-        <a asp-controller="Admin1" asp-action="AddFood" type="button" class="btn btn-primary" style="width:200px">Add Food</a>
-        <hr />
+                <a asp-controller="Admin1" asp-action="DeleteEmployee" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243868/delete.svg" /><span>&nbsp;</span>Delete Employee</a>
+       
         <br />
 
-        <a asp-controller="Admin1" asp-action="EditFood" type="button" class="btn btn-primary" style="width:200px">Update Food</a>
-        <hr />
+                <a asp-controller="Admin1" asp-action="GetAllEmployees" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All Employees</a>
+      
+        <br />
+            </div>
+            <div class="col-md-6">
+                <a asp-controller="Admin1" asp-action="AddFood" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/317513/food.svg" /><span>&nbsp;</span>Add Food</a>
+       
         <br />
 
-        <a asp-controller="Admin1" asp-action="DeleteFood" type="button" class="btn btn-primary" style="width:200px">Delete Food</a>
-        <hr />
+                <a asp-controller="Admin1" asp-action="EditFood" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/61278/edit.svg" /><span>&nbsp;</span>Update Food</a>
+      
         <br />
-        <a asp-controller="Admin1" asp-action="GetAllFoods" type="button" class="btn btn-primary" style="width:200px">Get All Foods</a>
-        <hr />
 
+                <a asp-controller="Admin1" asp-action="DeleteFood" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243868/delete.svg" /><span>&nbsp;</span>Delete Food</a>
+       
+        <br />
+                <a asp-controller="Admin1" asp-action="GetAllFoods" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All Foods</a>
+       
+        </div>
 
 
     </div>
-
+    </div>
 </body>
 </html>

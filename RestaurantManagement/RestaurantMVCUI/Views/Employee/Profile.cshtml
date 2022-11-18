@@ -7,16 +7,10 @@
 
 @model RestaurantEntity.Employee
 <html>
-<head>
-    @*<script type="text/javascript">
-    function preventBack() { window.history.forward(); }
-    setTimeout("preventBack()", 0);
-    window.onunload = function () { null };
-    </script>*@
+<body style="background-color:#5A3B5D">
+    <br />
+    <div class="container ">
 
-
-</head>
-<section class="vh-100" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -24,12 +18,20 @@
                     <div class="row g-0">
                         <div class="col-md-4 gradient-custom text-center text-white"
                              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                @if (@Model.EmpGender == 'F')
+                                {
+                                    <img src="https://www.svgrepo.com/show/428269/female.svg"
                                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                }
+
+                                else
+                                    {<img src="https://www.svgrepo.com/show/428252/male.svg"
+                                     alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                    }
                             <h6>My Profile</h6>
                            
                                     <h6>Name</h6>
-                                    <p class="text-muted">@Model.EmpName</p>
+                                    <p class="text-white">@Model.EmpName</p>
                             
                             <i class="far fa-edit mb-5"></i>
                         </div>
@@ -76,6 +78,7 @@
             </div>
         </div>
     </div>
-</section>
 
+    </div>
+</body>
 </html>

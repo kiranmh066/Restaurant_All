@@ -3,13 +3,17 @@
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
 }
-<h1>EditEmployee</h1>
-<div>
-    <a asp-controller="Admin1" asp-action="Index">Index</a>
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <div class="container">
+<div >
+            <center> <a asp-controller="Admin1" asp-action="Index"><h2>Index</h2></a></center>
     <hr />
 </div>
-<form method="post" enctype="multipart/form-data">
 
+
+
+<form method="post" enctype="multipart/form-data">
+                <h2>EditEmployee</h2>
     <div class="form-group">
         @*  form group for automatic audjustment for various screen sizes*@
         <label>Employee Id</label>
@@ -64,4 +68,6 @@
         </div>
     }
 </form>
+</div>
+</body>
 

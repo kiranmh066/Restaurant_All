@@ -3,30 +3,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-<h1>Edit Order</h1>
+<body style="background-color:#5A3B5D">
+    <div class="container">
+<h1 style="color:white">Edit Order</h1>
 
 <form method="post" enctype="multipart/form-data">
 
-    <div class="form-group">
+    <div class="form-group text-white">
         @*  form group for automatic audjustment for various screen sizes*@
         <label>Order Id</label>
         <input type="text" asp-for="OrderId" class="form-control" placeholder="Enter Order Id" required disabled />
     </div>
-    <div class="form-group">
+            <div class="form-group text-white">
         @*  form group for automatic audjustment for various screen sizes*@
         <label>Order Quantity</label>
         <input type="text" asp-for="Quantity" class="form-control" placeholder="Enter Order Quantity" required />
     </div>
-    <div class="form-group"  hidden>
+            <div class="form-group text-white" hidden>
         <label>Food Id</label>
         <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food Id" required  />
     </div>
-    <div class="form-group" hidden>
+            <div class="form-group text-white" hidden>
         <label>Hall table Id</label>
         <input type="text" asp-for="HallTableId" class="form-control" placeholder="Enter Hall table Id" required />
     </div>
 
-    <div class="form-group" hidden>
+            <div class="form-group text-white" hidden>
         <label>Hall table Id</label>
         <input type="datetime" asp-for="OrderDate" class="form-control" placeholder="Enter Order Date" required />
     </div>
@@ -56,3 +58,5 @@
         </div>
     }
 </form>
+    </div>
+</body>

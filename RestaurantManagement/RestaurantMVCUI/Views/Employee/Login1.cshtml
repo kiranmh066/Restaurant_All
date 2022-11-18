@@ -11,20 +11,24 @@
     </script>
 </head>
 
-<body style=" background-color:black">
-    
-    <div class="bg-image" style="background-image: url(cnbc.jpg)">
-        <section class="vh-100 gradient-custom">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
+<body class="img-responsive" style="background-image:url('https://png.pngtree.com/back_origin_pic/03/91/31/216a8c258305188af56217c3b58b99c5.jpg');">
+ 
+    <div class="container-fluid  " style="padding-left:120px;padding-top:80px">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img align-content-md-start" style="height:350px;width:350px;" src="https://www.svgrepo.com/show/218334/chef.svg" alt=" ">
+            </div>
+            
+                <div class="col-md-3 justify-content-center align-items-center ">
+                    @*<div class="col-12 col-md-8 col-lg-6 col-xl-5">*@
+                
+                        <div >
+                            <div class="card-body p-4 text-center">
 
                                 <div class="mb-md-5 mt-md-4 pb-5">
-
-                                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                            
+                                    <h2 class="font-weight-bolder mb-2 text-uppercase">Login</h2>
+                                    <p class="mb-5">Please enter your login and password!</p>
 
                                     <form method="post" enctype="multipart/form-data">
 
@@ -40,32 +44,26 @@
                                         <input type="submit" value="Login" class="btn btn-success" /> @*submit display message for required option required works only with submit*@
                                         <br />
                                         <a asp-controller="Employee" asp-action="Forgot" type="button" >Forgot Password</a>
-                                        <hr />
-                                        @*submit sends form to server thats why we use submit not button type  *@
-                                        @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Usercontroller *@
+                                       
+                                       
                                         @if (ViewBag.status == "Ok")
-                                        {
+                                        {<br />
                                             <div class="alert alert-success">
                                                 @ViewBag.message
                                             </div>
                                         }
                                         else if (ViewBag.status == "Error")
-                                        {
+                                        {<br />
                                             <div class="alert alert-danger">
                                                 @ViewBag.message
                                             </div>
                                         }
                                     </form>
 
-                                    @* <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>*@
+                                 
 
 
 
-                                    <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                        <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                        <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                        <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                                    </div>
 
                                 </div>
 
@@ -75,8 +73,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+        <div class="col-md-6">
+        </div>
+       
     </div>
 
 </body>

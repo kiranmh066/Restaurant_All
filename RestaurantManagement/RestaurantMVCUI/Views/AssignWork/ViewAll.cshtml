@@ -2,13 +2,16 @@
 @{
     Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
 }
+<body style="background-color:#5A3B5D">
+    <div class="container">
+     
 <div class="row">
-    <div class="col-12">
-        <h3>Assigned Works</h3>
+    <div class="col-12 text-white">
+        <h2>Assigned Works</h2>
         <hr />
-        <table class="table table-light table-bordered table-hover">
+        <table class="table table-bordered table-hover">
             <thead>
-                <tr>
+                <tr class="text-light">
                     <th>Food Name</th>
                     <th>Employee Name</th>
                     <th>Speciality</th>
@@ -20,14 +23,16 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                        <tr class ="text-light">
                         <td>@item.Order.Food.FoodName</td>
                         <td>@item.Employee.EmpName</td>
                         <td>@item.Employee.EmpSpeciality</td>
                         <td>@item.Order.Quantity</td>
 
-                        <td><a asp-controller="AssignWork" asp-action="EditAssignWork" asp-route-AssignWorkID="@item.AssignId" class="btn btn-primary">Edit Assigned Work</a></td>
-                        <td><a asp-controller="AssignWork" asp-action="DeleteAssignWork1" asp-route-AssignWorkID="@item.AssignId" class="btn btn-danger">Delete Assigned Work</a></td>
+                                <td><a asp-controller="AssignWork" asp-action="EditAssignWork" asp-route-AssignWorkID="@item.AssignId" class="btn btn-outline-success"><img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/241804/edit.svg" />Edit Assigned Work</a>
+
+                            </td>
+                                <td><a asp-controller="AssignWork" asp-action="DeleteAssignWork1" asp-route-AssignWorkID="@item.AssignId" class="btn btn-outline-danger"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" />Delete Assigned Work</a></td>
                     </tr>
                 }
 
@@ -35,3 +40,5 @@
         </table>
     </div>
 </div>
+    </div>
+</body>

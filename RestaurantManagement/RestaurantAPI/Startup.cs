@@ -53,14 +53,13 @@ namespace RestaurantAPI
             services.AddTransient<AssignWorkService, AssignWorkService>();//adding services
             services.AddTransient<IAssignWorkRepost, AssignWorkRepost>();
 
-<<<<<<< HEAD
             services.AddTransient<BillService, BillService>();//adding services
             services.AddTransient<IBillRepost, BillRepost>();
-=======
+
             services.AddTransient<FeedbackService, FeedbackService>();//adding services
             services.AddTransient<IFeedbackRepost, FeedbackRepost>();
 
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
+
 
             services.AddControllers();
 

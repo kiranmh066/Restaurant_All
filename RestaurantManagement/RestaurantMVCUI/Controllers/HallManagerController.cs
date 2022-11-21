@@ -119,7 +119,7 @@ namespace RestaurantMVCUI.Controllers
             hallTable.HallTableStatus = true;
             using (HttpClient client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(billresult), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
 
                 using (var response = await client.PutAsync(endPoint, content))

@@ -22,26 +22,6 @@ namespace RestaurantMVCUI.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Profile()
-        {
-            int employeeId = Convert.ToInt32(TempData["EmpId"]);
-            TempData.Keep();
-
-            Employee employee = null;
-            using (HttpClient client = new HttpClient())
-            {
-                string endpoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employeeId;
-                using (var response = await client.GetAsync(endpoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var result = await response.Content.ReadAsStringAsync();
-                        employee = JsonConvert.DeserializeObject<Employee>(result);
-                    }
-                }
-            }
-            return View(employee);
-        }
 
         public IActionResult Login1()
         {
@@ -51,21 +31,15 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> Login1(Employee employee)
         {
-<<<<<<< HEAD
-            Employee employee1 = null ;
+            Employee employee1 = null;
             ViewBag.status = "";
-=======
-
-           ViewBag.status = "";
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
-<<<<<<< HEAD
-                  
+
                     var result = await response.Content.ReadAsStringAsync();
                     employee1 = JsonConvert.DeserializeObject<Employee>(result);
                     string employee_designation = (employee1.EmpDesignation).ToString();
@@ -73,16 +47,6 @@ namespace RestaurantMVCUI.Controllers
                     TempData.Keep();
                     TempData["empId"] = Convert.ToInt32(employee1.EmpId);
                     TempData.Keep();
-=======
-        
-                    
-                    var result = await response.Content.ReadAsStringAsync();
-                    employee = JsonConvert.DeserializeObject<Employee>(result);
-                    string employee_designation = (employee.EmpDesignation).ToString();
-                    TempData["employee_designation"] = employee.EmpDesignation;
-                    TempData["EmpId"] = employee.EmpId;
-                    TempData.Keep();                   
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
                     if (employee_designation == "CHEF")
                         return RedirectToAction("Index", "Chef");
                     else if (employee_designation == "HEADCHEF")
@@ -104,7 +68,7 @@ namespace RestaurantMVCUI.Controllers
 
         }
         public IActionResult Forgot()
-        {  
+        {
 
             return View();
         }

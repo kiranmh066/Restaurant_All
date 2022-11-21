@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<RestaurantEntity.Order>
-    @{
-        ViewData["Title"] = "ConfirmOrder";
-    }
+@{
+    ViewData["Title"] = "ConfirmOrder";
+}
 
-    <h1>ConfirmOrder</h1>
-    <div class="row">
-        <div class="col-12">
-            <h3>Orders</h3>
-            <hr />
-            <table class="table table-light table-bordered table-hover">
-                <thead>
-                    <tr>
+<h1>ConfirmOrder</h1>
+<div class="row">
+    <div class="col-12">
+        <h3>Orders</h3>
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
                     <a asp-controller="Order" asp-action="ClearCart" class="btn btn-primary">Clear Cart</a>
                 <tr>&nbsp;</tr>
                 <a asp-controller="Order" asp-action="ConfirmOrder" class="btn btn-primary">Confirm Order</a>
@@ -24,59 +24,47 @@
                 <a asp-controller="Bill" asp-action="GenerateBill" class="btn btn-primary">Get Bill</a>
                 <tr>&nbsp;</tr>
 
-                <a asp-controller="Order" asp-action="CancelOrder"  class="btn btn-danger">Cancel All Order</a>
+                <a asp-controller="Order" asp-action="CancelOrder" class="btn btn-danger">Cancel All Order</a>
                 <tr>&nbsp;</tr>
-                    </tr>
+                </tr>
 
+                <tr>
+
+                    <th>Order Quantity</th>
+                    <th>Order OrderTotal</th>
+
+                    <th>Order FoodId</th>
+                    <th>Order Date</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
+                which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//
+                *@
+                {
+                    @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
+                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
                     <tr>
-                        
-                        <th>Order Quantity</th>
-                        <th>Order OrderTotal</th>
-                       
-                        <th>Order FoodId</th>
-                        <th>Order Date</th>
-                        
 
-                  
+                        <td>@Order.Quantity</td>
+                        <td>@Order.OrderTotal</td>
+
+                        <td>@Order.FoodId</td>
+                        <td>@Order.HallTableId</td>
+                        <td>@Order.OrderDate</td>
+
+
+
                     </tr>
-                </thead>
-                <tbody>
-                 
-<<<<<<< HEAD
-=======
-                   
-                    <a asp-controller="Order" asp-action="CancelOrder" asp-route-HallId="@item.HallTableId" class="btn btn-danger">Cancel All Order</a>
-                    <tr>&nbsp;</tr>
-                    
 
-
-
-                    break;
                 }
->>>>>>> 2325327b6f06a37008972b3df8c79290e3c85419
 
-                    @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
-                    which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//
-                    *@
-                    {
-                        @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
-                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
-                        <tr>
-                         
-                            <td>@Order.Quantity</td>
-                            <td>@Order.OrderTotal</td>
-                            
-                            <td>@Order.FoodId</td>
-                            <td>@Order.HallTableId</td>
-                            <td>@Order.OrderDate</td>
-                     
-                         
-
-                        </tr>
-
-                    }
-                  
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>

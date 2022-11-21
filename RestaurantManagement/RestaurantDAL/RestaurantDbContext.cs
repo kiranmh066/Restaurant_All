@@ -6,10 +6,10 @@ namespace RestaurantDAL
 {
     public class RestaurantDbContext:DbContext
     {
-     /*   public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
 
-        }*/
+        }
         public DbSet<Admin> tbl_Admin { get; set; }
         public DbSet<Bill> tbl_Bill { get; set; }
         public DbSet<Employee> tbl_Employee { get; set; }

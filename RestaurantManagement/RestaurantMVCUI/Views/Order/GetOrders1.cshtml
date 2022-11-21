@@ -2,14 +2,16 @@
 @{
     ViewData["Title"] = "ConfirmOrder";
 }
-
+<body style="background-color:#5A3B5D">
+<div class="container">
 <h1>ConfirmOrder</h1>
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 text-white">
         <h3>Orders</h3>
         <hr />
-        <table class="table table-light table-bordered table-hover">
+        <table class="table  table-bordered table-hover" style="color:white">
             <thead>
+                <centre >
                 <tr>
                     <a asp-controller="Order" asp-action="ClearCart" class="btn btn-primary">Clear Cart</a>
                 <tr>&nbsp;</tr>
@@ -26,14 +28,15 @@
 
                 <a asp-controller="Order" asp-action="CancelOrder" class="btn btn-danger">Cancel All Order</a>
                 <tr>&nbsp;</tr>
-                </tr>
-
-                <tr>
+                
+                </centre>
+                <tr style="color:white">
 
                     <th>Order Quantity</th>
                     <th>Order OrderTotal</th>
 
                     <th>Order FoodId</th>
+                    <th>Table Number</th>
                     <th>Order Date</th>
 
 
@@ -49,7 +52,7 @@
                 {
                     @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
                 string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
-                    <tr>
+                        <tr style="color:white">
 
                         <td>@Order.Quantity</td>
                         <td>@Order.OrderTotal</td>
@@ -68,3 +71,5 @@
         </table>
     </div>
 </div>
+</div>
+</body>c

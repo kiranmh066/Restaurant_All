@@ -3,22 +3,27 @@
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
 }
-<div>
-    <a asp-controller="Admin1" asp-action="Index">Admin Section</a>
-    <hr />
-</div>
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <div class="container">
+        <div>
+            <center> <a asp-controller="Admin1" asp-action="Index"><h2>Index</h2></a></center>
+            <hr />
+        </div>
+
+        <h2>All Food </h2>
+
 
 
 <div class="row">
-    <div class="col-12">
-        <h3>Foods</h3>
+    <div class="col-12 text-white">
+ 
         <hr />
-        <table class="table table-light table-bordered table-hover">
+        <table class="table  table-bordered table-hover">
             <thead>
-                <tr>
+                <tr style="color:white">
                     
                     <th>Food Id</th>
-                    <th>Food Name</th>-
+                    <th>Food Name</th>
                     <th>Food Type</th>
                     <th>Food Cost</th>
                     <th>Food Cuisine</th>
@@ -36,7 +41,7 @@
                 {
                      string imageBase64Data = Convert.ToBase64String(Food.FoodImage);
                     string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-                    <tr>
+                            <tr style="color:white">
                         <td>@Food.FoodId</td>
                         <td>@Food.FoodName</td>
                         <td>@Food.FoodType</td>
@@ -47,12 +52,12 @@
 
                         <td>
                             <a asp-controller="Admin1" asp-action="EditFood"
-                           asp-route-FoodId="@Food.FoodId">Edit</a>
+                                   asp-route-FoodId="@Food.FoodId"><img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/241804/edit.svg" /></a>
                         </td>
 
                         <td>
                             <a asp-controller="Admin1" asp-action="DeleteFood"
-                           asp-route-FoodId="@Food.FoodId">Delete</a>
+                                   asp-route-FoodId="@Food.FoodId"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" /></a>
                         </td>
                     </tr>
 
@@ -61,4 +66,5 @@
         </table>
     </div>
 </div>
-
+</div>
+</body>

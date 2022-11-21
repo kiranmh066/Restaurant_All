@@ -5,47 +5,8 @@
 
 <h1>GenerateBill</h1>
 
-@*<div class="row">
-    <div class="col-12">
-        <h3>Generated Bill</h3>
-        <hr />
-        <table class="table table-light table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Table Number</th>
-                    <th>OrderDate</th>
-                    <th>Food Cuisine</th>
-                    <th>Food Id</th>
-                    <th>Quantity</th>
-
-                    <th>Order Total</th>
-                    <th>Food Name</th>
-                    <th>EDIT</th>
-                    <th>DELETE</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.HallTableId</td>
-                        <td>@item.OrderDate</td>
-                        <td>@item.Food.FoodCuisine</td>
-                        <td>@item.FoodId</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.OrderTotal</td>
-                        <td>@item.Food.FoodName</td>
-
-                        <td><a asp-controller="" asp-action="" asp-route-movieID="@item.OrderId">Edit</a></td>
-                        @*asp-route-movieID must be similar to paased movie Id in Edit Action
-                        <td><a asp-controller="" asp-action="" asp-route-movieID="@item.OrderId">Delete</a></td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
-</div>*@
+<body style="background-color:#5A3B5D">
+    <div class="container">
 <div class="card">
     <div class="card-body">
         <div class="container mb-5 mt-3">
@@ -181,3 +142,5 @@
         </div>
     </div>
 </div>
+    </div>
+</body>

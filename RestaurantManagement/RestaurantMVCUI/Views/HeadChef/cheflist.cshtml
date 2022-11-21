@@ -2,14 +2,15 @@
 @{
     Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
 }
-
+<body style="background-color:#5A3B5D">
+    <div class="container">
 <div class="row">
     <div class="col-12">
-        <h3>Employees</h3>
+        <h2 style="color:white">Employees</h2>
         <hr />
-        <table class="table table-light table-bordered table-hover">
+        <table class="table table-bordered table-hover">
             <thead>
-                <tr>
+                <tr class="text-white">
                     <th>Employee Id</th>
                     <th>Employee Name</th>
                     <th>Employee Email</th>
@@ -25,7 +26,7 @@
                 @foreach (var Employee in Model)
                 {
 
-                    <tr>
+                        <tr class="text-white">
                         <td>@Employee.EmpId</td>
                         <td>@Employee.EmpName</td>
                         <td>@Employee.EmpEmail</td>
@@ -33,7 +34,7 @@
                         <td>@Employee.EmpDesignation</td>
                         <td>@Employee.EmpSpeciality</td>
                         <td>@Employee.EmpPhone</td>
-                        <td><a asp-controller="AssignWork" asp-action="Index" asp-route-EmpId="@Employee.EmpId" class="btn btn-success">Assign Work</a></td>
+                                <td><a asp-controller="AssignWork" asp-action="Index" asp-route-EmpId="@Employee.EmpId" class="btn btn-outline-success"><img src="https://www.svgrepo.com/show/189280/tasks-tick.svg" style="width:50px;height:50px"><span>&nbsp;</span>Assign Work</a></td>
 
                     </tr>
 
@@ -42,3 +43,5 @@
         </table>
     </div>
 </div>
+</div>
+</body>

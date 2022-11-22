@@ -35,8 +35,7 @@ namespace RestaurantAPI
             string connectionstr = Configuration.GetConnectionString("sqlConnection");
             services.AddDbContext<RestaurantDbContext>(Options => Options.UseSqlServer(connectionstr));
 
-            services.AddTransient<AdminService, AdminService>();//adding services
-            services.AddTransient<IAdminRepost, AdminRepost>();
+         
 
             services.AddTransient<EmployeeService, EmployeeService>();//adding services
             services.AddTransient<IEmployeeRepost, EmployeeRepost>();

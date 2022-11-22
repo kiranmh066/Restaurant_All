@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestaurantEntity;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -119,7 +120,7 @@ namespace RestaurantMVCUI.Controllers
             hallTable.HallTableStatus = true;
             using (HttpClient client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(billresult), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
 
                 using (var response = await client.PutAsync(endPoint, content))
@@ -130,13 +131,55 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.message = " Table No"+billresult.HallTableId+" Emptied and Payment Veified for"+billresult.UserName+" Successfully!! for Bill No"+billresult.BillId;
                     }
 
-                    else
-                    {
-                        ViewBag.status = "Error";
-                        ViewBag.message = "Wrong Entries";
-                    }
+                  
 
                 }
+            }
+
+
+
+
+
+
+            // to make view ordererd empty
+            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+            IEnumerable<Order> orderresult = null;
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;//api controller name and httppost name given inside httppost in moviecontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
+                    }
+
+             
+
+
+                }
+            }
+
+
+            foreach (var item in orderresult)
+            {
+               
+                //using grabage collection only for inbuilt classes
+                using (HttpClient client = new HttpClient())
+                {
+
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + item.OrderId;  //api controller name and its function
+
+                    using (var response = await client.DeleteAsync(endPoint));
+                  
+                }
+
+
             }
 
             return View();

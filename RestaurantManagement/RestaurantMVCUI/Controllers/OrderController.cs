@@ -52,8 +52,11 @@ namespace RestaurantMVCUI.Controllers
             #endregion
         }
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> a2a134039612c49ab92407275f8d09380c252456
         [HttpGet]
         public async Task<IActionResult> AddOrder1(int FoodId)
         {
@@ -74,9 +77,6 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         food = JsonConvert.DeserializeObject<Food>(result);
                     }
-
-
-
                 }
             }
             TempData["foodcost1"] = Convert.ToInt32(food.FoodCost);
@@ -96,9 +96,6 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         halltable = JsonConvert.DeserializeObject<IEnumerable<HallTable>>(result);
                     }
-
-
-
                 }
             }
 
@@ -116,14 +113,6 @@ namespace RestaurantMVCUI.Controllers
             return View(order);
 
         } 
-
-
-
-
-            
-
-
-        
 
         [HttpPost]
         public async Task<IActionResult> AddOrder1(Order order)
@@ -244,7 +233,6 @@ namespace RestaurantMVCUI.Controllers
 
 
         [HttpGet]
-
         public async Task<IActionResult> GetAllFoods(Food food)
         {
             IEnumerable<Food> foodresult = null;
@@ -270,7 +258,6 @@ namespace RestaurantMVCUI.Controllers
         }
 
         [HttpGet]
-
         public IActionResult GetOrders1()
         {
 
@@ -279,7 +266,10 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> CancelOrder()
         { 
+<<<<<<< HEAD
+=======
 
+>>>>>>> a2a134039612c49ab92407275f8d09380c252456
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
 
            DateTime orderedtime = Convert.ToDateTime(TempData["OrderedTime"]);
@@ -373,10 +363,17 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderresult);
         }
+<<<<<<< HEAD
+        /*public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
+        {
+
+        }*/
+=======
         public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
         {
 
         }
+>>>>>>> a2a134039612c49ab92407275f8d09380c252456
 
         [HttpGet]
         public async Task<IActionResult> UpdateOrder1(int OrderId)
@@ -543,8 +540,6 @@ namespace RestaurantMVCUI.Controllers
 
         }
       
-
-
         public IActionResult ClearCart()
         {
             orders.Clear();
@@ -562,4 +557,4 @@ namespace RestaurantMVCUI.Controllers
             return View();
         }
     }
-    }
+}

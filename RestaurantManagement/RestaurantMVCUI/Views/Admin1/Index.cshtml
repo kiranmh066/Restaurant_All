@@ -5,27 +5,23 @@
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
 }
-
-
-
-
 <html>
-<head>
-
-</head>
+<head></head>
 
 <body style="background-color:#5A3B5D">
     <br />
     <div class=" container">
-        <center> <h2 class="display-5 text-light">Index of Admin</h2></center>
+       
         <br />
-        
+        <center>
+             <h2 class="display-5 text-light">Index of Admin</h2>
+             </center>
     <div class="row">
            
        
-        <div class="col-md-6">
+        <div class="col-md-4">
                 <a asp-controller="Admin1" asp-action="AddEmployee" type="button " class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/22049/add-user.svg" /><span>&nbsp;</span> Add Employee </a>
-            <span> <br /></span>
+        <br />
 
                 <a asp-controller="Admin1" asp-action="EditEmployee" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/61278/edit.svg" /><span>&nbsp;</span>Update Employee</a>
       
@@ -38,7 +34,7 @@
       
         <br />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a asp-controller="Admin1" asp-action="AddFood" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/317513/food.svg" /><span>&nbsp;</span>Add Food</a>
        
         <br />
@@ -54,8 +50,25 @@
        
         </div>
 
+        <div class="col-md-4">
+                    <a asp-controller="Admin1" asp-action="AddHallTable" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/69645/table.svg" /><span>&nbsp;</span>Add HallTable</a>
+
+            <br />
+
+            <a asp-controller="Admin1" asp-action="EditHallTable" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/61278/edit.svg" /><span>&nbsp;</span>Update HallTable</a>
+
+            <br />
+
+            <a asp-controller="Admin1" asp-action="DeleteHallTable" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243868/delete.svg" /><span>&nbsp;</span>Delete HallTable</a>
+
+            <br />
+            <a asp-controller="Admin1" asp-action="GetAllHallTables" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All HallTables</a>
+
+        </div>
+
 
     </div>
+      @*  </center>*@
     </div>
 </body>
 </html>

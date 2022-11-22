@@ -19,27 +19,6 @@ namespace RestaurantDAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("RestaurantEntity.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AdminEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdminName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdminPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("tbl_Admin");
-                });
-
             modelBuilder.Entity("RestaurantEntity.AssignWork", b =>
                 {
                     b.Property<int>("AssignId")
@@ -52,6 +31,9 @@ namespace RestaurantDAL.Migrations
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("WorkStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("AssignId");
 

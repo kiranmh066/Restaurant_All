@@ -6,11 +6,16 @@ namespace RestaurantDAL
 {
     public class RestaurantDbContext:DbContext
     {
+        public RestaurantDbContext()
+        {
+
+        }
+
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
 
         }
-        public DbSet<Admin> tbl_Admin { get; set; }
+
         public DbSet<Bill> tbl_Bill { get; set; }
         public DbSet<Employee> tbl_Employee { get; set; }
         public DbSet<Feedback> tbl_Feedback { get; set; }
@@ -27,7 +32,7 @@ namespace RestaurantDAL
 
 
 
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2164; Initial Catalog = Restaurant_new; Integrated Security=True;");
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2164; Initial Catalog = Restaurant_Chandan3; Integrated Security=True;");
 
 
 

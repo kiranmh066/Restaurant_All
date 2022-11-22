@@ -111,14 +111,6 @@ namespace RestaurantMVCUI.Controllers
 
         } 
 
-
-
-
-            
-
-
-        
-
         [HttpPost]
         public async Task<IActionResult> AddOrder1(Order order)
         {
@@ -208,6 +200,10 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> ConfirmOrder()
         {
+            TempData["orderedtime"] = DateTime.Now;
+            TempData.Keep();
+
+
             TempData["status"] = false;
             TempData.Keep();
             using (HttpClient client = new HttpClient())
@@ -243,7 +239,6 @@ namespace RestaurantMVCUI.Controllers
 
 
         [HttpGet]
-
         public async Task<IActionResult> GetAllFoods(Food food)
         {
             IEnumerable<Food> foodresult = null;
@@ -269,7 +264,6 @@ namespace RestaurantMVCUI.Controllers
         }
 
         [HttpGet]
-
         public IActionResult GetOrders1()
         {
 
@@ -278,6 +272,11 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> CancelOrder()
         {
+            DateTime orderedtime =Convert.ToDateTime(TempData["orderedtime"]);
+            TempData.Keep();
+            DateTime maxTime= orderedtime.AddMinutes(1);
+            DateTime cancelTime= DateTime.Now;
+
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             IEnumerable<Order> orderresult = null;
             using (HttpClient client = new HttpClient())
@@ -288,8 +287,9 @@ namespace RestaurantMVCUI.Controllers
 
                 using (var response = await client.GetAsync(endPoint))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime<=maxTime)
+                    { 
+                        //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
                         orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
                     }
@@ -297,7 +297,8 @@ namespace RestaurantMVCUI.Controllers
                     if(orderresult==null)
                     {
                         ViewBag.status = "Error";
-                        ViewBag.message = "You have Not Ordered Anything";
+                        ViewBag.message = "Your Order is already prepared Can't Cancel Now!";
+                        return View();
                     }
 
 
@@ -394,9 +395,12 @@ namespace RestaurantMVCUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateOrder1(Order order)
         {
+            DateTime orderedtime = Convert.ToDateTime(TempData["orderedtime"]);
+            TempData.Keep();
+            DateTime maxTime = orderedtime.AddMinutes(1);
+            DateTime cancelTime = DateTime.Now;
+
             ViewBag.status = "";
-
-
             Food food = null;
             using (HttpClient client = new HttpClient())
             {
@@ -411,9 +415,6 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         food = JsonConvert.DeserializeObject<Food>(result);
                     }
-
-
-
                 }
             }
 
@@ -426,7 +427,7 @@ namespace RestaurantMVCUI.Controllers
 
                 using (var response = await client.PutAsync(endPoint, content))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime <= maxTime)
                     {   //dynamic viewbag we can create any variable name in run time
                         ViewBag.status = "Ok";
                         ViewBag.message = "Order Details Updated Successfull!!";
@@ -435,9 +436,8 @@ namespace RestaurantMVCUI.Controllers
                     else
                     {
                         ViewBag.status = "Error";
-                        ViewBag.message = "Wrong Entries";
+                        ViewBag.message = "Your Order is already prepared Can't Update Now!";
                     }
-
                 }
             }
             return View();
@@ -448,6 +448,10 @@ namespace RestaurantMVCUI.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteOrder1(int OrderId)
         {
+            DateTime orderedtime = Convert.ToDateTime(TempData["orderedtime"]);
+            TempData.Keep();
+            DateTime maxTime = orderedtime.AddMinutes(1);
+            DateTime cancelTime = DateTime.Now;
 
             ViewBag.status = "";
             Order order = null;
@@ -459,14 +463,17 @@ namespace RestaurantMVCUI.Controllers
 
                 using (var response = await client.GetAsync(endPoint))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime <= maxTime)
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
                         order = JsonConvert.DeserializeObject<Order>(result);
                     }
-
-
-
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Your Order is already prepared Can't Cancel Now!";
+                        return View();
+                    }
                 }
             }
             Food food = null;

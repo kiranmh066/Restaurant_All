@@ -20,11 +20,50 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Index(int EmpId)
         {
+
             int data = Convert.ToInt32(TempData["OrderIdforAssign"]);
             TempData.Keep();
+            Order order = null;
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + data;//OrderId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Ordercontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        order = JsonConvert.DeserializeObject<Order>(result);
+                    }
+                }
+            }
+
+            order.OrderStatus = true;
+
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/UpdateOrder";//api controller name and its function
+
+                using (var response = await client.PutAsync(endPoint, content)) ;
+    
+            }
+
+
+
+
+
             AssignWork assignWork = new AssignWork();
             assignWork.EmpId = EmpId;
             assignWork.OrderId = data;
+
+
+            
+
+
+
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(assignWork), Encoding.UTF8, "application/json");

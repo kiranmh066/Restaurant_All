@@ -74,8 +74,7 @@
 
                                 <th>Order Total</th>
                                 <th>Food Name</th>
-                                <th>EDIT</th>
-                                <th>DELETE</th>
+                      
                             </tr>
                         </thead>
                         <tbody>
@@ -98,9 +97,7 @@
                                     <td>@item.OrderTotal</td>
                                     <td>@item.Food.FoodName</td>
 
-                                    <td><a asp-controller="" asp-action="" asp-route-movieID="@item.OrderId">Edit</a></td>
-                                    @*asp-route-movieID must be similar to paased movie Id in Edit Action*@
-                                    <td><a asp-controller="" asp-action="" asp-route-movieID="@item.OrderId">Delete</a></td>
+                             
                                 </tr>
                             }
 

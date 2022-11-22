@@ -12,8 +12,7 @@
         <center>
             <h2 class="text-light text-center">Index of Hall Manager</h2>
 <div style="color:white">
-    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Employee Section</a>
-    &nbsp;
+
     <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
 
     <hr />
@@ -23,39 +22,75 @@
 
 
 
-   
-   
 
 
-        <div class=" row">
 
-            @foreach (var hallTable in Model)
+
+
+            <div class=" row">
+            @foreach(var item in Model)
             {
-              
+             
+              <div class="col-3">
+                  
+              @if(item.HallTableStatus==true&&item.HallTableSize==4)
+              {
+                        <br />
+                        <div class="text-light">Table Num:@item.HallTableId</div>
+                        <div class="text-light">Occupancy:@item.HallTableSize</div>
+                        <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:green"/>
+              }
+              else if (item.HallTableStatus == true && item.HallTableSize == 6)
+              {         <br />
+                        <div class="text-light">Table Num:@item.HallTableId</div>
+                        <div class="text-light">Occupancy:@item.HallTableSize</div>
+                        <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:green" />
 
-                <div class="col-md-3">
-
-                    <div class="col-md-3">
-                        @if (hallTable.HallTableStatus == true)
+              }
+              else if (item.HallTableStatus == true && item.HallTableSize == 10)
                         {
-                                <p class="square rounded p-5" style="background-color:green;width:100px">No:@hallTable.HallTableId</p>
-                                <div class ="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
-                        }
-                        else
-                        {
-                        <p class="square rounded p-5" style="background-color:red;width:100px">@hallTable.HallTableSize</p>
-                        }
-                        
-                    </div>
-                    <br />
-                </div>
-              
+                                     <br />
+                        <div class="text-light">Table Num:@item.HallTableId</div>
+                        <div class="text-light">Occupancy:@item.HallTableSize</div>
+                        <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:green" />
+              }
 
+              else if (item.HallTableStatus == false && item.HallTableSize == 4)
+                        {
+                            <br />
+                            <div class="text-light">Table Num:@item.HallTableId</div>
+                        <div class="text-light">Occupancy:@item.HallTableSize</div>
+                        <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:red" />
+
+              }
+
+             else if (item.HallTableStatus == false && item.HallTableSize == 6)
+                        {
+                            <br />
+                        <div class="text-light">Table Num:@item.HallTableId</div>
+                        <div class="text-light">Occupancy:@item.HallTableSize</div>
+                        <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:red" />
+
+             }
+             else if (item.HallTableStatus == false && item.HallTableSize == 10)
+                        {
+                            <br />
+                        <div class="text-light">Table Num:@item.HallTableId</div>
+                        <div class="text-light">Occupancy:@item.HallTableSize</div>
+                        <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:red" />
+
+             }
+             </div>
+             
+            
 
             }
 
-        </div>
+            </div>
 
+            <div>
+                <br />
+            </div>
    
      </center>
      </div>

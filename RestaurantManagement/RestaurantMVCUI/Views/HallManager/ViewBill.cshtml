@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<RestaurantEntity.Bill>
 
 <div>
-    <a asp-controller="HallManager" asp-action="Index">HM Index</a>
+    <a asp-controller="HallManager" asp-action="Index" type ="button" class="btn btn-primary">Index</a>
     <hr />
 </div>
 
+<body>
 
 <div class="row">
     <div class="col-12">
-        <h3>Movies</h3>
+       
         <hr />
         <table class="table table-light table-bordered table-hover">
             <thead>
@@ -45,3 +46,4 @@
         </table>
     </div>
 </div>
+</body>

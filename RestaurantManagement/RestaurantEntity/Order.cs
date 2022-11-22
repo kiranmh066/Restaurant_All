@@ -30,6 +30,7 @@ namespace RestaurantEntity
         public bool OrderStatus { get; set; }
 
         public DateTime OrderDate { get; set; }
+
        
     }
 }

@@ -32,6 +32,9 @@ namespace RestaurantDAL.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("WorkStatus")
+                        .HasColumnType("bit");
+
                     b.HasKey("AssignId");
 
                     b.HasIndex("EmpId");

@@ -1,16 +1,19 @@
-﻿@model IEnumerable<RestaurantEntity.Order>
+﻿@using RestaurantEntity;
+@model Tuple<List<Order>,List<Food>>;
+
 @{
     ViewData["Title"] = "ConfirmOrder";
 }
 <body style="background-color:#5A3B5D">
 <div class="container">
 <h1>ConfirmOrder</h1>
+
 <div class="row">
-    <div class="col-12 text-white">
+    < class="col-12 text-white">
         <h3>Orders</h3>
         <hr />
         <table class="table  table-bordered table-hover" style="color:white">
-            <thead>
+           
                 <centre >
                 <tr>
                     <a asp-controller="Order" asp-action="ClearCart" class="btn btn-primary">Clear Cart</a>
@@ -30,46 +33,122 @@
                 <tr>&nbsp;</tr>
                 
                 </centre>
-                <tr style="color:white">
 
-                    <th>Order Quantity</th>
-                    <th>Order OrderTotal</th>
-
-                    <th>Order FoodId</th>
-                    <th>Table Number</th>
-                    <th>Order Date</th>
-
-
-
-                </tr>
-            </thead>
-            <tbody>
-
-
-                @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
-                which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//
-                *@
-                {
-                    @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
-                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
-                        <tr style="color:white">
-
-                        <td>@Order.Quantity</td>
-                        <td>@Order.OrderTotal</td>
-
-                        <td>@Order.FoodId</td>
-                        <td>@Order.HallTableId</td>
-                        <td>@Order.OrderDate</td>
-
-
-
+                  
+                    
+           <tbody>
+                    <tr class="text-light">
+                        <centre>Item list</centre>
                     </tr>
+                @if (true)
+                {
+                    var total = 0;
+
+
+
+                    @foreach (var order in Model.Item1)
+                    {
+
+
+                        total = total + order.OrderTotal;
+                        @foreach (var food in Model.Item2)
+                        {
+                            string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                            string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                            @if (order.FoodId == food.FoodId)
+                            {
+
+                                <div>
+                                    <div class="row d-flex justify-content-center align-items-center h-100">
+                                        <div class="col">
+
+
+                                            <div class="card mb-4">
+                                                <div class="card-body p-4">
+
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-2">
+                                                            <img src="@imageDataURL"
+                                                                 class="img-fluid" alt="Generic placeholder image">
+                                                        </div>
+                                                        <div class="col-md-2 d-flex justify-content-center">
+                                                            <div>
+                                                                <p class="small text-muted mb-4 pb-2">Table No</p>
+                                                                <p class="lead fw-normal mb-0">@order.HallTableId</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 d-flex justify-content-center">
+                                                            <div>
+                                                                <p class="small text-muted mb-4 pb-2">Food Name</p>
+                                                                <p class="lead fw-normal mb-0">@food.FoodName</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 d-flex justify-content-center">
+                                                            <div>
+                                                                <p class="small text-muted mb-4 pb-2">Quantity</p>
+                                                                <p class="lead fw-normal mb-0">@order.Quantity</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 d-flex justify-content-center">
+                                                            <div>
+                                                                <p class="small text-muted mb-4 pb-2">Order Date</p>
+                                                                <p class="lead fw-normal mb-0">@order.OrderDate</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 d-flex justify-content-center">
+                                                            <div>
+                                                                <p class="small text-muted mb-4 pb-2">Food Cost</p>
+                                                                <p class="lead fw-normal mb-0"> ₹@food.FoodCost</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 d-flex justify-content-center">
+                                                            <div>
+                                                                <p class="small text-muted mb-4 pb-2">Order Total</p>
+                                                                <p class="lead fw-normal mb-0">₹@order.OrderTotal</p>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+                        }
+
 
                 }
+                
+                        <div class="card mb-5">
+                            <div class="card-body p-4">
 
+                                <div class="float-end">
+                                    <p class="mb-0 me-5 d-flex align-items-center">
+                                        <span class="small text-muted me-2">Order total:₹@total</span> <span class="lead fw-normal"></span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                 }
+                    
+                    <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue Shopping</a>
+                   
+                   
             </tbody>
+                    
         </table>
+        
     </div>
 </div>
 </div>
 </body>
+

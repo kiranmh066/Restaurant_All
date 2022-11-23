@@ -10,21 +10,13 @@
 <div class="container">
 
         <center>
-            <h2 class="text-light text-center">Index of Hall Manager</h2>
+            <h2 class=" text-center" style="color:#40E0D0"> Hall Manager</h2>
 <div style="color:white">
     <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">Employee Section</a>
     &nbsp;
     <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
 
-    <hr />
 </div>
-
-
-
-
-
-   
-   
 
 
         <div class=" row">
@@ -34,16 +26,22 @@
               
 
                 <div class="col-md-3">
-
+                    <br/>
                     <div class="col-md-3">
+                        <br/>
                         @if (hallTable.HallTableStatus == true)
                         {
-                                <p class="square rounded p-5" style="background-color:green;width:100px">No:@hallTable.HallTableId</p>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3174/3174528.png" class="img-fluid" alt="Responsive image" style="width:200px;height:100px">
+                               
+                                <p style="background-color:green;width:100px">No:@hallTable.HallTableId</p>
                                 <div class ="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
+                               
                         }
                         else
                         {
-                        <p class="square rounded p-5" style="background-color:red;width:100px">@hallTable.HallTableSize</p>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3174/3174528.png" class="img-fluid" alt="Responsive image" style="width:200px;height:100px">
+                        <p  style="background-color:red;width:100px">No:@hallTable.HallTableSize</p>
+                                <div class="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
                         }
                         
                     </div>

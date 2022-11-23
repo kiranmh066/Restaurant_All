@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RestaurantEntity.AssignWork>;
+@{
+    Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
+}
+<body style="background-color:#5A3B5D">
+    <a asp-area="" asp-controller="AssignWork" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+
+
+    <div class="container">
+     
+<div class="row">
+    <div class="col-12 text-white">
+                 <h2 class="text-center text-uppercase font-weight-bolder" style="color:#1e88e5; font-size:36px">Assigned Works</h2>
+        <hr />
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-light">
+                    <th>Food Name</th>
+                    <th>Employee Name</th>
+                    <th>Speciality</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr class ="text-light">
+                        <td>@item.Order.Food.FoodName</td>
+                        <td>@item.Employee.EmpName</td>
+                        <td>@item.Employee.EmpSpeciality</td>
+                        <td>@item.Order.Quantity</td>
+
+                                <td><a asp-controller="AssignWork" asp-action="EditAssignWork" asp-route-AssignWorkID="@item.AssignId" class="btn btn-outline-success"><img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/241804/edit.svg" />Edit Assigned Work</a>
+
+                            </td>
+                                <td><a asp-controller="AssignWork" asp-action="DeleteAssignWork1" asp-route-AssignWorkID="@item.AssignId" class="btn btn-outline-danger"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" />Delete Assigned Work</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    </div>
+</body>

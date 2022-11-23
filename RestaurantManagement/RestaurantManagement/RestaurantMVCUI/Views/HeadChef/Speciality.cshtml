@@ -1,0 +1,67 @@
+﻿@model RestaurantEntity.Order;
+@{
+    ViewData["Title"] = "Speciality";
+}
+
+<html>
+    <head></head>
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <a asp-area="" asp-controller="HeadChef" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+<h1>Speciality/ Assign Here Itself</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+    <h2>Assign To Chef </h2>
+    <p id="demo"></p>    
+    <div class="form-group">
+        <label>Enter Chef Id</label>
+        <input type="number" id="myNumber" onclick="myFunction()" min="1" class="form-control" placeholder="Enter Chef Id" />
+    </div>
+    <div class="form-group">
+        <label>Order Quantity</label>
+        <input type="number" asp-for="Quantity" min="0" max="10" class="form-control" disabled placeholder="Enter Order quantity" />
+    </div>
+    <div class="form-group">
+        <label>Order Time</label>
+        <input type="datetime-local" asp-for="OrderDate" class="form-control" disabled placeholder="Enter Order Time" required />
+    </div>
+    <div class="form-group">
+        <label>Food Id</label>
+        <input type="text" asp-for="FoodId" class="form-control" disabled placeholder="Enter Food ID" required />
+    </div>
+    <div class="form-group">
+        <label>Hall Table Id</label>
+        <input type="text" asp-for="HallTableId" class="form-control" disabled placeholder="Enter Hall Table ID" required />
+    </div>    
+   
+    <input type="submit" value="Save" asp-r class="btn btn-outline-success" />
+    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+    <hr />
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+    
+</form>
+<a asp-controller="HeadChef" asp-action="Assign" >Pass To Chef</a>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myNumber");
+                var currentVal = x.value;
+
+                document.getElementById("demo").innerHTML = "The Chef Id is:" + currentVal;
+                @TempData["chefid"]=currentVal;
+                TempData.Keep();
+            }
+        </script>
+    </body>
+   
+</html>

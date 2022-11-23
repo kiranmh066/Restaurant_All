@@ -53,7 +53,6 @@ namespace RestaurantMVCUI.Controllers
             #endregion
         }
 
-
         [HttpGet]
         public async Task<IActionResult> AddOrder1(int FoodId)
         {
@@ -392,10 +391,12 @@ namespace RestaurantMVCUI.Controllers
             return View(orderresult);
         }
 
+
      /*   public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
         {
 
         }*/
+
 
 
         [HttpGet]

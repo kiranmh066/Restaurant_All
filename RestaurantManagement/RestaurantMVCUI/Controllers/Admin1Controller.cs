@@ -407,7 +407,6 @@ namespace RestaurantMVCUI.Controllers
         {
             ViewBag.status = "";
 
-            //using grabage collection only for inbuilt classes
             hallTableInfo.HallTableStatus = true;
             using (HttpClient client = new HttpClient())
             {

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<RestaurantEntity.Employee>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
+
+}
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <a asp-area="" asp-controller="Admin1" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+    <div class="container">
+
+
+        <h2 class="text-center text-uppercase font-weight-bolder" style="color:#1e88e5; font-size:36px">All Employee </h2>
+
+
+
+<div class="row">
+    <div class="col-12 text-white">
+      
+        <hr />
+        <table class="table  table-bordered table-hover">
+            <thead>
+                <tr style="color:white">
+                    <th>Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Employee Email</th>
+                    <th>Employee Password</th>
+                    <th>Employee Designation</th>
+                    <th>Employee Speciality</th>
+                    <th>Employee Phone</th>
+                    <th>Employee Gender</th>
+           
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Employee in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editEmployee of Employeecontroller (route name) here which is EmployeeId
+                which can be written as http://localhost:32344/Employees/edit Employee?Employeeid=2//
+                *@
+                {
+                   @* string imageBase64Data = Convert.ToBase64String(Employee.ImgPoster);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
+                            <tr style="color:white">
+                        <td>@Employee.EmpId</td>
+                        <td>@Employee.EmpName</td>
+                        <td>@Employee.EmpEmail</td>
+                        <td>@Employee.EmpPassword</td>
+                        <td>@Employee.EmpDesignation</td>
+                        <td>@Employee.EmpSpeciality</td>
+                        <td>@Employee.EmpPhone</td>
+                        <td>@Employee.EmpGender</td>
+                      @*  <td><img height="50" width="50" src="@imageDataURL" /></td>*@
+
+                        <td>
+                            <a asp-controller="Admin1" asp-action="EditEmployee"
+                                   asp-route-EmployeeId="@Employee.EmpId"><img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/241804/edit.svg" /></a>
+                        </td>
+
+                        <td>
+                            <a asp-controller="Admin1" asp-action="DeleteEmployee"
+                                   asp-route-EmployeeId="@Employee.EmpId"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" /></a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</body>

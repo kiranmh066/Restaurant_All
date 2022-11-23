@@ -1,0 +1,65 @@
+﻿@model RestaurantEntity.Employee
+@*//this name should be the name of projects under dependencies after adding referrences in MvcUi*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
+
+}
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <a asp-area="" asp-controller="Admin1" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+    <div class="container">
+
+
+<form method="post" enctype="multipart/form-data">
+            <h2 class="text-center text-uppercase font-weight-bolder" style="color:#1e88e5; font-size:36px">Add Employee </h2>
+    <div class="form-group">
+        @*  form group for automatic audjustment for various screen sizes*@
+        <label>Employee Name</label>
+        <input type="text" asp-for="EmpName" class="form-control" placeholder="Enter Employee Name" required />
+    </div>
+    <div class="form-group">
+        <label>Employee Email</label>
+        <input type="text" asp-for="EmpEmail" class="form-control" placeholder="Enter Employee Email" required />
+    </div>
+    <div class="form-group">
+        <label>Employee Password</label>
+        <input type="text" asp-for="EmpPassword" class="form-control" placeholder="Enter Employee Password" required />
+    </div>
+    <div class="form-group">
+        <label>Employee Designation</label>
+        <input type="text" asp-for="EmpDesignation" class="form-control" placeholder="Enter Employee Designation" required />
+    </div>
+    <div class="form-group">
+        <label>Employee Speciality</label>
+        <input type="text" asp-for="EmpSpeciality" class="form-control" placeholder="Enter Employee Speciality" required />
+    </div>
+    <div class="form-group">
+        <label>Employee Phone</label>
+        <input type="text" asp-for="EmpPhone" class="form-control" placeholder="Enter Employee Phone" required />
+    </div>
+    <div class="form-group">
+        <label>Employee Gender</label>
+        <input type="text" asp-for="EmpGender" class="form-control" placeholder="Enter Employee Gender" required />
+    </div>
+
+
+    <input type="submit" value="Save" class="btn btn-outline-success" /> @*submit display message for required option required works only with submit*@
+    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+   <br />
+    @*submit sends form to server thats why we use submit not button type  *@
+    @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Employeecontroller *@
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>
+    </div>
+ 
+</body>

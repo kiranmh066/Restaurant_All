@@ -10,20 +10,23 @@
 <div class="container">
 
         <center>
-            <h2 class="text-light text-center">Index of Hall Manager</h2>
+            <h2 class=" text-center" style="color:#40E0D0"> Hall Manager</h2>
 <div style="color:white">
 
     <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
 
-    <hr />
 </div>
 
 
+<<<<<<< HEAD
+        <div class=" row">
+=======
 
 
 
 
 
+>>>>>>> 24954c6d8b487f855cca58d5b508f6433d3d7ac1
 
 
 
@@ -46,6 +49,31 @@
                         <div class="text-light">Occupancy:@item.HallTableSize</div>
                         <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:green" />
 
+<<<<<<< HEAD
+                <div class="col-md-3">
+                    <br/>
+                    <div class="col-md-3">
+                        <br/>
+                        @if (hallTable.HallTableStatus == true)
+                        {
+                                <img src="https://cdn-icons-png.flaticon.com/512/3174/3174528.png" class="img-fluid" alt="Responsive image" style="width:200px;height:100px">
+                               
+                                <p style="background-color:green;width:100px">No:@hallTable.HallTableId</p>
+                                <div class ="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
+                               
+                        }
+                        else
+                        {
+                                <img src="https://cdn-icons-png.flaticon.com/512/3174/3174528.png" class="img-fluid" alt="Responsive image" style="width:200px;height:100px">
+                        <p  style="background-color:red;width:100px">No:@hallTable.HallTableSize</p>
+                                <div class="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
+                        }
+                        
+                    </div>
+                    <br />
+                </div>
+              
+=======
               }
               else if (item.HallTableStatus == true && item.HallTableSize == 10)
                         {
@@ -54,6 +82,7 @@
                         <div class="text-light">Occupancy:@item.HallTableSize</div>
                         <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:green" />
               }
+>>>>>>> 24954c6d8b487f855cca58d5b508f6433d3d7ac1
 
               else if (item.HallTableStatus == false && item.HallTableSize == 4)
                         {

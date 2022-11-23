@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-<body style="background-color:#5A3B5D">
+@*<body style="background-color:#5A3B5D">
     <div class="container">
 <div>
     <a asp-controller="Order" asp-action="Index" style="color:white">Index</a>
@@ -13,21 +13,29 @@
         <h2 style ="color:white">Add User </h2>
     <div class="form-group text-white">
         @*  form group for automatic audjustment for various screen sizes*@
-        <label >User Name</label>
+        @*<label >User Name</label>
         <input type="text" asp-for="UserName" class="form-control" placeholder="Enter User Name" required />
     </div>
     <div class="form-group text-white">
         <label>User Email</label>
         <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter User Email" required />
-    </div>
+    </div>*@
 
+<<<<<<< HEAD
+
+
+    @*<input type="submit" value="Save" class="btn btn-outline-success" /> @*submit display message for required option required works only with submit*@
+   @* <input type="button" value="Reset" class="btn btn-outline-secondary" />
+    <hr />*
+=======
     <input type="submit" value="Save" class="btn btn-outline-success" />
     &nbsp;&nbsp;&nbsp;
     <input type="button" value="Reset" class="btn btn-outline-secondary" />
     <hr />
+>>>>>>> 24954c6d8b487f855cca58d5b508f6433d3d7ac1
     @*submit sends form to server thats why we use submit not button type  *@
     @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Usercontroller *@
-    @if (ViewBag.status == "Ok")
+   @* @if (ViewBag.status == "Ok")
     {
         <div class="alert alert-success">
             @ViewBag.message
@@ -39,6 +47,57 @@
             @ViewBag.message
         </div>
     }
+
 </form>
+    </div>*@
+
+<@*/body>*@
+<body style="background-color:#5A3B5D">
+<div class="container d-flex justify-content-center">
+    <div class="card mt-5 pb-5">
+        <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
+            <i class="fas fa-chevron-left"></i>
+           
+            <i class="fas fa-times"></i>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+        <div class="mt-2 p-4 text-center">
+         
+                <div class="form-group1" >
+                   
+                    <label>UserName </label>
+                    <input type="text" asp-for="UserName"class="form-control" placeholder="Enter the userName" />
+                </div>
+                <div class="form-group1" >
+                    @*  form group for automatic audjustment for various screen sizes*@
+                    <label>UserEMAil </label>
+                    <input type="text" asp-for="UserEmail"class="form-control" placeholder="Enter Email Address" />
+                </div>
+                <div>
+            
+                    <input type="submit" value="Save" class="btn btn-outline-success" /> 
+                    
+   <input type="button" value="Reset" class="btn btn-outline-secondary" />
+                    </div>
+                @if (ViewBag.status == "Ok")
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.message
+                    </div>
+                }
+                else if (ViewBag.status == "Error")
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.message
+                    </div>
+                }
+
+            
+        </div>
+   
+    </form>
     </div>
+
+</div>
+
 </body>

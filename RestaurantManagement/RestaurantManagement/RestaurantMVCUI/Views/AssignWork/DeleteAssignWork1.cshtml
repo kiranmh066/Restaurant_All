@@ -1,0 +1,39 @@
+﻿@model RestaurantEntity.AssignWork;
+@{
+    Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
+}
+<body style="background-color:#5A3B5D">
+    <a asp-area="" asp-controller="AssignWork" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+
+
+    <div class=" container" style="color:white">
+        <<h2 class="text-center text-uppercase font-weight-bolder" style="color:#1e88e5; font-size:36px">DeleteEmployee</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        @*  form group for automatic audjustment for various screen sizes*@
+        <label>AssignWork Id</label>
+        <input type="text" asp-for="AssignId" class="form-control" placeholder="Enter Employee Id" required />
+    </div>
+
+    <input type="submit" value="Delete" class="btn btn-outline-success" /> @*submit display message for required option required works only with submit*@
+
+    <hr />
+    @*submit sends form to server thats why we use submit not button type  *@
+    @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Employeecontroller *@
+    @if (ViewBag.status == "Ok")
+    {
+        <div class="alert alert-success">
+            @ViewBag.message
+        </div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">
+            @ViewBag.message
+        </div>
+    }
+</form>
+</div>
+</body>

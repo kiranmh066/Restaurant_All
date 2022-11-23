@@ -58,8 +58,6 @@ namespace RestaurantMVCUI.Controllers
             IEnumerable<Employee> employeeresult = null;
             using (HttpClient client = new HttpClient())
             {
-
-
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployees";//api controller name and httppost name given inside httppost in moviecontroller of api
 
                 using (var response = await client.GetAsync(endPoint))
@@ -69,8 +67,6 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         employeeresult = JsonConvert.DeserializeObject<IEnumerable<Employee>>(result);
                     }
-
-
 
                 }
             }

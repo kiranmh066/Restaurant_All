@@ -22,6 +22,7 @@
                     <th>Food Name</th>
                     <th>Food Cuisine</th>
                     <th>Quantity</th>
+                    <th>Progress</th>
                     
 
 
@@ -29,17 +30,22 @@
             <tbody>
                 @foreach (var AssignWork in Model)
                 {
-
+                    @if(AssignWork.WorkStatus==false)
+                    {
                     <tr class="text-white">
                         <td>@AssignWork.AssignId</td>
                         <td>@AssignWork.Order.OrderId</td>
                         <td>@AssignWork.Order.Food.FoodName</td>
                         <td>@AssignWork.Order.Food.FoodCuisine</td>
                         <td>@AssignWork.Order.Quantity</td>
-                
+                        <td>
+                                        <a asp-controller="Chef" asp-action="PreparedFood" asp-route-AssignId="@AssignWork.AssignId" class="btn btn-success ">
 
+                                            <img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/419456/day-dish-heart.svg" />Mark as Completed
+                            </a>
+                        </td>
                     </tr>
-
+                    }
                 }
             </tbody>
         </table>

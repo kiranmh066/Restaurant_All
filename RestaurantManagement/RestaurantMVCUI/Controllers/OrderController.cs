@@ -483,9 +483,8 @@ namespace RestaurantMVCUI.Controllers
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = " Ordered prepared can't cancel now";
+                        return View();
                     }
-
-
 
                 }
             }

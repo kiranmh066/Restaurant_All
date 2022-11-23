@@ -4,42 +4,39 @@
 @{
     ViewData["Title"] = "ConfirmOrder";
 }
-<body style="background-color:#5A3B5D">
+<body style="background-color:#5A3B5D;padding-bottom:80px">
 <div class="container">
-<h1>ConfirmOrder</h1>
+    <center>
+            <h2 style="color:white">Order List</h2>
+        </center>
 
-<div class="row">
-    < class="col-12 text-white">
-        <h3>Orders</h3>
+
+      
         <hr />
-        <table class="table  table-bordered table-hover" style="color:white">
+       
            
-                <centre >
-                <tr>
+               
                     <a asp-controller="Order" asp-action="ClearCart" class="btn btn-primary">Clear Cart</a>
-                <tr>&nbsp;</tr>
+                &nbsp;
                 <a asp-controller="Order" asp-action="ConfirmOrder" class="btn btn-primary">Confirm Order</a>
-                <tr>&nbsp;</tr>
+                &nbsp;
 
                 <a asp-controller="Order" asp-action="ViewOrdered" class="btn btn-primary">View Ordered</a>
-                <tr>&nbsp;</tr>
+                &nbsp;
 
 
 
                 <a asp-controller="Bill" asp-action="GenerateBill" class="btn btn-primary">Get Bill</a>
-                <tr>&nbsp;</tr>
+               &nbsp;
 
                 <a asp-controller="Order" asp-action="CancelOrder" class="btn btn-danger">Cancel All Order</a>
-                <tr>&nbsp;</tr>
+               &nbsp;
                 
-                </centre>
-
+              
+               <hr />
                   
                     
-           <tbody>
-                    <tr class="text-light">
-                        <centre>Item list</centre>
-                    </tr>
+        
                 @if (true)
                 {
                     var total = 0;
@@ -73,38 +70,38 @@
                                                         </div>
                                                         <div class="col-md-2 d-flex justify-content-center">
                                                             <div>
-                                                                <p class="small text-muted mb-4 pb-2">Table No</p>
-                                                                <p class="lead fw-normal mb-0">@order.HallTableId</p>
+                                                                <p style="color:black">Table No</p>
+                                                                <p>@order.HallTableId</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1 d-flex justify-content-center">
+                                                            <div>
+                                                        <p style="color:black">Name</p>
+                                                                <p >@food.FoodName</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1 d-flex justify-content-center">
+                                                            <div>
+                                                        <p style="color:black">Quantity</p>
+                                                                <p >@order.Quantity</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 d-flex justify-content-center">
+                                                            <div>
+                                                        <p style="color:black">Order Date & Time </p>
+                                                                <p >@order.OrderDate</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1 d-flex justify-content-center">
+                                                            <div>
+                                                        <p style="color:black"> Cost</p>
+                                                                <p > ₹@food.FoodCost</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2 d-flex justify-content-center">
                                                             <div>
-                                                                <p class="small text-muted mb-4 pb-2">Food Name</p>
-                                                                <p class="lead fw-normal mb-0">@food.FoodName</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2 d-flex justify-content-center">
-                                                            <div>
-                                                                <p class="small text-muted mb-4 pb-2">Quantity</p>
-                                                                <p class="lead fw-normal mb-0">@order.Quantity</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2 d-flex justify-content-center">
-                                                            <div>
-                                                                <p class="small text-muted mb-4 pb-2">Order Date</p>
-                                                                <p class="lead fw-normal mb-0">@order.OrderDate</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2 d-flex justify-content-center">
-                                                            <div>
-                                                                <p class="small text-muted mb-4 pb-2">Food Cost</p>
-                                                                <p class="lead fw-normal mb-0"> ₹@food.FoodCost</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2 d-flex justify-content-center">
-                                                            <div>
-                                                                <p class="small text-muted mb-4 pb-2">Order Total</p>
-                                                                <p class="lead fw-normal mb-0">₹@order.OrderTotal</p>
+                                                        <p style="color:black" class=" font-weight-bolder">Order Total</p>
+                                                        <p class=" font-weight-bolder">₹@order.OrderTotal</p>
                                                             </div>
                                                         </div>
 
@@ -127,28 +124,22 @@
 
                 }
                 
-                        <div class="card mb-5">
-                            <div class="card-body p-4">
+                        <div class="float-right">
 
-                                <div class="float-end">
-                                    <p class="mb-0 me-5 d-flex align-items-center">
-                                        <span class="small text-muted me-2">Order total:₹@total</span> <span class="lead fw-normal"></span>
-                                    </p>
-                                </div>
 
-                            </div>
+                            <a class="btn btn-success text-light font-weight-bolder">Order total:₹@total</a>
+
+                            <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue ordering</a>
                         </div>
+
+                     
                  }
                     
-                    <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue Shopping</a>
                    
                    
-            </tbody>
-                    
-        </table>
+      
         
     </div>
-</div>
-</div>
+
 </body>
 

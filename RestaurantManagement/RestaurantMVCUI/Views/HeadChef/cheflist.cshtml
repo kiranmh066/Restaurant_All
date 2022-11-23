@@ -19,6 +19,7 @@
                     <th>Employee Speciality</th>
                     <th>Employee Phone</th>
                     <th>Assign Work</th>
+                    @*<th>Status</th>*@
 
 
             </thead>
@@ -34,7 +35,7 @@
                         <td>@Employee.EmpDesignation</td>
                         <td>@Employee.EmpSpeciality</td>
                         <td>@Employee.EmpPhone</td>
-                                <td><a asp-controller="AssignWork" asp-action="Index" asp-route-EmpId="@Employee.EmpId" class="btn btn-outline-success"><img src="https://www.svgrepo.com/show/189280/tasks-tick.svg" style="width:50px;height:50px"><span>&nbsp;</span>Assign Work</a></td>
+                        <td><a asp-controller="AssignWork" asp-action="Index" asp-route-EmpId="@Employee.EmpId" class="btn btn-outline-success"><img src="https://www.svgrepo.com/show/189280/tasks-tick.svg" style="width:50px;height:50px"><span>&nbsp;</span>Assign Work</a></td>
 
                     </tr>
 

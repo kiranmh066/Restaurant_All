@@ -406,8 +406,9 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> AddHallTable(HallTable hallTableInfo)
         {
             ViewBag.status = "";
-           
+
             //using grabage collection only for inbuilt classes
+            hallTableInfo.HallTableStatus = true;
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(hallTableInfo), Encoding.UTF8, "application/json");
@@ -458,7 +459,8 @@ namespace RestaurantMVCUI.Controllers
         [HttpPost]
         public async Task<IActionResult> EditHallTable(HallTable hallTable)
         {
-            ViewBag.status = "";          
+            ViewBag.status = "";
+            hallTable.HallTableStatus = true;
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {

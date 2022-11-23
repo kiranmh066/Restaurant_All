@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using RestaurantBLL.Services;
 using RestaurantEntity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -52,11 +53,7 @@ namespace RestaurantMVCUI.Controllers
             #endregion
         }
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> a2a134039612c49ab92407275f8d09380c252456
         [HttpGet]
         public async Task<IActionResult> AddOrder1(int FoodId)
         {
@@ -274,10 +271,7 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> CancelOrder()
         { 
-<<<<<<< HEAD
-=======
 
->>>>>>> a2a134039612c49ab92407275f8d09380c252456
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
                 
@@ -339,6 +333,30 @@ namespace RestaurantMVCUI.Controllers
              
 
             }
+            //to make hall table empty
+            HallTable hallTable = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTableById?hallTableId=" + hallTableId1;//api controller name and its function
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        hallTable = JsonConvert.DeserializeObject<HallTable>(result);
+                    }
+                }
+            }
+            hallTable.HallTableStatus = true;
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
+
+                using (var response = await client.PutAsync(endPoint, content)) ;
+              
+            }
+
             return View();
 
         }
@@ -373,24 +391,12 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderresult);
         }
-<<<<<<< HEAD
-       /* public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
+
+     /*   public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
         {
 
         }*/
-=======
-<<<<<<< HEAD
-        /*public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
-        {
 
-        }*/
-=======
-        public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
-        {
-
-        }
->>>>>>> a2a134039612c49ab92407275f8d09380c252456
->>>>>>> c4cc9f62c10531854e7b4ec4f54737fcb93ba6d1
 
         [HttpGet]
         public async Task<IActionResult> UpdateOrder1(int OrderId)

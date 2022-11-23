@@ -28,6 +28,7 @@ namespace RestaurantDAL
 
 
 
+
             dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2179; Initial Catalog = Restaurant_Chandan4; Integrated Security=True;");
 
 

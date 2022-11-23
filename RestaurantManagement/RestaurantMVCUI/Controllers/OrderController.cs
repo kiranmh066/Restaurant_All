@@ -363,6 +363,10 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderresult);
         }
+       /* public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
+        {
+
+        }*/
         [HttpGet]
         public async Task<IActionResult> UpdateOrder1(int OrderId)
         {

@@ -21,6 +21,7 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Index(int EmpId)
         {
+
             int data = Convert.ToInt32(TempData["OrderIdforAssign"]);
             TempData.Keep();
             Order order = null;
@@ -49,6 +50,12 @@ namespace RestaurantMVCUI.Controllers
             AssignWork assignWork = new AssignWork();
             assignWork.EmpId = EmpId;
             assignWork.OrderId = data;
+
+
+            
+
+
+
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(assignWork), Encoding.UTF8, "application/json");

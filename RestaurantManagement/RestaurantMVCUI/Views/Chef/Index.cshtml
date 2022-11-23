@@ -39,8 +39,9 @@
                         <td>@AssignWork.Order.Food.FoodCuisine</td>
                         <td>@AssignWork.Order.Quantity</td>
                         <td>
-                                    <a asp-controller="Chef" asp-action="PreparedFood" asp-route-AssignId="@AssignWork.AssignId">
-                                <img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/15157/waiter.svg" />
+                                        <a asp-controller="Chef" asp-action="PreparedFood" asp-route-AssignId="@AssignWork.AssignId" class="btn btn-success ">
+
+                                            <img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/419456/day-dish-heart.svg" />Mark as Completed
                             </a>
                         </td>
                     </tr>

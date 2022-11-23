@@ -15,8 +15,7 @@
         <form method="post" enctype="multipart/form-data">
             <h2>Add HallTable </h2>
             <div class="form-group">
-                @*  form group for automatic audjustment for various screen sizes*@
-                <label>Table Size</label>
+                <label>Hall Table Size</label>
                 <input type="text" asp-for="HallTableSize" class="form-control" placeholder="Enter Table Size" required />
             </div>
             
@@ -24,8 +23,7 @@
             &nbsp;&nbsp;
             <input type="reset" value="Reset" class="btn btn-outline-secondary" />
             <hr />
-            @*submit sends form to server thats why we use submit not button type  *@
-            @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Foodcontroller *@
+       
             @if (ViewBag.status == "Ok")
             {
                 <div class="alert alert-success">

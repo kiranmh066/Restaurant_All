@@ -1,5 +1,8 @@
 ﻿@model RestaurantEntity.Employee
 
+@{
+    Layout = "~/Views/Shared/_LayoutLoginSection.cshtml";
+}
 
 
 <html>
@@ -41,7 +44,10 @@
                                             <label>Employee Password</label>
                                             <input type="text" asp-controller="Employee" asp-for="EmpPassword" class="form-control" placeholder="Enter Employee Password" required />
                                         </div>
-                                        <input type="submit" value="Login" class="btn btn-success" /> @*submit display message for required option required works only with submit*@
+                                        <input type="submit" value="Login" class="btn btn-success" />
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="reset" value="Reset" class="btn btn-success" />
+                                        @*submit display message for required option required works only with submit*@
                                         <br />
                                         <a asp-controller="Employee" asp-action="Forgot" type="button" >Forgot Password</a>
                                        

@@ -19,5 +19,7 @@ namespace RestaurantEntity
         [ForeignKey("Employee")]
         public int EmpId { get; set; }
         public Employee Employee { get; set; }
+
+        public bool WorkStatus { get; set; }
     }
 }

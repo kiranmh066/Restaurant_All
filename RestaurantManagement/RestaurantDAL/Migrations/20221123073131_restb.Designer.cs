@@ -10,8 +10,8 @@ using RestaurantDAL;
 namespace RestaurantDAL.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20221118094507_restank")]
-    partial class restank
+    [Migration("20221123073131_restb")]
+    partial class restb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,27 +20,6 @@ namespace RestaurantDAL.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("RestaurantEntity.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AdminEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdminName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdminPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("tbl_Admin");
-                });
 
             modelBuilder.Entity("RestaurantEntity.AssignWork", b =>
                 {
@@ -54,6 +33,9 @@ namespace RestaurantDAL.Migrations
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("WorkStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("AssignId");
 

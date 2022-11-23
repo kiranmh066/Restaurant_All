@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantEntity", "Restaur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantDAL", "RestaurantDAL\RestaurantDAL.csproj", "{89CE70E1-F328-45D7-9919-F799D934538E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantBLL", "RestaurantBLL\RestaurantBLL.csproj", "{269760E4-A97E-4929-85F6-D7E4DB8EBFA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantBLL", "RestaurantBLL\RestaurantBLL.csproj", "{269760E4-A97E-4929-85F6-D7E4DB8EBFA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantAPI", "RestaurantAPI\RestaurantAPI.csproj", "{02C1471F-7707-4321-AF20-76AD0274923C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantAPI", "RestaurantAPI\RestaurantAPI.csproj", "{02C1471F-7707-4321-AF20-76AD0274923C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantMVCUI", "RestaurantMVCUI\RestaurantMVCUI.csproj", "{0597578F-EAF9-48B7-846B-C7E2D6280E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantMVCUI", "RestaurantMVCUI\RestaurantMVCUI.csproj", "{0597578F-EAF9-48B7-846B-C7E2D6280E70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

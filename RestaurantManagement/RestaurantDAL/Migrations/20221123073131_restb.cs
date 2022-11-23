@@ -3,25 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestaurantDAL.Migrations
 {
-    public partial class rest56 : Migration
+    public partial class restb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "tbl_Admin",
-                columns: table => new
-                {
-                    AdminId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AdminName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdminEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdminPassword = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tbl_Admin", x => x.AdminId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "tbl_Employee",
                 columns: table => new
@@ -155,7 +140,8 @@ namespace RestaurantDAL.Migrations
                     AssignId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    WorkStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -207,9 +193,6 @@ namespace RestaurantDAL.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "tbl_Admin");
-
             migrationBuilder.DropTable(
                 name: "tbl_AssignWork");
 

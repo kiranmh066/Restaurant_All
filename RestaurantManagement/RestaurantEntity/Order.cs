@@ -8,6 +8,8 @@ namespace RestaurantEntity
 {
     public class Order
     {
+        public object tbl_Food;
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
@@ -30,6 +32,7 @@ namespace RestaurantEntity
         public bool OrderStatus { get; set; }
 
         public DateTime OrderDate { get; set; }
+
        
     }
 }

@@ -3,7 +3,18 @@
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
 }
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</head>
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+        </span>
+    </div>
     <div class="container">
         <div>
             <center> <a asp-controller="Admin1" asp-action="Index"><h2>Index</h2></a></center>
@@ -11,9 +22,6 @@
         </div>
 
         <h2>All Food </h2>
-
-
-
 <div class="row">
     <div class="col-12 text-white">
  
@@ -68,3 +76,4 @@
 </div>
 </div>
 </body>
+</html>

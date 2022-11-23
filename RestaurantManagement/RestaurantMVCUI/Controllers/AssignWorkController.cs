@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestaurantMVCUI.Controllers
 {
@@ -20,11 +21,41 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Index(int EmpId)
         {
+
             int data = Convert.ToInt32(TempData["OrderIdforAssign"]);
             TempData.Keep();
+            Order order = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + data;//OrderId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Ordercontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        order = JsonConvert.DeserializeObject<Order>(result);
+                    }
+                }
+            }
+            order.OrderStatus = true;
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/UpdateOrder";//api controller name and its function
+
+                using (var response = await client.PutAsync(endPoint, content)) ;
+    
+            }
             AssignWork assignWork = new AssignWork();
             assignWork.EmpId = EmpId;
             assignWork.OrderId = data;
+
+
+            
+
+
+
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(assignWork), Encoding.UTF8, "application/json");
@@ -37,21 +68,21 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "Work Assigned Successfull!!";
                     }
-
                     else
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = "Not Assigned";
                     }
-
                 }
             }
             return View();
         }
 
+        //[AllowAnonymous]
         public async Task<IActionResult> ViewAll()
         {
-            IEnumerable<AssignWork> workresult = null;
+            List<AssignWork> workresult = null;
+            
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorks";
@@ -61,11 +92,27 @@ namespace RestaurantMVCUI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
-                        workresult = JsonConvert.DeserializeObject<IEnumerable<AssignWork>>(result);
+                        workresult = JsonConvert.DeserializeObject<List<AssignWork>>(result);
                     }
                 }
             }
-            return View(workresult);
+
+            List<Order> orderresult = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrders";
+                //api controller name and httppost name given inside httppost in moviecontroller of api
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        orderresult = JsonConvert.DeserializeObject<List<Order>>(result);
+                    }
+                }
+            }
+            var tupeluser = new Tuple<List<Order>, List<AssignWork>>(orderresult, workresult);
+            return View(tupeluser);
         }
 
 

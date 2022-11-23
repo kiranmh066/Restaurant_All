@@ -1,46 +1,47 @@
 ﻿@model IEnumerable<RestaurantEntity.Food>
 
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    </head>
 <body style="background-color:#5A3B5D">
+    @*<div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+        </span>
+    </div>*@
 
     <div class="container">
-
         <h2 class="text-light text-center">Foods  <p class="text-right text-light"><a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:50px;width:50px;"/>&nbsp; View List</a></p></h2>
         <br/>
-                <div class=" row">
-                    
-                      @foreach (var food in Model)
-                    {
-                        string imageBase64Data = Convert.ToBase64String(food.FoodImage);
-                        string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-
+            <div class=" row">                    
+                    @foreach (var food in Model)
+                {
+                    string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                    <div class="col-md-3">
                         <div class="col-md-3">
-
-                            <div class="col-md-3">
-                                <div class="card" style="width: 17rem;">
-                                    <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
-                                     data-mdb-ripple-color="light">
-                                        <img height="150" src="@imageDataURL" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">@food.FoodName</h5>
-                                            <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
-                                            <p class="card-text">Food Cusine: @food.FoodCuisine</p>
-                                            <p class="card-text">Cost:₹@food.FoodCost</p>
-                
-                                          <a asp-controller="Order" asp-action="AddOrder1"asp-route-FoodId="@food.FoodId" type="button" class="btn btn-success">Add to Cart</a>
-         
-                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                        </div>
+                            <div class="card" style="width: 17rem;">
+                                <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                    data-mdb-ripple-color="light">
+                                    <img height="150" src="@imageDataURL" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@food.FoodName</h5>
+                                        <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
+                                        <p class="card-text">Food Cusine: @food.FoodCuisine</p>
+                                        <p class="card-text">Cost:₹@food.FoodCost</p>                
+                                        <a asp-controller="Order" asp-action="AddOrder1"asp-route-FoodId="@food.FoodId" type="button" class="btn btn-success">Add to Cart</a>         
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
                                     </div>
                                 </div>
                             </div>
-                            <br/>
-                   
                         </div>
-
-
-                    }
-                    
-                </div>
-
-</div>
+                        <br/>                   
+                    </div>
+                }                    
+            </div>
+    </div>
 </body>
+</html>

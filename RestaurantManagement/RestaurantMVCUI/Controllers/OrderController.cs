@@ -8,6 +8,7 @@ using RestaurantEntity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,7 +106,7 @@ namespace RestaurantMVCUI.Controllers
           
             ViewBag.TableId = tableId; 
             order.OrderDate = DateTime.Now;
-
+           
             return View(order);
 
         } 
@@ -262,10 +263,39 @@ namespace RestaurantMVCUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetOrders1()
-        {
 
-            return View(orders);
+        public async Task<IActionResult> GetOrders1()
+
+        {
+            
+            List<Food> foodresult = new List<Food>();
+            foreach(var item in orders)
+            {
+                Food food = null;
+                using (HttpClient client = new HttpClient())
+                {
+
+
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Food/GetFoodById?foodId=" + item.FoodId;//movieId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in moviecontroller of api
+
+                    using (var response = await client.GetAsync(endPoint))
+                    {
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {   //dynamic viewbag we can create any variable name in run time
+                            var result = await response.Content.ReadAsStringAsync();
+                            food = JsonConvert.DeserializeObject<Food>(result);
+                        }
+
+                        foodresult.Add(food);
+
+                    }
+                }
+
+                
+            }
+
+            var tupeluser = new Tuple<List<Order>, List<Food>>(orders, foodresult);
+            return View(tupeluser);
         }
 
         public async Task<IActionResult> CancelOrder()
@@ -391,14 +421,6 @@ namespace RestaurantMVCUI.Controllers
             return View(orderresult);
         }
 
-
-     /*   public IActionResult GetDetails(Order orderObj,Payment paymentobj,FoodS foodsObj)
-        {
-
-        }*/
-
-
-
         [HttpGet]
         public async Task<IActionResult> UpdateOrder1(int OrderId)
         {
@@ -515,9 +537,8 @@ namespace RestaurantMVCUI.Controllers
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = " Ordered prepared can't cancel now";
+                        return View();
                     }
-
-
 
                 }
             }

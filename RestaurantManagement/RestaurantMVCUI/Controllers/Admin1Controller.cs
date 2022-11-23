@@ -406,7 +406,7 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> AddHallTable(HallTable hallTableInfo)
         {
             ViewBag.status = "";
-           
+            hallTableInfo.HallTableStatus = true;
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {

@@ -62,27 +62,6 @@ namespace RestaurantMVCUI.Controllers
                     }
                 }
             }
-            return View(assignWork);
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> PreparedFood(AssignWork assignWork)
-        {
-            ViewBag.status = "";            
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorkById?assignWorkId=" + assignWork.AssignId;
-                //EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
-
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
-                        var result = await response.Content.ReadAsStringAsync();
-                        assignWork = JsonConvert.DeserializeObject<AssignWork>(result);
-                    }
-                }
-            }
             assignWork.WorkStatus = true;
 
             using (HttpClient client = new HttpClient())
@@ -105,7 +84,9 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
+           
 
         }
+      
     }
 }

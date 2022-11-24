@@ -1,4 +1,6 @@
-﻿@model IEnumerable<RestaurantEntity.Order>;
+﻿@using RestaurantEntity;
+@model Tuple<List<Bill>, List<Order>>;
+
 @{
     ViewData["Title"] = "GenerateBill";
 }
@@ -14,13 +16,13 @@
                 <div class="col-xl-9">
                     <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #123-123</strong></p>
                 </div>
-                <div class="col-xl-3 float-end">
-                    <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark">
-                        <i class="fas fa-print text-primary"></i> Print
+                <div class="col-xl-3 float-end">                    
+                    @foreach (var item in @Model.Item1)
+                    {
+                    <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark">Table: 
+                        <i class="far fa-file-pdf text-black-50"></i> @item.HallTableId
                     </a>
-                    <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark">
-                        <i class="far fa-file-pdf text-danger"></i> Export
-                    </a>
+                    }
                 </div>
                 <hr>
             </div>
@@ -29,16 +31,18 @@
                 <div class="col-md-12">
                     <div class="text-center">
                         <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
-                        <p class="pt-0">My Restaurant Management</p>
+                        <p class="pt-0" style="color:crimson">My Restaurant Management</p>
                     </div>
-
                 </div>
-
 
                 <div class="row">
                     <div class="col-xl-8">
                         <ul class="list-unstyled">
-                            <li class="text-muted">To: <span style="color:#5d9fc5 ;">John Lorem</span></li>
+                            @foreach (var item in @Model.Item1)
+                            {
+                            <li class="text-muted">To: <span style="color:#5d9fc5 ;">@item.UserName</span></li>
+                            <li class="text-muted">Email: <span style="color:#5d9fc5 ;">@item.UserEmail</span></li>
+                            }
                             <li class="text-muted">Street, City</li>
                             <li class="text-muted">State, Country</li>
                             <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
@@ -50,14 +54,18 @@
                             <li class="text-muted">
                                 <i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">ID:</span>#123-456
                             </li>
-                            <li class="text-muted">
-                                <i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Creation Date: </span>Jun 23,2021
-                            </li>
-                            <li class="text-muted">
-                                <i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
-                                    Unpaid
-                                </span>
-                            </li>
+                            @foreach (var item in @Model.Item1)
+                            {
+                                <li class="text-muted"><span class="fw-bold">Creation Date: </span>@item.BillDate</li>                            
+                                if(item.BillStatus==false)
+                                {
+                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">Unpaid</span></li>
+                                }
+                                else
+                                {
+                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-Success text-black fw-bold">Paid</span></li>
+                                }
+                            }
                         </ul>
                     </div>
                 </div>
@@ -66,12 +74,11 @@
                     <table class="table table-light table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Table Number</th>
+                                <th>Order Id</th>
                                 <th>OrderDate</th>
                                 <th>Food Cuisine</th>
                                 <th>Food Cost</th>
                                 <th>Quantity</th>
-
                                 <th>Order Total</th>
                                 <th>Food Name</th>
                       
@@ -82,10 +89,10 @@
                                 var total = 0;
                                 var quantity = 0;
                             }
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Item2)
                             {
                                 <tr>
-                                    <td>@item.HallTableId</td>
+                                    <td>@item.OrderId</td>
                                     <td>@item.OrderDate</td>
                                     <td>@item.Food.FoodCuisine</td>
                                     <td>@item.Food.FoodCost</td>
@@ -96,11 +103,8 @@
                                     }
                                     <td>@item.OrderTotal</td>
                                     <td>@item.Food.FoodName</td>
-
-                             
                                 </tr>
                             }
-
                         </tbody>
                     </table>
                 </div>
@@ -125,19 +129,31 @@
                         <p>Thank you for your purchase</p>
                     </div>
                     <div class="col-xl-2">
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Item2)
                         {
-
-                            <a asp-controller="Bill" asp-action="Index" asp-route-HallId="@item.HallTableId" class="btn btn-success">PayNow</a>
+                            <a asp-controller="Bill" asp-action="BillSuccess" asp-route-HallId="@item.HallTableId" class="btn btn-success">PayNow</a>
+                            @* <form method="post">
+                                <input type="button" value="PayNow" asp-controller="Bill" asp-action="BillSuccess" asp-route-HallId="@item.HallTableId" class="btn btn-success">
+                            </form>*@
                             break;
-
                         }
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-    </div>
+</div>   
 </body>
+@if (ViewBag.status == "Ok")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+}
+else if (ViewBag.status == "Error")
+{
+    <div class="alert alert-danger">
+        @ViewBag.message
+    </div>
+}

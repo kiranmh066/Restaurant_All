@@ -5,127 +5,110 @@
 @{
     Layout = "~/Views/Shared/_LayoutHallManager.cshtml";
 
+
+
 }
 <body style="background-color:#5A3B5D">
-<div class="container">
+    <div class="container">
+
+
 
         <center>
-            <h2 class=" text-center" style="color:#40E0D0"> Hall Manager</h2>
-<div style="color:white">
-
-    <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
-
-</div>
-
-
-<<<<<<< HEAD
-        <div class=" row">
-=======
+            <h2 class="text-light text-center">Index of Hall Manager</h2>
+            <div style="color:white">
 
 
 
-
-
->>>>>>> 24954c6d8b487f855cca58d5b508f6433d3d7ac1
+                <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
 
 
 
+                <hr />
+            </div>
             <div class=" row">
-            @foreach(var item in Model)
-            {
-             
-              <div class="col-3">
-                  
-              @if(item.HallTableStatus==true&&item.HallTableSize==4)
-              {
-                        <br />
-                        <div class="text-light">Table Num:@item.HallTableId</div>
-                        <div class="text-light">Occupancy:@item.HallTableSize</div>
-                        <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:green"/>
-              }
-              else if (item.HallTableStatus == true && item.HallTableSize == 6)
-              {         <br />
-                        <div class="text-light">Table Num:@item.HallTableId</div>
-                        <div class="text-light">Occupancy:@item.HallTableSize</div>
-                        <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:green" />
+                @foreach (var item in Model)
+                {
 
-<<<<<<< HEAD
-                <div class="col-md-3">
-                    <br/>
-                    <div class="col-md-3">
-                        <br/>
-                        @if (hallTable.HallTableStatus == true)
-                        {
-                                <img src="https://cdn-icons-png.flaticon.com/512/3174/3174528.png" class="img-fluid" alt="Responsive image" style="width:200px;height:100px">
-                               
-                                <p style="background-color:green;width:100px">No:@hallTable.HallTableId</p>
-                                <div class ="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
-                               
-                        }
-                        else
-                        {
-                                <img src="https://cdn-icons-png.flaticon.com/512/3174/3174528.png" class="img-fluid" alt="Responsive image" style="width:200px;height:100px">
-                        <p  style="background-color:red;width:100px">No:@hallTable.HallTableSize</p>
-                                <div class="text-light text-center">Occupancy :@hallTable.HallTableSize</div>
-                        }
-                        
-                    </div>
-                    <br />
-                </div>
-              
-=======
-              }
-              else if (item.HallTableStatus == true && item.HallTableSize == 10)
-                        {
-                                     <br />
-                        <div class="text-light">Table Num:@item.HallTableId</div>
-                        <div class="text-light">Occupancy:@item.HallTableSize</div>
-                        <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:green" />
-              }
->>>>>>> 24954c6d8b487f855cca58d5b508f6433d3d7ac1
+                    <div class="col-3">
 
-              else if (item.HallTableStatus == false && item.HallTableSize == 4)
+                        @if (item.HallTableStatus == true && item.HallTableSize == 4)
                         {
                             <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
-                        <div class="text-light">Occupancy:@item.HallTableSize</div>
-                        <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:red" />
+                            <div class="text-light">Occupancy:@item.HallTableSize</div>
+                            <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:green" />
+                        }
+                        else if (item.HallTableStatus == true && item.HallTableSize == 6)
+                        {
+                                     <br />
+                            <div class="text-light">Table Num:@item.HallTableId</div>
+                            <div class="text-light">Occupancy:@item.HallTableSize</div>
+                            <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:green" />
 
-              }
 
-             else if (item.HallTableStatus == false && item.HallTableSize == 6)
+
+                        }
+                        else if (item.HallTableStatus == true && item.HallTableSize == 10)
                         {
                             <br />
-                        <div class="text-light">Table Num:@item.HallTableId</div>
-                        <div class="text-light">Occupancy:@item.HallTableSize</div>
-                        <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:red" />
+                            <div class="text-light">Table Num:@item.HallTableId</div>
+                            <div class="text-light">Occupancy:@item.HallTableSize</div>
+                            <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:green" />
+                        }
 
-             }
-             else if (item.HallTableStatus == false && item.HallTableSize == 10)
+
+
+                        else if (item.HallTableStatus == false && item.HallTableSize == 4)
                         {
                             <br />
-                        <div class="text-light">Table Num:@item.HallTableId</div>
-                        <div class="text-light">Occupancy:@item.HallTableSize</div>
-                        <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:red" />
+                            <div class="text-light">Table Num:@item.HallTableId</div>
+                            <div class="text-light">Occupancy:@item.HallTableSize</div>
+                            <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:red" />
 
-             }
-             </div>
-             
-            
 
-            }
+
+                        }
+
+
+
+                        else if (item.HallTableStatus == false && item.HallTableSize == 6)
+                        {
+                            <br />
+                            <div class="text-light">Table Num:@item.HallTableId</div>
+                            <div class="text-light">Occupancy:@item.HallTableSize</div>
+                            <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:red" />
+
+
+
+                        }
+                        else if (item.HallTableStatus == false && item.HallTableSize == 10)
+                        {
+                            <br />
+                            <div class="text-light">Table Num:@item.HallTableId</div>
+                            <div class="text-light">Occupancy:@item.HallTableSize</div>
+                            <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:red" />
+
+
+
+                        }
+                    </div>
+
+
+
+
+
+                }
+
+
 
             </div>
+
+
 
             <div>
                 <br />
             </div>
-   
-     </center>
-     </div>
+
+        </center>
+    </div>
 </body>
-
-
-
-
-

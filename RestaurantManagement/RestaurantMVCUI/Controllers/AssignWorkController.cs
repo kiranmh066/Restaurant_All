@@ -51,11 +51,6 @@ namespace RestaurantMVCUI.Controllers
             assignWork.EmpId = EmpId;
             assignWork.OrderId = data;
 
-
-            
-
-
-
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(assignWork), Encoding.UTF8, "application/json");

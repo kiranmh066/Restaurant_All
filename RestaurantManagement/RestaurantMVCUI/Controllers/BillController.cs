@@ -24,7 +24,7 @@ namespace RestaurantMVCUI.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Index(Bill bill)
-        {
+        {            
             Bill bill1 = new Bill();
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
@@ -47,9 +47,7 @@ namespace RestaurantMVCUI.Controllers
             {
                 total1 += item.OrderTotal;
             }
-
             ViewBag.status = "";
-
 
             bill1.BillStatus = false;
             bill1.HallTableId = hallTableId1;
@@ -58,6 +56,10 @@ namespace RestaurantMVCUI.Controllers
             bill1.UserName = bill.UserName;
             bill1.UserEmail = bill.UserEmail;
 
+            TempData["UserEmail"] = bill.UserEmail;
+            TempData["UserName"] = bill.UserName;
+            TempData["BillDate"] = bill1.BillDate;
+            TempData["BillStatus"] = bill1.BillStatus;            
 
             using (HttpClient client = new HttpClient())
             {
@@ -68,8 +70,9 @@ namespace RestaurantMVCUI.Controllers
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
-                        ViewBag.status = "Ok";
-                        ViewBag.message = "Bill Paid Successfull!!";
+                        /*ViewBag.status = "Ok";
+                        ViewBag.message = "Bill Paid Successfull!!";*/
+                        return RedirectToAction("GenerateBill","Bill");
                     }
 
                     else
@@ -81,17 +84,24 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-
-
         }
-
-
         public async Task<IActionResult> GenerateBill()
         {
+            /*ViewBag.status = "";*/
+            List<Bill> billlist = new List<Bill>();
+            Bill bill = new Bill();
+            bill.UserName =Convert.ToString(TempData["UserName"]);
+            bill.UserEmail= Convert.ToString(TempData["UserEmail"]);
+            bill.BillDate=Convert.ToDateTime(TempData["BillDate"]);
+            bill.BillStatus =Convert.ToBoolean(TempData["BillStatus"]);
+            bill.HallTableId= Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+
+            billlist.Add(bill);
 
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
-            IEnumerable<Order> orderresult = null;
+            List<Order> orderresult = null;
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByTableId?hallTableId=" + hallTableId1;
@@ -100,31 +110,36 @@ namespace RestaurantMVCUI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         var result = await response.Content.ReadAsStringAsync();
-                        orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
-                    }
+                        orderresult = JsonConvert.DeserializeObject<List<Order>>(result);
+                    }                    
                 }
             }
-            return View(orderresult);
+            var tupeluser = new Tuple<List<Bill>, List<Order>>(billlist, orderresult);
+            return View(tupeluser);
         }
-        /* public async Task<IActionResult> GenerateBill()
-         {
 
-             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
-             TempData.Keep();
-             IEnumerable<Order> orderresult = null;
-             using (HttpClient client = new HttpClient())
-             {
-                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByTableId?hallTableId=" + hallTableId1;
-                 using (var response = await client.GetAsync(endPoint))
-                 {
-                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                     {
-                         var result = await response.Content.ReadAsStringAsync();
-                         orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
-                     }
-                 }
-             }
-             return View(orderresult);
-         }*/
+        [HttpPost]
+        public async Task<IActionResult> GenerateBill(Bill bill)
+        {
+            ViewBag.status = "Ok";
+            ViewBag.message = "Bill Paid Successfully!!";
+
+            return View();
+        }
+
+        public IActionResult BillSuccess()
+        {
+            if (true)
+            {
+                ViewBag.status = "Ok";
+                ViewBag.message = "Bill Paid Successfully!!";
+            }
+            else
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "Could Not Initiate Payment..!!!";
+            }
+            return View();
+        }
     }
 }

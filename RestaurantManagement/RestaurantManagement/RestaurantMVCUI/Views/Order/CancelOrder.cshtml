@@ -1,0 +1,22 @@
+﻿<body style="background-color:#5A3B5D">
+    <div classs="container">
+        <a asp-area="" asp-controller="Order" asp-action="ViewOrdered" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+
+
+
+
+@if (ViewBag.status == "Ok")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+}
+else if (ViewBag.status == "Error")
+{
+    <div class="alert alert-danger">
+        @ViewBag.message
+    </div>
+}
+<
+    </div>
+</body>

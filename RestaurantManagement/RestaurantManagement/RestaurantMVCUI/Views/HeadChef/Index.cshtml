@@ -1,0 +1,59 @@
+﻿@model IEnumerable<RestaurantEntity.Order>
+@{
+    Layout = "~/Views/Shared/_LayoutHeadChef.cshtml";
+
+}
+<body style="background-color:#5A3B5D">
+ <div class="container">
+        <<h2 class="text-center text-uppercase font-weight-bolder" style="color:#1e88e5; font-size:36px">
+            Index of HeadChef</h2>
+
+<a asp-controller="AssignWork" asp-action="ViewAll" class="btn btn-success">View Assigned</a>
+@*<a asp-controller="AssignWork" asp-action="UpdateAssigned" class="btn btn-primary">View Assigned</a>
+<a asp-controller="AssignWork" asp-action="DeleteAssigned" class="btn btn-danger">Delete Assigned</a>*@
+
+
+<div class="row">
+    <div class="col-12">
+        <h3 style="color:white">Orders</h3>
+        <hr />
+        <table class="table  table-bordered table-hover">
+            <thead>
+                <tr class="text-white">
+                    <th>HallTable No</th>
+                    <th>Table Size</th>
+                    <th>Food Name</th>
+                    <th>item Quantity</th>
+                    <th>Order Status</th>
+                    <th>item Cuisine</th>
+                    <th>Order Date</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class ="text-white">
+                        <td>@item.HallTableId</td>
+                        <td>@item.HallTable.HallTableSize</td>
+                        <th>@item.Food.FoodName</th>
+                        <td>@item.Quantity</td>
+                        <td>@item.OrderStatus</td>
+                        <td>@item.Food.FoodCuisine</td>
+                        <td>@item.OrderDate</td>
+
+                        @*  <td><img height="50" width="50" src="@imageDataURL" /></td>*@
+
+                        <td>
+                            <a asp-controller="HeadChef" asp-action="cheflist" class="btn btn-outline-success"
+                                   asp-route-OrderId="@item.OrderId"><img src="https://www.svgrepo.com/show/189280/tasks-tick.svg" style="width:50px;height:50px"><span>&nbsp;</span> Assign to Chef</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+    </div>
+</body>

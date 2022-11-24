@@ -19,5 +19,8 @@ namespace RestaurantDAL.Repost
         IEnumerable<AssignWork> GetAssignWorks();
 
         IEnumerable<AssignWork> GetAssignWorksBySpeciality(string speciality);
+
+        AssignWork GetAssignWorkbyOrderId(int OrderId);
+
     }
 }

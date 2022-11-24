@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RestaurantEntity.AssignWork>
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutChef.cshtml";
+
+}
+<body  style="background-color:#5A3B50">
+    <div class="container">
+        <h2 class="text-center" style="color:#1e88e5"></h2>
+<div class="row">
+    <div class="col-12">
+            <h3 style="color:white" >Assigned Work</h3>
+        <hr />
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-white">
+                    <th>Assign Id</th>
+                    <th>Order Id</th>
+                    <th>Food Name</th>
+                    <th>Food Cuisine</th>
+                    <th>Quantity</th>
+                    
+
+
+            </thead>
+            <tbody>
+                @foreach (var AssignWork in Model)
+                {
+
+                    <tr class="text-white">
+                        <td>@AssignWork.AssignId</td>
+                        <td>@AssignWork.Order.OrderId</td>
+                        <td>@AssignWork.Order.Food.FoodName</td>
+                        <td>@AssignWork.Order.Food.FoodCuisine</td>
+                        <td>@AssignWork.Order.Quantity</td>
+                
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+    </div>
+</body>

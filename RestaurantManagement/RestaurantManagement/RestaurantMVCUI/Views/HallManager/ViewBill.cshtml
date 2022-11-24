@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RestaurantEntity.Bill>
+
+<div>
+   
+    <a asp-area="" asp-controller="HallManager" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/163122/backward-arrow.svg"></a>
+    <hr />
+</div>
+
+<body>
+
+<div class="row">
+    <div class="col-12">
+       
+        <hr />
+        <table class="table table-light table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Bill Id</th>
+                    <th>Table Number</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>Bill Date</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @if(item.BillStatus==false)
+                    {
+                    <tr>
+                        <td>@item.BillId</td>
+                        <td>@item.HallTableId</td>
+                        <td>@item.UserName</td>
+                        <td>@item.UserEmail</td>
+                        <td>@item.BillDate</td>
+                        <td>@item.BillTotal</td>
+                        @*<td>@item.BillStatus</td>*@
+                        <td><a asp-controller="HallManager" asp-action="ChangeStatus" asp-route-billId="@item.BillId" type="button" class="btn btn-success">Verify payment & Empty Table</a></td>
+                    </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>

@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model RestaurantEntity.Feedback
+<body style="background-color:#5A3B5D">
+    <a asp-area="" asp-controller="Home" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/79468/back.svg"></a>
+<div class="container d-flex justify-content-center">
+    <div class="card mt-5 pb-5">
+        <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
+            <i class="fas fa-chevron-left"></i>
+            <span style="color:black" class="pb-3"><h1>feedback</h1></span>
+            <i class="fas fa-times"></i>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+        <div class="mt-2 p-4 text-center">
+            <h6 class="mb-0">Your feedback help us to improve.</h6>
+            <small class="px-3">Please let us know about your chat experience.</small>
+            <div class="d-flex flex-row justify-content-center mt-2">
+                <img src="https://img.icons8.com/emoji/48/000000/angry-face-emoji--v2.png" />
+                <img src="https://img.icons8.com/fluent/48/000000/sad.png" />
+                <img src="https://img.icons8.com/color/48/000000/happy.png" />
+                <img src="https://img.icons8.com/emoji/48/000000/smiling-face.png" />
+                <img src="https://img.icons8.com/color/48/000000/lol.png" />
+            </div>
+                <div class="form-group">
+                    @*  form group for automatic audjustment for various screen sizes*@
+                    <label>Rating </label>
+                    <input type="number" asp-for="Rating" min="0" max="10" class="form-control" placeholder="Rate our Service" />
+                </div>
+                <div class="form-group">
+                    @*  form group for automatic audjustment for various screen sizes*@
+                    <label>HallTable ID </label>
+                    <input type="number" asp-for="HallTableId" min="0" max="10" class="form-control" placeholder="Enter Table Number" />
+                </div>
+            <div class="form-group mt-4">
+                    <label>Comments</label>
+                    <textarea type="text" asp-for="Comments" class="form-control" rows="4" placeholder="Message"></textarea>
+                </div> 
+                <div class="form-group">
+                    <label>FeedbackStatus</label>
+                    <input type="text" asp-for="FeedbackStatus" class="form-control" placeholder=" Your Feedback status " required />
+                </div>
+           
+                   
+                    <input type="submit" value="Save" class="btn btn-primary btn-block"><span>Send feedback</span></input>
+                @if (ViewBag.status == "Ok")
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.message
+                    </div>
+                }
+                else if (ViewBag.status == "Error")
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.message
+                    </div>
+                }
+
+            <p class="mt-3">Continue without sending feedback</p>
+        </div>
+        </form>
+    </div>
+</div>
+</body>

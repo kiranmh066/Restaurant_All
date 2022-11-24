@@ -1,60 +1,143 @@
-﻿@model IEnumerable<RestaurantEntity.Order>
-@{
-    ViewData["Title"] = "ViewOrdered";
-}
+﻿
+@using RestaurantEntity;
+@model Tuple<IEnumerable<Order>,List<AssignWork>>;
+
+
+<body style="background-color:#5A3B5D;padding-bottom:80px">
+    <div class="container">
+        <center>
+            <h2 style="color:white">View Ordered List</h2>
+        </center>
+
+        @if (true)
+        {
+            var total = 0;
 
 
 
-<body style="background-color:#5A3B5D">
-<div class="container">
-        <h1>ViewOrdered</h1>
-    <div class="row">
-        <div class="col-12 text-white">
-            <h3>Orders</h3>
-            <hr />
-            <table class="table  table-bordered table-hover ">
-                <thead>
-                    <tr style="color:white">
-                        
-                        <th >Order Quantity</th>
-                        <th>Order OrderTotal</th>
-                       
-                        <th>Order FoodId</th>
-                        <th>Table Number</th>
-                        <th>Order Date</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+            @foreach (var order in Model.Item1)
+            {
+                string imageBase64Data = Convert.ToBase64String(order.Food.FoodImage);
+                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+
+                total = total + order.OrderTotal;
 
 
-                  
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var Order in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editOrder of Ordercontroller (route name) here which is OrderId
-                    which can be written as http://localhost:32344/Orders/edit Order?Orderid=2//
-                    *@
-                    {
-                        @* string imageBase64Data = Convert.ToBase64String(Order.ImgPoster);
-                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);*@
-                            <tr style="color:white">
-                         
-                            <td>@Order.Quantity</td>
-                            <td>@Order.OrderTotal</td>
-                            
-                            <td>@Order.FoodId</td>
-                            <td>@Order.HallTableId</td>
-                            <td>@Order.OrderDate</td>
-                                <td><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@Order.OrderId" ><img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/241804/edit.svg" /></a></td>
-                                <td><a asp-controller="Order" asp-action="DeleteOrder1" asp-route-OrderId="@Order.OrderId"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" /></a></td>
-                        
-                    
-                    </tr>
 
-                    }
-                  
-                </tbody>
-            </table>
-        </div>
+
+                        <div>
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col">
+
+
+                                    <div class="card mb-4">
+                                        <div class="card-body p-4">
+
+                                            <div class="row align-items-center">
+                                                <div class="col-md-2">
+                                                    <img src="@imageDataURL"
+                                                    class="img-fluid" alt="Generic placeholder image">
+                                                </div>
+                                                <div class="col-md-2 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black">Table No</p>
+                                                        <p>@order.HallTableId</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black">Name</p>
+                                                        <p>@order.Food.FoodName</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black">Quantity</p>
+                                                        <p>@order.Quantity</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black">Order Date & Time </p>
+                                                        <p>@order.OrderDate</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black"> Cost</p>
+                                                        <p> ₹@order.Food.FoodCost</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black" class=" font-weight-bolder">Order Total</p>
+                                                        <p class=" font-weight-bolder">₹@order.OrderTotal</p>
+                                                    </div>
+                                                </div>
+                                        <div class="col-md-6 d-flex justify-content-start">
+                                          
+                                            @foreach (var assignWork in Model.Item2)
+
+                                        {
+
+                                            @if (order.HallTableId == assignWork.Order.HallTableId)
+                                            {
+                                                <div class="col-md-12 d-flex ">
+                                                    <div>
+                                                        <p style="color:black">Order Status</p>
+                                                        @if (assignWork.WorkStatus == true)
+                                                        {
+                                                            <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/307637/soup-in-bowl-bowl-soup-hot-food.svg" />&nbsp; Prepared Ready To Serve</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/147435/cooking.svg" />&nbsp; Preparing Please Wait</td>
+                                                        }
+                                                    </div>
+                                                </div>
+                                               
+                                                break;
+                                            }
+                                        }
+                                        </div>
+                                        <div class="col-md-6 d-flex justify-content-end" style="padding-top:40px">
+                                           
+                                        <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@order.OrderId" class="btn btn-success"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/241804/edit.svg" />&nbsp;Edit Order</a></td>
+                                        <span>&nbsp;</span>
+                                        <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="DeleteOrder1" asp-route-OrderId="@order.OrderId" class="btn btn-danger"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/243864/delete.svg" /> &nbsp;Delete Order</a></td>
+                                        </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+               
+
+            }
+
+            <div class="float-right">
+
+
+                <a class="btn btn-success text-light font-weight-bolder">Order total:₹@total</a>
+
+                <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue ordering</a>
+            </div>
+
+
+        }
+
+
+
+
+
     </div>
-</div>
+
 </body>

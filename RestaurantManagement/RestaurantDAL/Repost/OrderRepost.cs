@@ -75,9 +75,9 @@ namespace RestaurantDAL.Repost
         public IEnumerable<Order> GetOrdersByTableId(int hallTableId)
         {
             List<Order> orders = _dbContext.tbl_Order.Include(obj => obj.Food).Include(obj => obj.HallTable).ToList();
-            var result = from order in orders select order;
+           
             List<Order> orders2 = new List<Order>();
-            foreach (var item in result)
+            foreach (var item in orders)
             {
                 if (item.HallTableId == hallTableId)
                 {
@@ -94,5 +94,8 @@ namespace RestaurantDAL.Repost
             _dbContext.Entry(order).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
+
+
+      
     }
 }

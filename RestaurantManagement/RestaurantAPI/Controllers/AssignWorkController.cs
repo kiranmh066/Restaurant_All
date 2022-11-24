@@ -63,5 +63,13 @@ namespace RestaurantAPI.Controllers
             _assignWorkService.AddAssignWork(assignWorkInfo);
             return Ok("Register successfully!!");
         }
+
+        [HttpGet("GetAssignWorkByOrderId")]
+
+        public AssignWork GetAssignWorkByOrderId(int OrderId)
+        {
+            return _assignWorkService.AssignWorkByOrderId(OrderId);
+        }
+
     }
 }

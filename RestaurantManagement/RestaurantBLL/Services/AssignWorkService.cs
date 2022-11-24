@@ -57,5 +57,11 @@ namespace RestaurantBLL.Services
         {
             _assignWorkRepository.AddAssignWork(assignWorkInfo);
         }
+
+        public AssignWork AssignWorkByOrderId(int OrderId)
+        {
+            return _assignWorkRepository.GetAssignWorkbyOrderId(OrderId);
+
+        }
     }
 }

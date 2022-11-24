@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
+
+}
+
+
+
+
+<html>
+<head>
+
+</head>
+
+<body style="background-color:#5A3B5D">
+  
+    <br />
+    <div class=" container">
+        <center>
+            <h2 class="text-center text-uppercase font-weight-bolder" style="color:#1e88e5; font-size:36px">Index Of Food </h2>
+        </center>
+        <br />
+        
+    <div class="row" style="margin-top:110px">
+           
+       
+        <div class="col-md-6">
+                <a asp-controller="Admin1" asp-action="AddEmployee" type="button " class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/22049/add-user.svg" /><span>&nbsp;</span> Add Employee </a>
+            <span> <br /></span>
+
+                <a asp-controller="Admin1" asp-action="EditEmployee" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/61278/edit.svg" /><span>&nbsp;</span>Update Employee</a>
+      
+        <br />
+                <a asp-controller="Admin1" asp-action="DeleteEmployee" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/243868/delete.svg" /><span>&nbsp;</span>Delete Employee</a>
+       
+        <br />
+
+                <a asp-controller="Admin1" asp-action="GetAllEmployees" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All Employees</a>
+      
+        <br />
+            </div>
+            <div class="col-md-6">
+                <a asp-controller="Admin1" asp-action="AddFood" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/317513/food.svg" /><span>&nbsp;</span>Add Food</a>
+       
+        <br />
+
+                <a asp-controller="Admin1" asp-action="EditFood" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/61278/edit.svg" /><span>&nbsp;</span>Update Food</a>
+      
+        <br />
+
+                <a asp-controller="Admin1" asp-action="DeleteFood" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder" style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/243868/delete.svg" /><span>&nbsp;</span>Delete Food</a>
+       
+        <br />
+                <a asp-controller="Admin1" asp-action="GetAllFoods" type="button" class="btn btn-outline-warning btn-secondary text-white font-weight-bolder " style="width:500px;margin:10px"><img class="img-fluid" style="height:70px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All Foods</a>
+       
+        </div>
+
+
+    </div>
+    </div>
+</body>
+</html>

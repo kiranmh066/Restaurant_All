@@ -9,9 +9,6 @@
             <center> <a asp-controller="Admin1" asp-action="Index"><h2>Index</h2></a></center>
     <hr />
 </div>
-
-
-
 <form method="post" enctype="multipart/form-data">
             <center>
                 <h3>Edit Employee</h3></center>
@@ -51,8 +48,9 @@
     </div>
 
 
-    <input type="submit" value="Save" class="btn btn-outline-success" /> @*submit display message for required option required works only with submit*@
-    <input type="button" value="Reset" class="btn btn-outline-secondary" />
+    <input type="submit" value="Save" class="btn btn-outline-success" />
+    &nbsp;&nbsp;
+    <input type="reset" value="Reset" class="btn btn-outline-secondary" />
     <hr />
     @*submit sends form to server thats why we use submit not button type  *@
     @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Employeecontroller *@

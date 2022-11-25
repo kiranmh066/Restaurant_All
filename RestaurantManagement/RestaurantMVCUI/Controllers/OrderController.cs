@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.Extensions.Configuration;
@@ -443,7 +444,7 @@ namespace RestaurantMVCUI.Controllers
             {
 
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;//api controller name and httppost name given inside httppost in moviecontroller of api
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByTableId?hallTableId=" + hallTableId1;//api controller name and httppost name given inside httppost in moviecontroller of api
 
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -461,7 +462,28 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
-            return View(orderresult);
+            List<AssignWork> assignWorkslist = new List<AssignWork>();
+            
+           
+             using (HttpClient client = new HttpClient())
+             {
+                string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorks";
+                //api controller name and httppost name given inside httppost in moviecontroller of api
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        assignWorkslist = JsonConvert.DeserializeObject<List<AssignWork>>(result);
+                    }
+                }
+             }
+
+           
+
+            
+            var tupeluser = new Tuple<IEnumerable<Order>, List<AssignWork>>(orderresult, assignWorkslist);
+            return View(tupeluser);
         }
 
         [HttpGet]
@@ -580,9 +602,8 @@ namespace RestaurantMVCUI.Controllers
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = " Ordered prepared can't cancel now";
+                        return View();
                     }
-
-
 
                 }
             }

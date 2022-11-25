@@ -20,9 +20,10 @@
                 <label>Hall Table Size</label>
                 <input type="text" asp-for="HallTableSize" class="form-control" placeholder="Enter Table Size" required />
             </div>
+            
             <input type="submit" value="Save" class="btn btn-outline-success" /> 
-
-            <input type="button" value="Reset" class="btn btn-outline-secondary" />
+            &nbsp;&nbsp;
+            <input type="reset" value="Reset" class="btn btn-outline-secondary" />
             <hr />
        
             @if (ViewBag.status == "Ok")

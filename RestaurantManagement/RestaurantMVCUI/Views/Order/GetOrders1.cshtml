@@ -10,11 +10,7 @@
     <center>
             <h2 style="color:white">Order List</h2>
         </center>
-
-
-      
         <hr />
-
 
         <a asp-controller="Order" asp-action="ClearCart" onclick="clearcartFunction()" class="btn btn-primary">
             <img src="https://www.svgrepo.com/show/143188/clear-shopping-cart.svg" style="height:30px;width:30px;" />&nbsp;Clear Cart
@@ -36,116 +32,94 @@
                 
               
                <hr />
-                  
-                    
-        
-                @if (true)
-                {
+
+           @if (true)
+            {
                     var total = 0;
-
-
-
-                    @foreach (var order in Model.Item1)
+            @foreach (var order in Model.Item1)
+            {
+                total = total + order.OrderTotal;
+                @foreach (var food in Model.Item2)
+                {
+                    string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                    @if (order.FoodId == food.FoodId)
                     {
-
-
-                        total = total + order.OrderTotal;
-                        @foreach (var food in Model.Item2)
-                        {
-                            string imageBase64Data = Convert.ToBase64String(food.FoodImage);
-                            string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-                            @if (order.FoodId == food.FoodId)
-                            {
-
-                                <div>
-                                    <div class="row d-flex justify-content-center align-items-center h-100">
-                                        <div class="col">
-
-
-                                            <div class="card mb-4">
-                                                <div class="card-body p-4">
-
-                                                    <div class="row align-items-center">
-                                                        <div class="col-md-2">
-                                                            <img src="@imageDataURL"
+                        <div>
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-body p-4">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-2">
+                                                    <img src="@imageDataURL"
                                                                  class="img-fluid" alt="Generic placeholder image">
-                                                        </div>
-                                                        <div class="col-md-2 d-flex justify-content-center">
-                                                            <div>
-                                                                <p style="color:black">Table No</p>
-                                                                <p>@order.HallTableId</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1 d-flex justify-content-center">
-                                                            <div>
+                                                </div>
+                                                <div class="col-md-2 d-flex justify-content-center">
+                                                    <div>
+                                                        <p style="color:black">Table No</p>
+                                                        <p>@order.HallTableId</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-center">
+                                                    <div>
                                                         <p style="color:black">Name</p>
-                                                                <p >@food.FoodName</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1 d-flex justify-content-center">
-                                                            <div>
+                                                        <p >@food.FoodName</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-center">
+                                                    <div>
                                                         <p style="color:black">Quantity</p>
-                                                                <p >@order.Quantity</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3 d-flex justify-content-center">
-                                                            <div>
+                                                        <p >@order.Quantity</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 d-flex justify-content-center">
+                                                    <div>
                                                         <p style="color:black">Order Date & Time </p>
-                                                                <p >@order.OrderDate</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1 d-flex justify-content-center">
-                                                            <div>
+                                                        <p >@order.OrderDate</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-center">
+                                                    <div>
                                                         <p style="color:black"> Cost</p>
-                                                                <p > ₹@food.FoodCost</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2 d-flex justify-content-center">
-                                                            <div>
+                                                        <p > ₹@food.FoodCost</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 d-flex justify-content-center">
+                                                    <div>
                                                         <p style="color:black" class=" font-weight-bolder">Order Total</p>
                                                         <p class=" font-weight-bolder">₹@order.OrderTotal</p>
-                                                            </div>
-                                                        </div>
-
-
                                                     </div>
-
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    }
+                }
+            
 
 
-                            }
-                        }
 
-
-            }
+        }
                 @foreach (var order in Model.Item1)
-                 {
+               {
 
-                <div class="float-right">
-
+       
+                        <div class="float-right">
 
                             <a class="btn btn-success text-light font-weight-bolder">Order total:₹@total</a>
-
                             <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue ordering</a>
-                </div>
+
+                        </div>
                 break;
                }
 
                      
-                 }
-                    
-                   
-                   
-      
-        
-    </div>
 
+         }
+    </div>
 </body>
 

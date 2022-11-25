@@ -10,7 +10,8 @@
     <hr />
 </div>
 
-    <h2>All Employee </h2>
+        <center>
+            <h3>All Employee </h3></center>
 
 
 
@@ -58,8 +59,8 @@
                         </td>
 
                         <td>
-                            <a asp-controller="Admin1" asp-action="DeleteEmployee"
-                                   asp-route-EmployeeId="@Employee.EmpId"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" /></a>
+                                    <a asp-controller="Admin1" asp-action="DeleteEmployee" onclick="deleteFunction()"
+                                   asp-route-EmployeeId="@Employee.EmpId"><img class="img-fluid" style="height:50px"  src="https://www.svgrepo.com/show/243864/delete.svg" /></a>
                         </td>
                     </tr>
 

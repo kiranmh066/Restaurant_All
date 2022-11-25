@@ -5,6 +5,7 @@
     ViewData["Title"] = "ConfirmOrder";
 }
 <body style="background-color:#5A3B5D;padding-bottom:80px">
+    <a asp-area="" asp-controller="Order" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
 <div class="container">
     <center>
             <h2 style="color:white">Order List</h2>
@@ -13,23 +14,24 @@
 
       
         <hr />
-       
-           
-               
-                    <a asp-controller="Order" asp-action="ClearCart" class="btn btn-primary">Clear Cart</a>
-                &nbsp;
-                <a asp-controller="Order" asp-action="ConfirmOrder" class="btn btn-primary">Confirm Order</a>
-                &nbsp;
 
-                <a asp-controller="Order" asp-action="ViewOrdered" class="btn btn-primary">View Ordered</a>
+
+        <a asp-controller="Order" asp-action="ClearCart" onclick="clearcartFunction()" class="btn btn-primary">
+            <img src="https://www.svgrepo.com/show/143188/clear-shopping-cart.svg" style="height:30px;width:30px;" />&nbsp;Clear Cart
+        </a>
+                &nbsp;
+        <a asp-controller="Order" asp-action="ConfirmOrder" onclick="confirmFunction()" class="btn btn-primary"><img src="https://www.svgrepo.com/show/15204/confirm-purchase.svg" style="height:30px;width:30px;" />&nbsp;Confirm Order</a>
                 &nbsp;
 
+        <a asp-controller="Order" asp-action="ViewOrdered" class="btn btn-primary"><img src="https://www.svgrepo.com/show/10154/shopping-cart-empty-side-view.svg" style="height:30px;width:30px;" />&nbsp;  Ordered</a>
+                &nbsp;
 
 
-                <a asp-controller="Bill" asp-action="GenerateBill" class="btn btn-primary">Get Bill</a>
+
+        <a asp-controller="Bill" asp-action="GenerateBill" class="btn btn-primary"><img src="https://www.svgrepo.com/show/410234/bill.svg" style="height:30px;width:30px;" />&nbsp;Get Bill</a>
                &nbsp;
 
-                <a asp-controller="Order" asp-action="CancelOrder" class="btn btn-danger">Cancel All Order</a>
+        <a asp-controller="Order" asp-action="CancelOrder" onclick="clearcartFunction()" class="btn btn-danger"><img src="https://www.svgrepo.com/show/59190/cancelled-options.svg" style="height:30px;width:30px;" />&nbsp;Cancel All Order</a>
                &nbsp;
                 
               
@@ -122,15 +124,19 @@
                         }
 
 
-                }
-                
-                        <div class="float-right">
+            }
+                @foreach (var order in Model.Item1)
+                 {
+
+                <div class="float-right">
 
 
                             <a class="btn btn-success text-light font-weight-bolder">Order total:₹@total</a>
 
                             <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue ordering</a>
-                        </div>
+                </div>
+                break;
+               }
 
                      
                  }

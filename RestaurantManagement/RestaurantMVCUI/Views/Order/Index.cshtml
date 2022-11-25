@@ -1,10 +1,26 @@
 ﻿@model IEnumerable<RestaurantEntity.Food>
 
 <body style="background-color:#5A3B5D">
-
+    <a asp-area="" asp-controller="Order" asp-action="UserTableEntry" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
     <div class="container">
+        @using (Html.BeginForm())
+        {
+            <div style="color:#003399">
 
-        <h2 class="text-light text-center">Foods  <p class="text-right text-light"><a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:50px;width:50px;"/>&nbsp; View List</a></p></h2>
+
+
+                <a class="text-uppercase d-inline-block text-center" style="font-size:xx-large" align="center">Patient <span class="font-weight-bold" style="font-size:xx-large">Details</span></a>
+
+
+
+                <span style="font-size:large;float:right">
+                    @Html.RadioButton("option", "FoodName") <text>Name</text> @Html.RadioButton("option", "Gender") <text> Gender </text>
+                    @Html.RadioButton("option", "Subjects")<text>Address</text> @Html.TextBox("search")
+                    <input type="submit" name="submit" value="Search" />
+                </span>
+            </div>
+        }
+        <h2 class="text-light text-center">Foods  <p class="text-right text-light"><a asp-controller="Order" asp-action="GetOrders1" class="btn btn-primary "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:30px;width:30px;"/>&nbsp; View List</a></p></h2>
         <br/>
                 <div class=" row">
                     

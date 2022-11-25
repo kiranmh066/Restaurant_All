@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestaurantBLL.Services;
+using RestaurantDAL;
 using RestaurantEntity;
 using System;
 using System.Collections;
@@ -22,12 +23,31 @@ namespace RestaurantMVCUI.Controllers
 
 
         private IConfiguration _configuration;
-
+        RestaurantDbContext db = new RestaurantDbContext();
         public OrderController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        public ActionResult Index(string option, string search)
+        {
+            if (option == "Subjects")
+            {
+                //GetAllPatients action method will return a view with a patient records based on what a user specify the value in textbox  
+                return View(db.tbl_Food.Where(x => x.FoodType == search || search == null).ToList());
+            }
+            else if (option == "Gender")
+            {
+                return View(db.tbl_Food.Where(x => x.FoodCuisine == search || search == null).ToList());
+            }
+            else
+            {
+                return View(db.tbl_Food.Where(x => x.FoodName.StartsWith(search) || search == null).ToList());
+            }
+        }
+    
+
+        [HttpPost]
         public async Task<IActionResult> Index()
         {
             #region index of order
@@ -50,9 +70,32 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
+
             return View(foodresult);
             #endregion
         }
+       
+      
+        
+
+        
+        //[HttpPost]
+        //public ActionResult GetAllFoodforSearch(string option, string search)
+        //{
+        //    if (option == "Food")
+        //    {
+        //        //GetAllPatients action method will return a view with a patient records based on what a user specify the value in textbox  
+        //        return View(db.tbl_Food.Where(x => x.FoodName == search || search == null).ToList());
+        //    }
+        //    else if (option == "Cusine")
+        //    {
+        //        return View(db.tbl_Food.Where(x => x.FoodCuisine == search || search == null).ToList());
+        //    }
+        //    else
+        //    {
+        //        return View(db.tbl_Food.Where(x => x.FoodName.StartsWith(search) || search == null).ToList());
+        //    }
+        //}
 
         [HttpGet]
         public async Task<IActionResult> AddOrder1(int FoodId)

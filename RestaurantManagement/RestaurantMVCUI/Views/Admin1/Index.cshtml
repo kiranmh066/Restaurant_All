@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Index";
-}
+﻿
 @{
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
@@ -33,7 +31,7 @@
                 <a asp-controller="Admin1" asp-action="GetAllEmployees" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All Employees</a>
       
         <br />
-            </div>
+        </div>
             <div class="col-md-4">
                 <a asp-controller="Admin1" asp-action="AddFood" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/317513/food.svg" /><span>&nbsp;</span>Add Food</a>
        
@@ -65,9 +63,20 @@
             <a asp-controller="Admin1" asp-action="GetAllHallTables" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/52454/list.svg" /><span>&nbsp;</span>Get All HallTables</a>
 
         </div>
-
+    </div>
+    <hr />
+    <div class="row">
+            <div class="col-md-6">
+                <a asp-controller="Admin1" asp-action="GetAllBills" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:80px" src="https://www.svgrepo.com/show/219441/bill-ticket.svg" /><span>&nbsp;</span>Get All Bills</a>
+                <br />
+            </div>
+            <div class="col-md-6">
+                <a asp-controller="Admin1" asp-action="GetAllFeedbacks" type="button" class="btn text-white" style="width:500px"><img class="img-fluid" style="height:80px" src="https://www.svgrepo.com/show/271593/customer-rate.svg" /><span>&nbsp;</span>Get All Feedbacks</a>
+                <br />
+            </div>
 
     </div>
+
       @*  </center>*@
     </div>
 </body>

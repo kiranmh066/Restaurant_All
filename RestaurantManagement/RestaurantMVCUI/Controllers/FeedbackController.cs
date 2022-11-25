@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestaurantEntity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -27,7 +30,14 @@ namespace RestaurantMVCUI.Controllers
 
         public IActionResult AddFeedback1()
         {
+            List<SelectListItem> status = new List<SelectListItem>()
+            {
+                new SelectListItem { Value = "Select", Text = "select" },
+                 new SelectListItem { Value = "true", Text = "Satisfactory" },
+                  new SelectListItem { Value ="false" , Text = "Unsatisfactory" },
+            };
 
+            ViewBag.Feed = status;
             return View();
         }
 
@@ -44,6 +54,9 @@ namespace RestaurantMVCUI.Controllers
                             Employeev.ImgPoster = ms.ToArray();
                         }*/
             //using grabage collection only for inbuilt classes
+
+            feedback.HallTableId =Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(feedback), Encoding.UTF8, "application/json");

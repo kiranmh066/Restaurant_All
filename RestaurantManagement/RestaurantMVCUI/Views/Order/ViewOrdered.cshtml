@@ -12,19 +12,12 @@
         @if (true)
         {
             var total = 0;
-
-
-
             @foreach (var order in Model.Item1)
             {
                 string imageBase64Data = Convert.ToBase64String(order.Food.FoodImage);
                 string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
 
                 total = total + order.OrderTotal;
-
-
-
-
                         <div>
                             <div class="row d-flex justify-content-center align-items-center h-100">
                                 <div class="col">
@@ -133,11 +126,6 @@
 
 
         }
-
-
-
-
-
     </div>
 
 </body>

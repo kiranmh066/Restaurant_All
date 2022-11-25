@@ -6,6 +6,9 @@ namespace RestaurantDAL
 {
     public class RestaurantDbContext:DbContext
     {
+        public RestaurantDbContext()
+        {
+        }
 
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
@@ -26,7 +29,9 @@ namespace RestaurantDAL
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
 
+
             dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2179; Initial Catalog = Restaurant_Chandan4; Integrated Security=True;");
+
 
         }
     }

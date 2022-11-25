@@ -126,39 +126,39 @@ namespace RestaurantMVCUI.Controllers
 
 
         }
+        //public async Task<IActionResult> DeleteEmployee(int employeeId)
+        //{
+        //    Employee employee = null;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+
+
+        //        string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employeeId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
+        //        using (var response = await client.GetAsync(endPoint))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {   //dynamic viewbag we can create any variable name in run time
+        //                var result = await response.Content.ReadAsStringAsync();
+        //                employee = JsonConvert.DeserializeObject<Employee>(result);
+        //            }
+
+
+
+        //        }
+        //    }
+        //    return View(employee);
+
+        //}
+       
         public async Task<IActionResult> DeleteEmployee(int employeeId)
-        {
-            Employee employee = null;
-            using (HttpClient client = new HttpClient())
-            {
-
-
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employeeId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
-
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
-                        var result = await response.Content.ReadAsStringAsync();
-                        employee = JsonConvert.DeserializeObject<Employee>(result);
-                    }
-
-
-
-                }
-            }
-            return View(employee);
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> DeleteEmployee(Employee employee)
         {
             ViewBag.status = "";
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/DeleteEmployee?employeeId=" + employee.EmpId;  //api controller name and its function
+                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/DeleteEmployee?employeeId=" + employeeId;  //api controller name and its function
 
                 using (var response = await client.DeleteAsync(endPoint))
                 {
@@ -166,6 +166,7 @@ namespace RestaurantMVCUI.Controllers
                     {   //dynamic viewbag we can create any variable name in run time
                         ViewBag.status = "Ok";
                         ViewBag.message = "Employees Details Deleted Successfull!!";
+                       
                     }
 
                     else
@@ -176,7 +177,7 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
-            return View(employee);
+            return View();
 
         }
         public IActionResult GetAllEmployees()
@@ -311,39 +312,39 @@ namespace RestaurantMVCUI.Controllers
 
 
         }
+        //public async Task<IActionResult> DeleteFood(int foodId)
+        //{
+        //    Food food = null;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+
+
+        //        string endPoint = _configuration["WebApiBaseUrl"] + "Food/GetFoodById?foodId=" + foodId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
+        //        using (var response = await client.GetAsync(endPoint))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {   //dynamic viewbag we can create any variable name in run time
+        //                var result = await response.Content.ReadAsStringAsync();
+        //                food = JsonConvert.DeserializeObject<Food>(result);
+        //            }
+
+
+
+        //        }
+        //    }
+        //    return View(food);
+
+        //}
+        //[HttpPost]
         public async Task<IActionResult> DeleteFood(int foodId)
-        {
-            Food food = null;
-            using (HttpClient client = new HttpClient())
-            {
-
-
-                string endPoint = _configuration["WebApiBaseUrl"] + "Food/GetFoodById?foodId=" + foodId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
-
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
-                        var result = await response.Content.ReadAsStringAsync();
-                        food = JsonConvert.DeserializeObject<Food>(result);
-                    }
-
-
-
-                }
-            }
-            return View(food);
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> DeleteFood(Food food)
         {
             ViewBag.status = "";
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "Food/DeleteFood?foodId=" + food.FoodId;  //api controller name and its function
+                string endPoint = _configuration["WebApiBaseUrl"] + "Food/DeleteFood?foodId=" + foodId;  //api controller name and its function
 
                 using (var response = await client.DeleteAsync(endPoint))
                 {
@@ -361,7 +362,7 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
-            return View(food);
+            return View();
 
         }
         public IActionResult GetAllFoods()
@@ -484,34 +485,34 @@ namespace RestaurantMVCUI.Controllers
             }
             return View();
         }
+        //public async Task<IActionResult> DeleteHallTable(int hallTableId)
+        //{
+        //    HallTable hallTable = null;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTableById?hallTableId=" + hallTableId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
+        //        using (var response = await client.GetAsync(endPoint))
+        //        {
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {   //dynamic viewbag we can create any variable name in run time
+        //                var result = await response.Content.ReadAsStringAsync();
+        //                hallTable = JsonConvert.DeserializeObject<HallTable>(result);
+        //            }
+        //        }
+        //    }
+        //    return View(hallTable);
+
+        //}
+        //[HttpPost]
         public async Task<IActionResult> DeleteHallTable(int hallTableId)
-        {
-            HallTable hallTable = null;
-            using (HttpClient client = new HttpClient())
-            {
-                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTableById?hallTableId=" + hallTableId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
-
-                using (var response = await client.GetAsync(endPoint))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
-                        var result = await response.Content.ReadAsStringAsync();
-                        hallTable = JsonConvert.DeserializeObject<HallTable>(result);
-                    }
-                }
-            }
-            return View(hallTable);
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> DeleteHallTable(HallTable hallTable)
         {
             ViewBag.status = "";
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/DeleteHallTable?hallTableId=" + hallTable.HallTableId;  //api controller name and its function
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/DeleteHallTable?hallTableId=" + hallTableId;  //api controller name and its function
 
                 using (var response = await client.DeleteAsync(endPoint))
                 {
@@ -529,7 +530,7 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
-            return View(hallTable);
+            return View();
 
         }
         public IActionResult GetAllHallTables()

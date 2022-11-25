@@ -6,15 +6,30 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     </head>
 <body style="background-color:#5A3B5D">
-    @*<div class="input-group rounded">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <span class="input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
-        </span>
-    </div>*@
+
+    <a asp-area="" asp-controller="Order" asp-action="UserTableEntry" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            <div style="color:#003399">
+
+
+
+                <a class="text-uppercase d-inline-block text-center" style="font-size:xx-large" align="center">Patient <span class="font-weight-bold" style="font-size:xx-large">Details</span></a>
+
+
+
+                <span style="font-size:large;float:right">
+                    @Html.RadioButton("option", "FoodName") <text>Name</text> @Html.RadioButton("option", "Gender") <text> Gender </text>
+                    @Html.RadioButton("option", "Subjects")<text>Address</text> @Html.TextBox("search")
+                    <input type="submit" name="submit" value="Search" />
+                </span>
+            </div>
+        }
 
     <div class="container">
         <h2 class="text-light text-center">Foods  <p class="text-right text-light"><a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:50px;width:50px;"/>&nbsp; View List</a></p></h2>
+
         <br/>
             <div class=" row">                    
                     @foreach (var food in Model)

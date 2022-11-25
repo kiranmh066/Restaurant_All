@@ -37,7 +37,26 @@ namespace RestaurantMVCUI.Controllers
             }
             return View(orderResult);
         }
+        public async Task<IActionResult> HeadChefProfile()
+        {
+            int employeeId = Convert.ToInt32(TempData["empId"]);
+            TempData.Keep();
 
+            Employee employee = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employeeId;
+                using (var response = await client.GetAsync(endpoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        employee = JsonConvert.DeserializeObject<Employee>(result);
+                    }
+                }
+            }
+            return View(employee);
+        }
         public async Task<IActionResult> cheflist(int OrderId)
         {
             Order order = new Order();

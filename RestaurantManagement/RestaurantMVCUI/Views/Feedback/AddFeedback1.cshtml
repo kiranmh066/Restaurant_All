@@ -27,22 +27,23 @@
                     <label>Rating </label>
                     <input type="number" asp-for="Rating" min="0" max="10" class="form-control" placeholder="Rate our Service" />
                 </div>
-                <div class="form-group">
-                    @*  form group for automatic audjustment for various screen sizes*@
+                @*<div class="form-group">
                     <label>HallTable ID </label>
                     <input type="number" asp-for="HallTableId" min="0" max="10" class="form-control" placeholder="Enter Table Number" />
-                </div>
+                </div>*@
             <div class="form-group mt-4">
                     <label>Comments</label>
                     <textarea type="text" asp-for="Comments" class="form-control" rows="4" placeholder="Message"></textarea>
                 </div> 
                 <div class="form-group">
-                    <label>FeedbackStatus</label>
-                    <input type="text" asp-for="FeedbackStatus" class="form-control" placeholder=" Your Feedback status " required />
+                   @* <label>FeedbackStatus</label>
+                    <input type="text" asp-for="FeedbackStatus" class="form-control" placeholder=" Your Feedback status " required />*@
+                        <label>FeedbackStatus</label>
+                        <select asp-for="FeedbackStatus" asp-items="@ViewBag.Feed" class="form-control" placeholder="Your Feedback status" required></select>
                 </div>
            
                    
-                    <input type="submit" value="Save" class="btn btn-primary btn-block"><span>Send feedback</span></input>
+                    <input type="submit" value="Save" class="btn btn-primary btn-block"/><span>Send feedback</span>
                 @if (ViewBag.status == "Ok")
                 {
                     <div class="alert alert-success">

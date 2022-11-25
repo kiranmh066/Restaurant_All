@@ -48,7 +48,7 @@ namespace RestaurantMVCUI.Controllers
         }
     
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             #region index of order

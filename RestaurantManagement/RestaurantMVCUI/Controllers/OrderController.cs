@@ -35,11 +35,11 @@ namespace RestaurantMVCUI.Controllers
             if (option == "Subjects")
             {
                 //GetAllPatients action method will return a view with a patient records based on what a user specify the value in textbox  
-                return View(db.tbl_Food.Where(x => x.FoodType == search || search == null).ToList());
+                return View(db.tbl_Food.Where(x => x.FoodType.StartsWith( search )|| search == null).ToList());
             }
             else if (option == "Gender")
             {
-                return View(db.tbl_Food.Where(x => x.FoodCuisine == search || search == null).ToList());
+                return View(db.tbl_Food.Where(x => x.FoodCuisine.StartsWith(search )|| search == null).ToList());
             }
             else
             {
@@ -48,7 +48,7 @@ namespace RestaurantMVCUI.Controllers
         }
     
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             #region index of order
@@ -579,7 +579,7 @@ namespace RestaurantMVCUI.Controllers
         {
             DateTime orderedtime = Convert.ToDateTime(TempData["OrderedTime"]);
             TempData.Keep();
-            DateTime maxTime = orderedtime.AddMinutes(0.5);
+            DateTime maxTime = orderedtime.AddMinutes(1);
             DateTime cancelTime = DateTime.Now;
             ViewBag.status = "";
             Order order = null;
@@ -601,7 +601,7 @@ namespace RestaurantMVCUI.Controllers
                     else
                     {
                         ViewBag.status = "Error";
-                        ViewBag.message = " Ordered prepared can't cancel now";
+                        ViewBag.message = " Order On Stove can't cancel now";
                         return View();
                     }
 

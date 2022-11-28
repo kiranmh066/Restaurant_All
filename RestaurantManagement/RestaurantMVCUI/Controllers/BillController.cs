@@ -22,6 +22,7 @@ namespace RestaurantMVCUI.Controllers
         {
             return View();
         }
+     
         [HttpPost]
         public async Task<IActionResult> Index(Bill bill)
         {            
@@ -55,11 +56,13 @@ namespace RestaurantMVCUI.Controllers
             bill1.BillDate = DateTime.Now;
             bill1.UserName = bill.UserName;
             bill1.UserEmail = bill.UserEmail;
+            
 
             TempData["UserEmail"] = bill.UserEmail;
             TempData["UserName"] = bill.UserName;
             TempData["BillDate"] = bill1.BillDate;
-            TempData["BillStatus"] = bill1.BillStatus;            
+            TempData["BillStatus"] = bill1.BillStatus;
+         
 
             using (HttpClient client = new HttpClient())
             {
@@ -84,6 +87,47 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
+        }
+        public async Task<IActionResult> paymentgateway(int BillId)
+        {
+
+            int num = 0;
+
+             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+
+            IEnumerable<Bill> billresult = null;
+            List<Bill>billatest=new List<Bill>();
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Bill/GetBills";//api controller name and httppost name given inside httppost in moviecontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        billresult = JsonConvert.DeserializeObject<IEnumerable<Bill>>(result);
+                    }
+                }
+            }
+
+            foreach(var item in billresult)
+            {
+                if(hallTableId1==item.HallTableId)
+                {
+                    billatest.Add(item);
+                    num++;
+                }
+
+            }
+
+            
+
+
+            return View(billatest[num-1]);
         }
         public async Task<IActionResult> GenerateBill()
         {

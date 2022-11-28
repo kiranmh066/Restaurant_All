@@ -1,18 +1,16 @@
 ﻿@using RestaurantEntity;
 @model Tuple<List<Bill>, List<Order>>;
 
-@{
-    ViewData["Title"] = "GenerateBill";
-}
+
 
 
 
 <body style="background-color:#5A3B5D">
-    <a asp-area="" asp-controller="Order" asp-action="GetOrders1" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+    <a asp-area="" asp-controller="Bill" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
     <center>
         <h2 style="color:white">Generate Bill</h2>
     </center>
-    <div class="container">
+    <div class="container"style="padding-bottom:40px">
 <div class="card">
     <div class="card-body">
         <div class="container mb-5 mt-3">
@@ -24,7 +22,7 @@
                 <div class="col-xl-3 float-end">                    
                     @foreach (var item in @Model.Item1)
                     {
-                    <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark">Table: 
+                    <a class="btn btn-warning text-capitalize" data-mdb-ripple-color="dark">Table: 
                         <i class="far fa-file-pdf text-black-50"></i> @item.HallTableId
                     </a>
                     }
@@ -36,7 +34,7 @@
                 <div class="col-md-12">
                     <div class="text-center">
                         <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
-                        <p class="pt-0" style="color:crimson">My Restaurant Management</p>
+                        <p class="pt-0" style="color:crimson">A R Restaurant </p>
                     </div>
                 </div>
 
@@ -48,9 +46,9 @@
                             <li class="text-muted">To: <span style="color:#5d9fc5 ;">@item.UserName</span></li>
                             <li class="text-muted">Email: <span style="color:#5d9fc5 ;">@item.UserEmail</span></li>
                             }
-                            <li class="text-muted">Street, City</li>
-                            <li class="text-muted">State, Country</li>
-                            <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
+                            <li class="text-muted">JP Nagar, Bangalore</li>
+                            <li class="text-muted">Karnataka, India</li>
+                            <li class="text-muted">560078</li>
                         </ul>
                     </div>
                     <div class="col-xl-4">
@@ -64,11 +62,11 @@
                                 <li class="text-muted"><span class="fw-bold">Creation Date: </span>@item.BillDate</li>                            
                                 if(item.BillStatus==false)
                                 {
-                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">Unpaid</span></li>
+                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status: </span><span class="badge bg-warning text-black fw-bold">Unpaid</span></li>
                                 }
                                 else
                                 {
-                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-Success text-black fw-bold">Paid</span></li>
+                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status: </span><span class="badge bg-Success text-black fw-bold">Paid</span></li>
                                 }
                             }
                         </ul>
@@ -119,11 +117,11 @@
                     </div>
                     <div class="col-xl-3">
                         <ul class="list-unstyled">
-                            <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>₹@total</li>
-                            <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>₹@(total * 0.15)</li>
+                            <li class="text-muted ms-3"><span class="text-black me-4">SubTotal: </span>₹@total</li>
+                            <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%): </span>₹@(total * 0.15)</li>
                         </ul>
                         <p class="text-black float-start">
-                            <span class="text-black me-3"> Total Amount</span><span style="font-size: 25px;">₹@(total * 0.15 + total)</span>
+                            <span class="text-black me-3"> Total Amount: </span><span style="font-size: 25px;">₹@(total * 0.15 + total)</span>
                         </p>
                     </div>
                 </div>
@@ -133,9 +131,9 @@
                         <p>Thank you for your purchase</p>
                     </div>
                     <div class="col-xl-2">
-                        @foreach (var item in Model.Item2)
+                        @foreach (var item in Model.Item1)
                         {
-                            <a asp-controller="Bill" asp-action="BillSuccess" asp-route-HallId="@item.HallTableId" class="btn btn-success">PayNow</a>
+                                    <a asp-controller="Bill" asp-action="paymentgateway" asp-route-BillId="@item.BillId" class="btn btn-success">PayNow</a>
                             @* <form method="post">
                                 <input type="button" value="PayNow" asp-controller="Bill" asp-action="BillSuccess" asp-route-HallId="@item.HallTableId" class="btn btn-success">
                             </form>*@

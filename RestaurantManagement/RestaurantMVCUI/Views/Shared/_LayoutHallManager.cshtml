@@ -35,13 +35,14 @@
             </div>
             @* <button asp-controller="Employee" asp-action="Profile" type="button" class="btn btn-elegant"><i class="far fa-user pr-2" aria-hidden="true"></i>User</button>*@
 
-            <a asp-area="" asp-controller="Employee" asp-action="Profile" type="button" class="btn btn-elegant"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/422291/profile-user.svg" /></a>
+            <a asp-area="" asp-controller="HallManager" asp-action="HallManagerProfile" type="button" class="btn btn-elegant"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/422291/profile-user.svg" /></a>
 
             <a asp-area="" asp-controller="Home" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/378703/sign-out.svg" /></a>
 
         </nav>
     </header>
     <div style="background-color:#5A3B5D">
+      
         @RenderBody()
     </div>
     <footer class="border-top footer text-muted" style="background-color:#D1B001">

@@ -8,6 +8,7 @@ $(document).ready(function () {
     });
 });
 
+
 function init() {
     let res_elm = document.createElement("div");
     res_elm.innerHTML = "Hello Myself Aco, How can I help you?";
@@ -69,3 +70,128 @@ document.getElementById('reply').addEventListener("click", async (e) => {
 
 
 });
+
+let nav = document.querySelector("nav");
+let scrollBtn = document.querySelector(".scroll-button a");
+console.log(scrollBtn);
+let val;
+window.onscroll = function () {
+    if (document.documentElement.scrollTop > 20) {
+        nav.classList.add("sticky");
+        scrollBtn.style.display = "block";
+    } else {
+        nav.classList.remove("sticky");
+        scrollBtn.style.display = "none";
+    }
+
+
+
+}
+
+function deleteFunction() {
+    let val = confirm("Are you sure.You want to delete???"); if (val == false) { return event.preventDefault(); }
+}
+function confirmFunction() {
+    let val = confirm("Are you sure.You want to confirm your order?"); if (val == false) { return event.preventDefault(); }
+}
+function clearcartFunction() {
+    let val = confirm("Are you sure.You want to clear your cart?"); if (val == false) { return event.preventDefault(); }
+}
+function cancelallorderFunction() {
+    let val = confirm("Are you sure.You want to cancel all order?"); if (val == false) { return event.preventDefault(); }
+}
+$(document).ready(function () {
+    //Menu Toggle Script
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    // For highlighting activated tabs
+    $("#tab1").click(function () {
+        $(".tabs").removeClass("active1");
+        $(".tabs").addClass("bg-light");
+        $("#tab1").addClass("active1");
+        $("#tab1").removeClass("bg-light");
+    });
+    $("#tab2").click(function () {
+        $(".tabs").removeClass("active1");
+        $(".tabs").addClass("bg-light");
+        $("#tab2").addClass("active1");
+        $("#tab2").removeClass("bg-light");
+    });
+    $("#tab3").click(function () {
+        $(".tabs").removeClass("active1");
+        $(".tabs").addClass("bg-light");
+        $("#tab3").addClass("active1");
+        $("#tab3").removeClass("bg-light");
+    });
+})
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+});
+let nav = document.querySelector("nav");
+let scrollBtn = document.querySelector(".scroll-button a");
+console.log(scrollBtn);
+let val;
+window.onscroll = function () {
+    if (document.documentElement.scrollTop > 20) {
+        nav.classList.add("sticky");
+        scrollBtn.style.display = "block";
+    } else {
+        nav.classList.remove("sticky");
+        scrollBtn.style.display = "none";
+    }
+
+
+
+
+
+}
+
+
+
+function deleteFunction() {
+    let val = confirm("Are you sure.You want to delete???"); if (val == false) { return event.preventDefault(); }
+}
+function confirmFunction() {
+    let val = confirm("Are you sure.You want to confirm your order?"); if (val == false) { return event.preventDefault(); }
+}
+function clearcartFunction() {
+    let val = confirm("Are you sure.You want to clear your cart?"); if (val == false) { return event.preventDefault(); }
+}
+function cancelallorderFunction() {
+    let val = confirm("Are you sure.You want to cancel all order?"); if (val == false) { return event.preventDefault(); }
+}
+$(document).ready(function () {
+    //Menu Toggle Script
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+
+
+    // For highlighting activated tabs
+    $("#tab1").click(function () {
+        $(".tabs").removeClass("active1");
+        $(".tabs").addClass("bg-light");
+        $("#tab1").addClass("active1");
+        $("#tab1").removeClass("bg-light");
+    });
+    $("#tab2").click(function () {
+        $(".tabs").removeClass("active1");
+        $(".tabs").addClass("bg-light");
+        $("#tab2").addClass("active1");
+        $("#tab2").removeClass("bg-light");
+    });
+    $("#tab3").click(function () {
+        $(".tabs").removeClass("active1");
+        $(".tabs").addClass("bg-light");
+        $("#tab3").addClass("active1");
+        $("#tab3").removeClass("bg-light");
+    });
+})
+

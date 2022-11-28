@@ -5,32 +5,45 @@
 }
 <body style="background-color:#5A3B5D">
 
-<div class="container d-flex justify-content-center">
-    <div class="card mt-5 pb-5">
-        <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
+    <div class="container d-flex justify-content-center " style="width:500px; background-color:#5A3B5D">
+        
+        <div class="d-flex flex-row justify-content-between p-3 adiv text-white" style="background-color:#5A3B5D">
             <i class="fas fa-chevron-left"></i>
            
             <i class="fas fa-times"></i>
-        </div>
-        <form method="post" enctype="multipart/form-data">
-        <div class="mt-2 p-4 text-center">
+        </div >
+            <form method="post" enctype="multipart/form-data" style="color:#5A3B5D; padding:20px">
+                <br />
+                <br />
+                <br />
+                <br />
+            <div class="mt-2 p-4 text-center font-weight-bold pb-3" style="color:black;background-color:#F28C28">
          
                 <div class="form-group1" >
-                   
-                    <label>UserName </label>
+
+                        <label class="text-uppercase font-weight-bold" style="font-family:'Roboto', sans-serif; }">UserName </label>
                     <input type="text" asp-for="UserName"class="form-control" placeholder="Enter the userName" />
                 </div>
-                <div class="form-group1" >
+                <br />
+                <div class="form-group1">
                     @*  form group for automatic audjustment for various screen sizes*@
-                    <label>UserEMAil </label>
+                        <label class="text-uppercase font-weight-bold pb-2" style="font-family:'Roboto', sans-serif;}  ">UserEMAil </label>
                     <input type="text" asp-for="UserEmail"class="form-control" placeholder="Enter Email Address" />
                 </div>
-                <div>
+                <br />
             
-                    <input type="submit" value="Save" class="btn btn-outline-success" /> 
-                    
-   <input type="button" value="Reset" class="btn btn-outline-secondary" />
+                    <div style="margin-bottom: 20px;">
+
+                        <input type="submit" value="Pay" class="btn btn-outline-success " />
+
+
+                        <input type="button" value="Reset" class="btn btn-outline-secondary" />
+                       
                     </div>
+                    <br />
+                    <img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/217773/paypal.svg" />
+                    <img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/266082/wepay.svg" />
+
                 @if (ViewBag.status == "Ok")
                 {
                     <div class="alert alert-success">
@@ -46,6 +59,6 @@
         </div>   
     </form>
     </div>
-</div>
+
 
 </body>

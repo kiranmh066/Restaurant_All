@@ -48,7 +48,7 @@ namespace RestaurantMVCUI.Controllers
         }
     
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             #region index of order
@@ -75,17 +75,17 @@ namespace RestaurantMVCUI.Controllers
             return View(foodresult);
             #endregion
         }
-       
-      
-        
 
-        
+
+
+
+
         //[HttpPost]
         //public ActionResult GetAllFoodforSearch(string option, string search)
         //{
         //    if (option == "Food")
         //    {
-        //        //GetAllPatients action method will return a view with a patient records based on what a user specify the value in textbox  
+        //        GetAllPatients action method will return a view with a patient records based on what a user specify the value in textbox
         //        return View(db.tbl_Food.Where(x => x.FoodName == search || search == null).ToList());
         //    }
         //    else if (option == "Cusine")
@@ -148,7 +148,7 @@ namespace RestaurantMVCUI.Controllers
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
             }
           
-            ViewBag.TableId = tableId; 
+          //  ViewBag.TableId = tableId; 
             order.OrderDate = DateTime.Now;
            
             return View(order);

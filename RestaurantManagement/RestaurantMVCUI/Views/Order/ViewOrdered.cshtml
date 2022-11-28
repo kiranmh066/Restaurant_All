@@ -4,6 +4,8 @@
 
 
 <body style="background-color:#5A3B5D;padding-bottom:80px">
+    <a asp-area="" asp-controller="Order" asp-action="GetOrders1" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+
     <div class="container">
         <center>
             <h2 style="color:white">View Ordered List</h2>
@@ -97,7 +99,7 @@
                                            
                                         <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@order.OrderId" class="btn btn-success"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/241804/edit.svg" />&nbsp;Edit Order</a></td>
                                         <span>&nbsp;</span>
-                                        <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="DeleteOrder1" asp-route-OrderId="@order.OrderId" class="btn btn-danger"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/243864/delete.svg" /> &nbsp;Delete Order</a></td>
+                                        <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="DeleteOrder1" onclick="deleteFunction()" asp-route-OrderId="@order.OrderId" class="btn btn-danger"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/243864/delete.svg" /> &nbsp;Delete Order</a></td>
                                         </div>
 
                                             </div>

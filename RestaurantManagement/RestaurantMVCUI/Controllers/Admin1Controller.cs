@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestaurantEntity;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -28,6 +30,7 @@ namespace RestaurantMVCUI.Controllers
         public IActionResult AddEmployee()
         {
 
+           
             return View();
         }
 
@@ -63,6 +66,14 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
+            List<SelectListItem> Gender = new List<SelectListItem>()
+            {
+
+                  new SelectListItem { Value = "Select", Text = "select" },
+                  new SelectListItem { Value = "M", Text = "Male" },
+                  new SelectListItem { Value = "F", Text = "Female" },
+            };
+            ViewBag.TableId = Gender;
             return View();
         }
         [HttpGet]
@@ -286,6 +297,7 @@ namespace RestaurantMVCUI.Controllers
                 Request.Form.Files[0].CopyTo(ms);
                 food.FoodImage = ms.ToArray();
             }
+            
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {

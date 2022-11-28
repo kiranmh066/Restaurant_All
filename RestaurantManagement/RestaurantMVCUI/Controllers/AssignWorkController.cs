@@ -27,7 +27,8 @@ namespace RestaurantMVCUI.Controllers
             Order order = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + data;//OrderId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Ordercontroller of api
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + data;
+                //OrderId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Ordercontroller of api
 
                 using (var response = await client.GetAsync(endPoint))
                 {

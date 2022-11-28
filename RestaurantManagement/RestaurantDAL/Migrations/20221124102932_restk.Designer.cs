@@ -10,8 +10,8 @@ using RestaurantDAL;
 namespace RestaurantDAL.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20221123073131_restb")]
-    partial class restb
+    [Migration("20221124102932_restk")]
+    partial class restk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

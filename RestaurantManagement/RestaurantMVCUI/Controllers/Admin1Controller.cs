@@ -552,7 +552,6 @@ namespace RestaurantMVCUI.Controllers
 
 
         [HttpGet]
-
         public async Task<IActionResult> GetAllHallTables(HallTable hallTable)
         {
             IEnumerable<HallTable> hallTableresult = null;
@@ -572,6 +571,58 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(hallTableresult);
+        }
+       
+
+        public IActionResult GetAllBills()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllBills(Bill bill)
+        {
+            IEnumerable<Bill> billresult = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "Bill/GetBills";//api controller name and httppost name given inside httppost in moviecontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        billresult = JsonConvert.DeserializeObject<IEnumerable<Bill>>(result);
+                    }
+                }
+            }
+            return View(billresult);
+        }
+
+        public IActionResult GetAllFeedbacks()
+        {
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllFeedbacks(Feedback feedback)
+        {
+            IEnumerable<Feedback> feedbackresult = null;
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetAllFeedbacks";//api controller name and httppost name given inside httppost in moviecontroller of api
+
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        feedbackresult = JsonConvert.DeserializeObject<IEnumerable<Feedback>>(result);
+                    }
+                }
+            }
+            return View(feedbackresult);
         }
     }
 }

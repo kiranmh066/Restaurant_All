@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestaurantDAL.Migrations
 {
+<<<<<<<< HEAD:RestaurantManagement/RestaurantDAL/Migrations/20221124131116_raest.cs
     public partial class raest : Migration
+========
+    public partial class restk : Migration
+>>>>>>>> 4295bef5855a2d4335b0214c69d2bbda719f386d:RestaurantManagement/RestaurantDAL/Migrations/20221124102932_restk.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

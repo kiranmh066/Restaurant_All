@@ -8,8 +8,9 @@ namespace RestaurantDAL
     {
         public RestaurantDbContext()
         {
-        }
 
+
+        }
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
 
@@ -30,7 +31,14 @@ namespace RestaurantDAL
         {
 
 
+<<<<<<< HEAD
             dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2151; Initial Catalog = Restaurant_CChandan5; Integrated Security=True;");
+=======
+
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2164; Initial Catalog = Restaurant_Chandan5; Integrated Security=True;");
+
+
+>>>>>>> 4295bef5855a2d4335b0214c69d2bbda719f386d
 
 
         }

@@ -4,6 +4,7 @@
 
 }
 <body style="background-color:#5A3B5D">
+    <div class="container">
     @if (ViewBag.status == "Ok")
     {
         <div class="alert alert-success">
@@ -15,6 +16,7 @@
         <div class="alert alert-danger">
             @ViewBag.message
         </div>
-    }
+        }
+    </div>
 </body>
 

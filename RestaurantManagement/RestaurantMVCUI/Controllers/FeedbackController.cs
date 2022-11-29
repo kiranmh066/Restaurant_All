@@ -40,6 +40,7 @@ namespace RestaurantMVCUI.Controllers
             ViewBag.Feed = status;
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> AddFeedback1(Feedback feedback)
         {

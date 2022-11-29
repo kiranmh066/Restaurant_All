@@ -6,46 +6,53 @@
 }
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
     <div class="container">
-<div >
-            <center> <a asp-controller="Admin1" asp-action="Index"><h2>Index</h2></a></center>
-    <hr />
-</div>
 <form method="post" enctype="multipart/form-data">
             <center>
                 <h3>Add Employee </h3>
             </center>
-    <div class="form-group">
-        @*  form group for automatic audjustment for various screen sizes*@
-        <label>Employee Name</label>
-        <input type="text" asp-for="EmpName" class="form-control" placeholder="Enter Employee Name" required />
-    </div>
-    <div class="form-group">
-        <label>Employee Email</label>
-        <input type="text" asp-for="EmpEmail" class="form-control" placeholder="Enter Employee Email" required />
-    </div>
-    <div class="form-group">
-        <label>Employee Password</label>
-        <input type="text" asp-for="EmpPassword" class="form-control" placeholder="Enter Employee Password" required />
-    </div>
-    <div class="form-group">
-        <label>Employee Designation</label>
-        <input type="text" asp-for="EmpDesignation" class="form-control" placeholder="Enter Employee Designation" required />
-    </div>
-    <div class="form-group">
-        <label>Employee Speciality</label>
-        <input type="text" asp-for="EmpSpeciality" class="form-control" placeholder="Enter Employee Speciality" required />
-    </div>
-    <div class="form-group">
-        <label>Employee Phone</label>
-        <input type="text" asp-for="EmpPhone" class="form-control" placeholder="Enter Employee Phone" required />
-    </div>
-    <div class="form-group">
-   @*     <label>Employee Gender</label>
-        <input type="text" asp-for="EmpGender" class="form-control" placeholder="Enter Employee Gender" required />*@
-        <label>Employee Gender</label>
-        <select asp-for="EmpGender" asp-items="@ViewBag.Gender1" class="form-control" placeholder="Enter Employee Gender" required></select>
-    </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @*  form group for automatic audjustment for various screen sizes*@
+                <label>Employee Name</label>
+                <input type="text" asp-for="EmpName" class="form-control" placeholder="Enter Employee Name" required />
+            </div>
+            <div class="form-group">
+                <label>Employee Email</label>
+                <input type="text" asp-for="EmpEmail" class="form-control" placeholder="Enter Employee Email" required />
+            </div>
+                </div> <div class="col-md-6">
+            <div class="form-group">
+                <label>Employee Password</label>
+                <input type="text" asp-for="EmpPassword" class="form-control" placeholder="Enter Employee Password" required />
+            </div>
+               
+        
+            <div class="form-group">
+                <label>Employee Designation</label>
+                <input type="text" asp-for="EmpDesignation" class="form-control" placeholder="Enter Employee Designation" required />
+            </div>
+            </div>
+                <div class="col-md-6">
+            <div class="form-group">
+                <label>Employee Speciality</label>
+                <input type="text" asp-for="EmpSpeciality" class="form-control" placeholder="Enter Employee Speciality" required />
+            </div>
+            <div class="form-group">
+                <label>Employee Phone</label>
+                <input type="text" asp-for="EmpPhone" class="form-control" placeholder="Enter Employee Phone" required />
+            </div>
+        </div>
+                <div class="col-md-6">
+            <div class="form-group">
+           @*     <label>Employee Gender</label>
+                <input type="text" asp-for="EmpGender" class="form-control" placeholder="Enter Employee Gender" required />*@
+                <label>Employee Gender</label>
+                <select asp-for="EmpGender" asp-items="@ViewBag.Gender1" class="form-control" placeholder="Enter Employee Gender" required></select>
+                </div>
+                </div>
+            </div>
 
             <input type="submit" value="Save" class="btn btn-outline-success" />
             &nbsp;&nbsp;

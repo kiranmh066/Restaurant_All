@@ -16,12 +16,12 @@ namespace RestaurantMVCUI.Controllers
         IConfiguration _configuration;
         public ChefController(IConfiguration configuration)
         {
-
             _configuration = configuration;
         }
 
         public async Task<IActionResult> Index()
         {
+            #region Showing All the Work Assigned to him by HeadChef in Index page
             IEnumerable<AssignWork> assignWork = null;
             using (HttpClient client = new HttpClient())
             {
@@ -39,14 +39,11 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(assignWork);
-        }
-        /*[HttpPost]
-        public async Task<IActionResult> Index(AssignWork assignWork)
-        {
-            return View();
-        }*/
+            #endregion
+        }        
         public async Task<IActionResult> ChefProfile()
         {
+            #region getting All The Details Of chef Through Profile
             int employeeId = Convert.ToInt32(TempData["empId"]);
             TempData.Keep();
 
@@ -64,9 +61,11 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(employee);
+            #endregion
         }
         public async Task<IActionResult> PreparedFood(int AssignId)
-         {
+        {
+            #region Changing the WorkStatus of Chef's assigned Work By Getting assigned Work and Updating Status
             AssignWork assignWork = null;
             using (HttpClient client = new HttpClient())
             {
@@ -103,9 +102,8 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-           
-
+            #endregion
         }
-      
+
     }
 }

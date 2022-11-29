@@ -4,7 +4,7 @@ using System;
 
 namespace RestaurantDAL
 {
-    public class RestaurantDbContext:DbContext
+    public class RestaurantDbContext : DbContext
     {
         public RestaurantDbContext()
         {
@@ -19,6 +19,7 @@ namespace RestaurantDAL
         public DbSet<Bill> tbl_Bill { get; set; }
         public DbSet<Employee> tbl_Employee { get; set; }
         public DbSet<Feedback> tbl_Feedback { get; set; }
+        public DbSet<Help> tbl_Help{ get; set; }
 
         public DbSet<Food> tbl_Food { get; set; }
 
@@ -32,7 +33,9 @@ namespace RestaurantDAL
 
 
 
+
             dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2179; Initial Catalog = Restaurant_Chandan_1_1; Integrated Security=True;");
+
 
 
 

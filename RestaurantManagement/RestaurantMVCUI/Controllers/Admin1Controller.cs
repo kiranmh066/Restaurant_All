@@ -33,11 +33,14 @@ namespace RestaurantMVCUI.Controllers
             List<SelectListItem> Gender = new List<SelectListItem>()
             {
 
+
                   new SelectListItem { Value = "Select", Text = "select" },
                   new SelectListItem { Value = "M", Text = "Male" },
                   new SelectListItem { Value = "F", Text = "Female" },
             };
-            ViewBag.Gender1 = Gender;
+
+            ViewBag.Gender = Gender;
+
             return View();
             #endregion
         }
@@ -69,7 +72,10 @@ namespace RestaurantMVCUI.Controllers
                     }
 
                 }
-            }           
+
+            }
+           
+
             return View();
             #endregion
         }

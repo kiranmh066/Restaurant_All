@@ -11,11 +11,12 @@
     <div class="container">
         <center>
             <h2 style="color:white">Select Your Table Number</h2></center>
-        <form method="post" enctype="multipart/form-data">      
+            <form method="post" enctype="multipart/form-data">      
             <div class="form-group text-white">
                 <label>Hall Table Id</label>
                 <select asp-for="HallTableId" asp-items="@ViewBag.TableId" class="form-control" placeholder="Select Hall Table ID" required></select>
             </div>
+
             <input type="submit" value="Save" class="btn btn-success" style="height:40px"/>
             &nbsp;&nbsp;
             <input type="reset" value="Reset" class="btn btn-outline-secondary" />     

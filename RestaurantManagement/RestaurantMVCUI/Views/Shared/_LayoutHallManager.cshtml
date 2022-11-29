@@ -12,6 +12,11 @@
     <link rel="shortcut icon" type="image/svg" href="~/restaurant-plate.svg" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 10);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
     <header>
@@ -42,7 +47,7 @@
         </nav>
     </header>
     <div style="background-color:#5A3B5D">
-      
+        <a asp-area="" asp-controller="HallManager" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
         @RenderBody()
     </div>
     <footer class="border-top footer text-muted" style="background-color:#D1B001">

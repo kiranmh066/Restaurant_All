@@ -46,25 +46,7 @@
             </div>
             <br />
             <h3 class="text-light" style="margin-left:50px">Veg</h3>
-            <br />
-            <div class=" row"> 
-                
-                 @foreach (var food in Model)
-                @using (Html.BeginForm())
-                {
-                    <div style="color:white">
-                        <span style="font-size:large;float:right">
-                            @Html.RadioButton("option", "FoodName") <text>Food Name</text>
-                            @Html.RadioButton("option", "Gender") <text> Cuisine </text>
-                            @Html.RadioButton("option", "Subjects")<text>Food Type</text>
-                            @Html.TextBox("search")
-                            <input type="submit" value="Search" placeholder="Search" />
-                            <a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:30px;width:30px;" />&nbsp; View List</a>
-
-                        </span>
-                    </div>
-                }
-            </div>
+            <br />            
         </div>
         <br />
         <h3 class="text-light" style="margin-left:50px">Veg</h3>

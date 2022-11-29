@@ -8,31 +8,37 @@
        
 <form method="post" enctype="multipart/form-data">
          <center>   <h3>Edit Food</h3>   </center>
-    <div class="form-group">
-        @*  form group for automatic audjustment for various screen sizes*@
-        <label>Food Id</label>
-        <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food Id" required />
-    </div>
-    <div class="form-group">
-        @*  form group for automatic audjustment for various screen sizes*@
-        <label>Food Name</label>
-        <input type="text" asp-for="FoodName" class="form-control" placeholder="Enter Food Name" required />
-    </div>
-    <div class="form-group">
-        <label>Food Type</label>
-        <input type="text" asp-for="FoodType" class="form-control" placeholder="Enter Food Type" required />
-    </div>
-    <div class="form-group">
-        <label>Food Cost</label>
-        <input type="text" asp-for="FoodCost" class="form-control" placeholder="Enter Food Cost" required />
-    </div>
-    <div class="form-group">
-        <label>Food Cuisine</label>
-        <input type="text" asp-for="FoodCuisine" class="form-control" placeholder="Enter Food Cuisine" required />
-    </div>
-    <div class="form-group">
-        <label>Food Avilability</label>
-        <select asp-for="FoodStatus" asp-items="@ViewBag.Food" class="form-control" placeholder="Check Availability" required></select>
+    <div class="row">
+        <div class="col-md-6">
+        <div class="form-group">
+            @*  form group for automatic audjustment for various screen sizes*@
+            <label>Food Id</label>
+            <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food Id" required />
+        </div>
+        <div class="form-group">
+            @*  form group for automatic audjustment for various screen sizes*@
+            <label>Food Name</label>
+            <input type="text" asp-for="FoodName" class="form-control" placeholder="Enter Food Name" required />
+        </div>
+        <div class="form-group">
+            <label>Food Type</label>
+            <input type="text" asp-for="FoodType" class="form-control" placeholder="Enter Food Type" required />
+        </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
+            <label>Food Cost</label>
+            <input type="text" asp-for="FoodCost" class="form-control" placeholder="Enter Food Cost" required />
+        </div>
+        <div class="form-group">
+            <label>Food Cuisine</label>
+            <input type="text" asp-for="FoodCuisine" class="form-control" placeholder="Enter Food Cuisine" required />
+        </div>
+        <div class="form-group">
+            <label>Food Avilability</label>
+            <select asp-for="FoodStatus" asp-items="@ViewBag.Food" class="form-control" placeholder="Check Availability" required></select>
+        </div>
+        </div>
     </div>
      <div class="form-group">
     <label>Food Poster</label>

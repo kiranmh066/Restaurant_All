@@ -10,6 +10,8 @@
             <center>
                 <h3>Add Food </h3>
             </center>
+    <div class="row">    
+    <div class="col-md-6">
     <div class="form-group">
         @*  form group for automatic audjustment for various screen sizes*@
         <label>Food Name</label>
@@ -23,6 +25,8 @@
         <label>Food Cost</label>
         <input type="text" asp-for="FoodCost" class="form-control" placeholder="Enter Food Cost" required />
     </div>
+    </div>
+    <div class="col-md-6">
     <div class="form-group">
         <label>Food Cuisine</label>
         <input type="text" asp-for="FoodCuisine" class="form-control" placeholder="Enter Food Cuisine" required />
@@ -36,12 +40,8 @@
         @*<input type="text" asp-for="FoodStatus" name="poster" class="form-control" required />*@
         <select asp-for="FoodStatus" asp-items="@ViewBag.Food" class="form-control" placeholder="Check Availability" required></select>
     </div>
-
-    @* <div class="form-group">
-    <label>Food Poster</label>
-    <input type="file" id="poster" name="poster" class="form-control" required />
     </div>
-    *@
+    </div>
     <input type="submit" value="Save" class="btn btn-outline-success" />
     &nbsp;&nbsp;
     <input type="reset" value="Reset" class="btn btn-outline-secondary" />

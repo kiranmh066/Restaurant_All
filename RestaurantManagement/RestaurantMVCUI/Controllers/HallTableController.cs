@@ -17,13 +17,11 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult>Index()
         {
+            #region Getting All hallTables
             IEnumerable<HallTable> hallTables = null;
             using (HttpClient client = new HttpClient())
             {
-
-
-                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";//api controller name and httppost name given inside httppost in moviecontroller of api
-
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -31,14 +29,11 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         hallTables = JsonConvert.DeserializeObject<IEnumerable<HallTable>>(result);
                     }
-
-
-
                 }
             }
             return View(hallTables);
-           
+            #endregion
         }
-   
+
     }
 }

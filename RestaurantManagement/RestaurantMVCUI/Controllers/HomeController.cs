@@ -20,6 +20,7 @@ namespace RestaurantMVCUI.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

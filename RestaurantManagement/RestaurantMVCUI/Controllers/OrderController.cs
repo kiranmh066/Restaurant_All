@@ -698,11 +698,12 @@ namespace RestaurantMVCUI.Controllers
             tableId.Add(new SelectListItem { Value = "Select", Text = "select" });
             foreach (var item in halltable)
             {   //if(item.HallTableStatus==true)
-                tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : " + (item.HallTableSize) + " Table No : " + item.HallTableId.ToString() });
+                tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : " + (item.HallTableSize) + " Table No : " + item.HallTableId.ToString() + " Table Status : " + (item.HallTableStatus) });
+      
             }
-
+            
             ViewBag.TableId = tableId;
-
+           
             return View();
         }
 

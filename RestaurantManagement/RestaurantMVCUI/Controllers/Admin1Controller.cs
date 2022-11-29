@@ -30,7 +30,14 @@ namespace RestaurantMVCUI.Controllers
         public IActionResult AddEmployee()
         {
 
-           
+            List<SelectListItem> Gender = new List<SelectListItem>()
+            {
+
+                  new SelectListItem { Value = "Select", Text = "select" },
+                  new SelectListItem { Value = "M", Text = "Male" },
+                  new SelectListItem { Value = "F", Text = "Female" },
+            };
+            ViewBag.Gender = Gender;
             return View();
         }
 
@@ -66,14 +73,7 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
-            List<SelectListItem> Gender = new List<SelectListItem>()
-            {
-
-                  new SelectListItem { Value = "Select", Text = "select" },
-                  new SelectListItem { Value = "M", Text = "Male" },
-                  new SelectListItem { Value = "F", Text = "Female" },
-            };
-            ViewBag.TableId = Gender;
+           
             return View();
         }
         [HttpGet]

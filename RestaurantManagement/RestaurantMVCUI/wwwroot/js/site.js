@@ -63,3 +63,22 @@ $(document).ready(function () {
         $("#tab3").removeClass("bg-light");
     });
 })
+function GEEKFORGEEKS() {
+    var name =
+        document.forms.RegForm.Name.value;
+    var email =
+        document.forms.RegForm.EMail.value;
+    var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;  //Javascript reGex for Email Validation.
+    // Javascript reGex for Phone Number validation.
+    var regName = /\d+$/g;
+    if (name == "" || regName.test(name)) {
+        window.alert("Please enter your name properly.");
+        name.focus();
+        return false;
+    }
+    if (email == "" || !regEmail.test(email)) {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+};

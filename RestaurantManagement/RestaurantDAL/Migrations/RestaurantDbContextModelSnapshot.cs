@@ -188,6 +188,32 @@ namespace RestaurantDAL.Migrations
                     b.ToTable("tbl_HallTable");
                 });
 
+            modelBuilder.Entity("RestaurantEntity.Help", b =>
+                {
+                    b.Property<int>("HelpId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("HallTableId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("issue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HelpId");
+
+                    b.HasIndex("HallTableId");
+
+                    b.ToTable("tbl_Help");
+                });
+
             modelBuilder.Entity("RestaurantEntity.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -253,6 +279,17 @@ namespace RestaurantDAL.Migrations
                 });
 
             modelBuilder.Entity("RestaurantEntity.Feedback", b =>
+                {
+                    b.HasOne("RestaurantEntity.HallTable", "HallTable")
+                        .WithMany()
+                        .HasForeignKey("HallTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HallTable");
+                });
+
+            modelBuilder.Entity("RestaurantEntity.Help", b =>
                 {
                     b.HasOne("RestaurantEntity.HallTable", "HallTable")
                         .WithMany()

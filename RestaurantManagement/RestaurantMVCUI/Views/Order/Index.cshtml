@@ -22,6 +22,9 @@
 
     <a asp-area="" asp-controller="Order" asp-action="UserTableEntry" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
 
+    <a asp-area="" asp-controller="Help" asp-action="AddHelp" type="button" class="btn  text-light"><img class="img-fluid" style="height:45px;margin-left:1750px" src="https://www.svgrepo.com/show/230740/24-hours-help.svg" /></a>
+
+
 
     <div class="container">
         <h2 class="text-light text-center">Foods </h2>
@@ -31,6 +34,13 @@
             @using (Html.BeginForm())
             {
                 <div style="color:white">
+
+
+
+
+                <a class="text-uppercase d-inline-block text-center" style="font-size:xx-large" align="center">Food <span class="font-weight-bold" style="font-size:xx-large">Details</span></a>
+
+
                     <span style="font-size:large;float:right">
                         @Html.RadioButton("option", "FoodName") <text>Food Name</text>
                         @Html.RadioButton("option", "Gender") <text> Cuisine </text>
@@ -42,6 +52,7 @@
                     </span>
                 </div>
             }
+
             </div>
             </div>
             <br />
@@ -176,5 +187,10 @@
             }
         </div>
     </div>
+ 
 </body>
+
+
 </html>
+
+<

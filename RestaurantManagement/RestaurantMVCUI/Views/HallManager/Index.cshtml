@@ -9,8 +9,16 @@
 
 }
 <body style="background-color:#5A3B5D">
+  
     <div class="container">
+        @if (true)
+        {
+            int a = Convert.ToInt32(TempData["notifyhelp"]);
+            <a asp-controller="Help" asp-action="GetAllHelps" class="btn  text-light float-right"><img style="height:45px;" src="https://www.svgrepo.com/show/246328/notification.svg" /><sup style="color:white">@a</sup><br>Notifications</a>
+
+        }
                <center>
+           
 
             <h2 class="text-light text-center">Index of Hall Manager</h2>
             <div style="color:white">
@@ -19,8 +27,7 @@
 
 
                 <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>
-
-
+                
 
                 <hr />
             </div>

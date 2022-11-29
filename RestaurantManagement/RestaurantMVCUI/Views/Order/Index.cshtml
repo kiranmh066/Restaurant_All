@@ -21,12 +21,12 @@
 <body style="background-color:#5A3B5D">
 
     <a asp-area="" asp-controller="Order" asp-action="UserTableEntry" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
-   
+
 
     <div class="container">
         <h2 class="text-light text-center">Foods </h2>
-       
-        <br/><div class="row" >
+
+        <br /><div class="row">
             <div class="col-md-12">
             @using (Html.BeginForm())
             {
@@ -50,7 +50,29 @@
             <div class=" row"> 
                 
                  @foreach (var food in Model)
+                @using (Html.BeginForm())
                 {
+                    <div style="color:white">
+                        <span style="font-size:large;float:right">
+                            @Html.RadioButton("option", "FoodName") <text>Food Name</text>
+                            @Html.RadioButton("option", "Gender") <text> Cuisine </text>
+                            @Html.RadioButton("option", "Subjects")<text>Food Type</text>
+                            @Html.TextBox("search")
+                            <input type="submit" value="Search" placeholder="Search" />
+                            <a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:30px;width:30px;" />&nbsp; View List</a>
+
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+        <br />
+        <h3 class="text-light" style="margin-left:50px">Veg</h3>
+        <br />
+        <div class=" row">
+
+            @foreach (var food in Model)
+            {
                 if (food.FoodType == "Veg")
                 {
                     if (food.FoodStatus == false)
@@ -111,7 +133,7 @@
         <h3 class="text-light" style="margin-left:50px">Non-Veg</h3>
         <br />
         <div class=" row">
-            
+
             @foreach (var food in Model)
             {
                 if (food.FoodType == "Non-Veg" || food.FoodType == "Non Veg")
@@ -146,7 +168,6 @@
                     }
                     else
                     {
-
                     string imageBase64Data = Convert.ToBase64String(food.FoodImage);
                     string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
                     <div class="col-md-3">
@@ -170,8 +191,6 @@
                     </div>
                     }
                 }
-
-
             }
         </div>
     </div>

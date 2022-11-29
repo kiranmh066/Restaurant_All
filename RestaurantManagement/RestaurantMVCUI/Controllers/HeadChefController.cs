@@ -20,12 +20,11 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-
+            #region Showing All The Orders To assign Work to Chef
             IEnumerable<Order> orderResult = null;
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrders";
-
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -36,9 +35,11 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(orderResult);
+            #endregion
         }
         public async Task<IActionResult> HeadChefProfile()
         {
+            #region profile of HeadChef
             int employeeId = Convert.ToInt32(TempData["empId"]);
             TempData.Keep();
 
@@ -56,9 +57,11 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(employee);
+            #endregion
         }
         public async Task<IActionResult> cheflist(int OrderId)
         {
+            #region Showing Applicable Chefs To Prepare Food
             Order order = new Order();
             using (HttpClient client = new HttpClient())
             {
@@ -86,17 +89,16 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         employeeresult = JsonConvert.DeserializeObject<IEnumerable<Employee>>(result);
                     }
-
                 }
             }
             List<Employee> employeeresultchef = new List<Employee>();
-
             foreach (var item in employeeresult)
             {
                 if (item.EmpDesignation == "CHEF" && item.EmpSpeciality == order.Food.FoodCuisine)
                     employeeresultchef.Add(item);
             }
             return View(employeeresultchef);
+            #endregion
         }
     }
 }

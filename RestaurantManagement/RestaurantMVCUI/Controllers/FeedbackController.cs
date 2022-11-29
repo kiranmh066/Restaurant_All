@@ -40,7 +40,40 @@ namespace RestaurantMVCUI.Controllers
             ViewBag.Feed = status;
             return View();
         }
+       
+        public IActionResult Help()
+        {
+            return View();
 
+        }
+        [HttpPost]
+        public async Task<IActionResult> Help(Feedback feedback)
+        {
+            feedback.HallTableId = Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(feedback), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/AddFeedback";//api controller name and its function
+
+                using (var response = await client.PostAsync(endPoint, content))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        ViewBag.status = "Ok";
+                        ViewBag.message = "Message Added Successfull!!";
+                    }
+
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Wrong Entries";
+                    }
+
+                }
+            }
+            return View();
+        }
 
 
         [HttpPost]

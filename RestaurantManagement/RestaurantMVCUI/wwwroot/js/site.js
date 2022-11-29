@@ -63,3 +63,20 @@ $(document).ready(function () {
         $("#tab3").removeClass("bg-light");
     });
 })
+   
+        function creteAndPrint() {
+            $.ajax(
+                {
+                    url: "Help",
+                    type: "POST",
+                    data: $("#from1").serialize(),
+                    success: function (data) {
+                        var lastInsId = data; // you will get last insert id here.
+                        var secWin = window.open('Print/' + lastInsId
+                            , 'PRINT'
+                            , 'height=200,width=200');
+                        secWin.focus();
+                    }
+                });
+        }
+    </script >

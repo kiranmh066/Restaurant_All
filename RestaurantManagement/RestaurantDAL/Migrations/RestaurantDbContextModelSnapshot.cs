@@ -159,6 +159,9 @@ namespace RestaurantDAL.Migrations
                     b.Property<string>("FoodName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("FoodStatus")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FoodType")
                         .HasColumnType("nvarchar(max)");
 

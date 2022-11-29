@@ -10,8 +10,13 @@ using RestaurantDAL;
 namespace RestaurantDAL.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
+<<<<<<<< HEAD:RestaurantManagement/RestaurantDAL/Migrations/20221128060946_restu12456.Designer.cs
     [Migration("20221128060946_restu12456")]
     partial class restu12456
+========
+    [Migration("20221128095310_restk")]
+    partial class restk
+>>>>>>>> 7fa31934e66c5858b58da22624d5a40598f4a6f2:RestaurantManagement/RestaurantDAL/Migrations/20221128095310_restk.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,6 +165,9 @@ namespace RestaurantDAL.Migrations
 
                     b.Property<string>("FoodName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("FoodStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FoodType")
                         .HasColumnType("nvarchar(max)");

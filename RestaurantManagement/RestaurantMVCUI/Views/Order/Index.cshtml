@@ -5,26 +5,32 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     </head>
+<style>
+    .container1 {
+        position: relative;
+        text-align: center;
+        padding-left:20px;
+        padding-right:20px;
+        }
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        }
+</style>
 <body style="background-color:#5A3B5D">
 
     <a asp-area="" asp-controller="Order" asp-action="UserTableEntry" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
-   
+
 
     <div class="container">
         <h2 class="text-light text-center">Foods </h2>
-       
-        <br/><div class="row" >
+
+        <br /><div class="row">
             <div class="col-md-12">
             @using (Html.BeginForm())
             {
                 <div style="color:white">
-
-
-
-
-
-
-
                     <span style="font-size:large;float:right">
                         @Html.RadioButton("option", "FoodName") <text>Food Name</text>
                         @Html.RadioButton("option", "Gender") <text> Cuisine </text>
@@ -40,47 +46,110 @@
             </div>
             <br />
             <h3 class="text-light" style="margin-left:50px">Veg</h3>
-            <br />
-            <div class=" row"> 
-                
-                 @foreach (var food in Model)
-                {
+            <br />            
+        </div>
+        <br />
+        <h3 class="text-light" style="margin-left:50px">Veg</h3>
+        <br />
+        <div class=" row">
+
+            @foreach (var food in Model)
+            {
                 if (food.FoodType == "Veg")
                 {
-                    string imageBase64Data = Convert.ToBase64String(food.FoodImage);
-                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-                    <div class="col-md-3">
-                        <div class="col-md-3">
-                            <div class="card" style="width: 17rem;">
-                                <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    if (food.FoodStatus == false)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                        string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                        <div class="col-md-3" >
+                            <div class="col-md-3">
+                                <div class="card" style="width: 17rem;background-color:rgb(190, 190, 190)">
+                                    <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
                              data-mdb-ripple-color="light">
-                                    <img height="150" src="@imageDataURL" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">@food.FoodName</h5>
-                                        <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
-                                        <p class="card-text">Food Cusine: @food.FoodCuisine</p>
-                                        <p class="card-text">Cost:₹@food.FoodCost</p>
-                                        <a asp-controller="Order" asp-action="AddOrder1" asp-route-FoodId="@food.FoodId" type="button" class="btn btn-success">Add to Cart</a>
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                <div class="container1">
+                                          @*  <div class="maintxt" style="color:red">Unavilable</div>*@
+                                            <p class="centered" style="color:red">&#128534;Unavilable</p>
+                                            <img height="150px" src="@imageDataURL" class="card-img-top" alt="...">
+                                </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">@food.FoodName</h5>
+                                            <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
+                                            <p class="card-text">Food Cusine: @food.FoodCuisine</p>
+                                            <p class="card-text">Cost:₹@food.FoodCost</p>
+                                            <a type="button" class="btn btn-success">Add to Cart</a>
+                                            <div class="mask" style="background-color: rgba(0,0,0, 0.2)"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <br />
                         </div>
-                        <br />
-                    </div>
-                }
-
-               
+                    }
+                    else
+                    {
+                        string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                        string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                        <div class="col-md-3">
+                            <div class="col-md-3">
+                                <div class="card" style="width: 17rem;">
+                                    <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                             data-mdb-ripple-color="light">
+                                        <img height="150px" src="@imageDataURL" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@food.FoodName</h5>
+                                            <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
+                                            <p class="card-text">Food Cusine: @food.FoodCuisine</p>
+                                            <p class="card-text">Cost:₹@food.FoodCost</p>
+                                            <a asp-controller="Order" asp-action="AddOrder1" asp-route-FoodId="@food.FoodId" type="button" class="btn btn-success">Add to Cart</a>
+                                            <div class="mask" style="background-color: rgba(0,0,0, 0.2)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    }                    
+                }               
                 }                    
             </div>
         <h3 class="text-light" style="margin-left:50px">Non-Veg</h3>
         <br />
         <div class=" row">
-            
+
             @foreach (var food in Model)
             {
-                if (food.FoodType == "Non-Veg")
+                if (food.FoodType == "Non-Veg" || food.FoodType == "Non Veg")
                 {
+                    if (food.FoodStatus == false)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(food.FoodImage);
+                        string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                        <div class="col-md-3">
+                            <div class="col-md-3">
+                                <div class="card" style="width: 17rem;background-color:rgb(190, 190, 190)">
+                                    <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                             data-mdb-ripple-color="light">
+                                    <div class="container1">
+                                        @*  <div class="maintxt" style="color:red">Unavilable</div>*@
+                                        <p class="centered" style="color:red">&#128534;Unavilable</p>
+                                        <img height="150px" src="@imageDataURL" class="card-img-top" alt="...">
+                                    </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">@food.FoodName</h5>
+                                            <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
+                                            <p class="card-text">Food Cusine: @food.FoodCuisine</p>
+                                            <p class="card-text">Cost:₹@food.FoodCost</p>
+                                            <a type="button" class="btn btn-success">Add to Cart</a>
+                                            <div class="mask" style="background-color: rgba(0,0,0, 0.2))"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    }
+                    else
+                    {
                     string imageBase64Data = Convert.ToBase64String(food.FoodImage);
                     string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
                     <div class="col-md-3">
@@ -88,23 +157,22 @@
                             <div class="card" style="width: 17rem;">
                                 <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
                              data-mdb-ripple-color="light">
-                                    <img height="150" src="@imageDataURL" class="card-img-top" alt="...">
+                                    <img height="150px" src="@imageDataURL" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">@food.FoodName</h5>
                                         <p class="card-text">Type(Veg/NonVeg):@food.FoodType </p>
                                         <p class="card-text">Food Cusine: @food.FoodCuisine</p>
                                         <p class="card-text">Cost:₹@food.FoodCost</p>
                                         <a asp-controller="Order" asp-action="AddOrder1" asp-route-FoodId="@food.FoodId" type="button" class="btn btn-success">Add to Cart</a>
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                        <div class="mask" style="background-color: rgba(0,0,0, 0.2)"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br />
                     </div>
+                    }
                 }
-
-
             }
         </div>
     </div>

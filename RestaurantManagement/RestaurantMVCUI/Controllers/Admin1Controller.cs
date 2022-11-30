@@ -30,6 +30,7 @@ namespace RestaurantMVCUI.Controllers
         public IActionResult AddEmployee()
         {
             #region Adding Employee View
+
             List<SelectListItem> Gender = new List<SelectListItem>()
             {
 
@@ -38,8 +39,10 @@ namespace RestaurantMVCUI.Controllers
                   new SelectListItem { Value = "F", Text = "Female" },
             };
             ViewBag.Gender1 = Gender;
-            return View();
+
+          return View();
             #endregion
+
         }
 
         [HttpPost]
@@ -69,7 +72,11 @@ namespace RestaurantMVCUI.Controllers
                     }
 
                 }
-            }           
+
+
+            }
+           
+
             return View();
             #endregion
         }

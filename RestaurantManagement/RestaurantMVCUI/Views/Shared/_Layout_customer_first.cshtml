@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href=" ~/js/site.js" />
-   
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 " style="background-color:#D1B001">
-            <div class="container"  >
+            <div class="container">
                 <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-            </a>
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,9 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" href="/Home/#har1">Home </a>
                         </li>
-                       
-                    @*    <li class="nav-item">
-                            <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Order" asp-action="Index">Menu</a>
+
+                        @*    <li class="nav-item">
+                        <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Order" asp-action="Index">Menu</a>
                         </li>*@
                         <li class="nav-item">
                             <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="Order" asp-action="UserTableEntry">Menu</a>
@@ -39,12 +38,16 @@
                         <li class="nav-item">
                             <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" href="/Home/#har2">About us</a>
                         </li>
-                
+
+
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bolder " style="color:#5A3B5D;font-size:x-large" asp-area="" asp-controller="HelpBot" asp-action="Index">Help</a>
+                        </li>
+
                     </ul>
 
-                    
                 </div>
-                
+
             </div>
         </nav>
     </header>
@@ -57,7 +60,7 @@
     <footer class="border-top footer text-muted " style="background-color:#D1B001">
         <div class="container text-light">
             <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
-            &copy; 2022 - RestaurantMVCUI - <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - RestaurantMVCUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

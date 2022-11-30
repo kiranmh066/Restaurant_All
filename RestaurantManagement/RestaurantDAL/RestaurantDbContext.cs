@@ -8,12 +8,9 @@ namespace RestaurantDAL
     {
         public RestaurantDbContext()
         {
-
-
         }
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<Bill> tbl_Bill { get; set; }
@@ -30,6 +27,7 @@ namespace RestaurantDAL
         public DbSet<AssignWork> tbl_AssignWork { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
+
 
 
 

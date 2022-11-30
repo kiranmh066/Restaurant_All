@@ -1,14 +1,7 @@
-﻿
-@model RestaurantEntity.Help
-@{
-    ViewData["Title"] = "AddHelp";
-}
-
-
+﻿@model RestaurantEntity.Help
 @*//this name should be the name of projects under dependencies after adding referrences in MvcUi*@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 
 <script type="text/javascript">
@@ -18,10 +11,7 @@
         alert(" Please be patient the  message is being  send to  a Manager Press on ok to contuine the process"+a);
 
     }
-    function fun2(a) {
-        alert(" Please be patient the  message is being   send to  a Waiter Prees on ok to continue the process "+a);
-
-    }
+   
 </script>
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
     <div class="container">
@@ -53,8 +43,9 @@
             @if(true){
                 int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
                 TempData.Keep();
-                <input type="submit" value="For Manager Help" onclick="fun1(@hallTableId1);" class="btn btn-success" />
-            @*    <input type="submit" value="For Waiter help" onclick="fun2(@hallTableId1);" class="btn btn-success" />*@
+
+                <input type="submit" value="Notify Manager" onclick="fun1(@hallTableId1);" class="btn btn-success" />
+
             }
 
             @if (ViewBag.status == "Ok")

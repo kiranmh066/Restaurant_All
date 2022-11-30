@@ -17,21 +17,21 @@
     <div class="container">
 
         <form method="post" enctype="multipart/form-data">
-            <div style="background-color:red">
+            <div style="color:white">
                 <center>
                     <h3>Report  your Issue</h3>
                 </center>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:white">
                 @*  form group for automatic audjustment for various screen sizes*@
                 <label>Enter Name</label>
                 <input type="text" asp-for="UserName" class="form-control" placeholder="Enter Name " required />
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:white">
                 <label>Enter your Email </label>
                 <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter  your email" required />
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:white">
                 <label>Your issue</label>
                 <input type="text" asp-for="issue" class="form-control" placeholder="Enter your issue" required />
                 
@@ -43,8 +43,9 @@
             @if(true){
                 int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
                 TempData.Keep();
+
                 <input type="submit" value="Notify Manager" onclick="fun1(@hallTableId1);" class="btn btn-success" />
-               
+
             }
 
             @if (ViewBag.status == "Ok")

@@ -22,18 +22,22 @@
 
     <a asp-area="" asp-controller="Order" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
 
+  <div class="container">
+
     <a asp-area="" asp-controller="Help" asp-action="AddHelp"  class="text-light float-right"><img class="img-fluid" style="height:45px;" src="https://www.svgrepo.com/show/230740/24-hours-help.svg" /><br />Help</a>
 
 
 
-    <div class="container">
+
+
         <h2 class="text-light text-center">Foods </h2>
 
         <br /><div class="row">
-            <div class="col-md-12">
-            @using (Html.BeginForm())
-            {
-                <div style="color:white">
+                  <div class="col-md-12">
+                        @using (Html.BeginForm())
+                               {
+                                   <div style="color:white">
+
 
                     <span style="font-size:large;float:right">
                         @Html.RadioButton("option", "FoodName") <text>Food Name</text>
@@ -42,15 +46,17 @@
                             @Html.TextBox("search")
                           <input type="submit" value="Search" class="btn btn-primary" placeholder="Search" />
                            <a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:23px;width:30px;" />&nbsp; View List</a>
+
                            
-                    </span>
-                </div>
-            }
+                                            </span>
+                                   </div>
+                               }
 
             </div>
             </div>
                     
       
+
         <br />
         <h3 class="text-light" style="margin-left:50px">Veg</h3>
         <br />
@@ -178,11 +184,12 @@
                 }
             }
         </div>
-    </div>
-   </div>
+
+  </div>
+ 
+
 </body>
 
 
 </html>
 
-<

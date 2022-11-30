@@ -22,7 +22,7 @@
 
     <a asp-area="" asp-controller="Order" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
 
-    <a asp-area="" asp-controller="Help" asp-action="AddHelp" type="button" class="btn  text-light"><img class="img-fluid" style="height:45px;margin-left:1750px" src="https://www.svgrepo.com/show/230740/24-hours-help.svg" /></a>
+    <a asp-area="" asp-controller="Help" asp-action="AddHelp"  class="text-light float-right"><img class="img-fluid" style="height:45px;" src="https://www.svgrepo.com/show/230740/24-hours-help.svg" /><br />Help</a>
 
 
 
@@ -35,19 +35,13 @@
             {
                 <div style="color:white">
 
-
-
-
-                <a class="text-uppercase d-inline-block text-center" style="font-size:xx-large" align="center">Food <span class="font-weight-bold" style="font-size:xx-large">Details</span></a>
-
-
                     <span style="font-size:large;float:right">
                         @Html.RadioButton("option", "FoodName") <text>Food Name</text>
                         @Html.RadioButton("option", "Gender") <text> Cuisine </text>
                         @Html.RadioButton("option", "Subjects")<text>Food Type</text>
                             @Html.TextBox("search")
-                          <input type="submit" value="Search" placeholder="Search" />
-                           <a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:30px;width:30px;" />&nbsp; View List</a>
+                          <input type="submit" value="Search" class="btn btn-primary" placeholder="Search" />
+                           <a asp-controller="Order" asp-action="GetOrders1" class="btn btn-success "><img src="https://www.svgrepo.com/show/49439/cart.svg" style="height:23px;width:30px;" />&nbsp; View List</a>
                            
                     </span>
                 </div>
@@ -55,10 +49,8 @@
 
             </div>
             </div>
-            <br />
-            <h3 class="text-light" style="margin-left:50px">Veg</h3>
-            <br />            
-        </div>
+                    
+      
         <br />
         <h3 class="text-light" style="margin-left:50px">Veg</h3>
         <br />
@@ -187,7 +179,7 @@
             }
         </div>
     </div>
- 
+   </div>
 </body>
 
 

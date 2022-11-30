@@ -118,14 +118,10 @@ namespace RestaurantMVCUI.Controllers
             foreach (var item in halltable)
             {   //if(item.HallTableStatus==true)
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
-<<<<<<< HEAD
-            }
-          
-          //  ViewBag.TableId = tableId; 
-=======
+
             }          
             ViewBag.TableId = tableId; 
->>>>>>> 7fa31934e66c5858b58da22624d5a40598f4a6f2
+
             order.OrderDate = DateTime.Now;
            
             return View(order);

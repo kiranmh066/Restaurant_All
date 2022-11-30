@@ -23,27 +23,27 @@
     <div class="container">
 
         <form method="post" enctype="multipart/form-data">
-            <div style="background-color:red">
+            <div style="color:white">
                 <center>
-                    <h3>Report an Accident or Emergency</h3>
+                    <h3>Report an issue</h3>
                 </center>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:white">
                 @*  form group for automatic audjustment for various screen sizes*@
                 <label>Enter Name</label>
                 <input type="text" asp-for="UserName" class="form-control" placeholder="Enter Name " required />
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:white">
                 <label>Enter your issue </label>
                 <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter  your email" required />
             </div>
-              <div class="form-group">
+            <div class="form-group" style="color:white">
             <label>Your issue</label>
             <input type="text" asp-for="issue" class="form-control" placeholder="Enter your issue" required />
             </div>
 
             <input type="submit" value="For Manager Help" onclick="fun1();" class="btn btn-success" />
-            <input type="submit" value="For Waiter help" onclick="fun2();" class="btn btn-success" />
+           @* <input type="submit" value="For Waiter help" onclick="fun2();" class="btn btn-success" />*@
             @*  <input type="submit" value="Save" class="btn btn-outline-success" />
             &nbsp;&nbsp;
             <input type="reset" value="Reset" class="btn btn-outline-secondary" />*@

@@ -8,12 +8,9 @@ namespace RestaurantDAL
     {
         public RestaurantDbContext()
         {
-
-
         }
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<Bill> tbl_Bill { get; set; }
@@ -30,16 +27,7 @@ namespace RestaurantDAL
         public DbSet<AssignWork> tbl_AssignWork { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-
-
-
-
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2179; Initial Catalog = Restaurant_Chandan_1_1; Integrated Security=True;");
-
-
-
-
-
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2164; Initial Catalog = Restaurant_KiranC; Integrated Security=True;");
         }
     }
 }

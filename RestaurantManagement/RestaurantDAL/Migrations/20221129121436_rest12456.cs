@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestaurantDAL.Migrations
 {
-    public partial class restu12456 : Migration
+    public partial class rest12456 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,7 @@ namespace RestaurantDAL.Migrations
                     FoodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FoodCost = table.Column<double>(type: "float", nullable: false),
                     FoodCuisine = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FoodStatus = table.Column<bool>(type: "bit", nullable: false),
                     FoodImage = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
@@ -97,6 +98,28 @@ namespace RestaurantDAL.Migrations
                     table.PrimaryKey("PK_tbl_Feedback", x => x.FeedbackId);
                     table.ForeignKey(
                         name: "FK_tbl_Feedback_tbl_HallTable_HallTableId",
+                        column: x => x.HallTableId,
+                        principalTable: "tbl_HallTable",
+                        principalColumn: "HallTableId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Help",
+                columns: table => new
+                {
+                    HelpId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HallTableId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    issue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Help", x => x.HelpId);
+                    table.ForeignKey(
+                        name: "FK_tbl_Help_tbl_HallTable_HallTableId",
                         column: x => x.HallTableId,
                         principalTable: "tbl_HallTable",
                         principalColumn: "HallTableId",
@@ -181,6 +204,11 @@ namespace RestaurantDAL.Migrations
                 column: "HallTableId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_tbl_Help_HallTableId",
+                table: "tbl_Help",
+                column: "HallTableId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_tbl_Order_FoodId",
                 table: "tbl_Order",
                 column: "FoodId");
@@ -201,6 +229,9 @@ namespace RestaurantDAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_Feedback");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Help");
 
             migrationBuilder.DropTable(
                 name: "tbl_Employee");

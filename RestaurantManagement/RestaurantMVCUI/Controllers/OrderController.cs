@@ -165,9 +165,38 @@ namespace RestaurantMVCUI.Controllers
                 order.OrderTotal = order.Quantity * foodcost;
                 order.OrderStatus = false;
                 order.HallTableId = hallTableId1;
+                int count = 0;
 
-                orders.Add(order);
-            
+                foreach(var item in orders)
+                {
+                    if(item.FoodId==order.FoodId)
+                    {
+                        int tq1 = item.Quantity;
+                        int tt1 = item.OrderTotal;
+                        int tt = tt1 / tq1;
+                        item.Quantity = order.Quantity;
+                        item.OrderTotal = order.Quantity * tt;
+                        count++;
+
+                    }
+                 
+
+                   
+                }
+                if(orders.Count==0)
+                {
+                    orders.Add(order);
+                }
+
+                else if (orders.Count != 0 && count == 0)
+                {
+                    orders.Add(order);
+                }
+
+           
+               
+                    
+                
 
                 TempData["status"] = true;
                 while (Convert.ToBoolean(TempData["status"]))

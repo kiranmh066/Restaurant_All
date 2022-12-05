@@ -1,70 +1,71 @@
 ﻿@model IEnumerable<RestaurantEntity.HallTable>
 @{
-    Layout = "~/Views/Shared/_LayoutHallManager.cshtml";
+    Layout = "~/Views/Shared/_LayoutSelectTable.cshtml";
 }
-<body style="background-color:#5A3B5D">
-  
-    <div class="container">
-        @if (true)
-        {
-            int a = Convert.ToInt32(TempData["notifyhelp"]);
-            <a asp-controller="Help" asp-action="GetAllHelps" class="btn  text-light float-right"><img style="height:45px;" src="https://www.svgrepo.com/show/246328/notification.svg" /><sup style="color:white">@a</sup><br>Notifications</a>
-
-        }
-               <center>
-            <h2 class="text-light text-center">Index of Hall Manager</h2>
-            <div style="color:white">
-                <a asp-controller="HallManager" asp-action="ViewBill" class="btn btn-primary"> Accept Paid Bill</a>         
-
-                <hr />
-            </div>
+<html>
+    <head></head>
+        <script type="text/javascript">
+            function display_c() {
+                var refresh = 1000; // Refresh rate in milli seconds
+                mytime = setTimeout('display_ct()', refresh)
+            }
+            function display_ct() {
+                var x = new Date()
+                document.getElementById('ct').innerHTML = x;
+                display_c();
+            }
+        </script>
+<body style="background-color:#5A3B5D" onload=display_ct();>
+    <a asp-area="" asp-controller="Home" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+    <p class="float-right"><u><span class="text-white" id="ct"></u></span></p>
+    <div class="container">        
+        <center>
+            <h2 class="text-light text-center">Select You Table</h2>            
             <div class=" row">
                 @foreach (var item in Model)
                 {
-
                     <div class="col-3">
-
                         @if (item.HallTableStatus == true && item.HallTableSize == 4)
                         {
                             <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
                             <div class="text-light">Occupancy:@item.HallTableSize</div>
-                            <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:green" />
+                            <a asp-controller="Order" asp-action="SelectedTable" asp-route-HallTableId="@item.HallTableId" class="btn"><img class="img-fluid" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:green" /></a>
                         }
                         else if (item.HallTableStatus == true && item.HallTableSize == 6)
                         {
-                                     <br />
+                            <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
                             <div class="text-light">Occupancy:@item.HallTableSize</div>
-                            <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:green" />
+                            <a asp-controller="Order" asp-action="SelectedTable" asp-route-HallTableId="@item.HallTableId" class="btn"><img class="img-fluid" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:green" /></a>
                         }
                         else if (item.HallTableStatus == true && item.HallTableSize == 10)
                         {
                             <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
                             <div class="text-light">Occupancy:@item.HallTableSize</div>
-                            <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:green" />
+                            <a asp-controller="Order" asp-action="SelectedTable" asp-route-HallTableId="@item.HallTableId" class="btn"><img class="img-fluid" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:green" /></a>
                         }
                         else if (item.HallTableStatus == false && item.HallTableSize == 4)
                         {
                             <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
                             <div class="text-light">Occupancy:@item.HallTableSize</div>
-                            <img class="rounded" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:red" />
+                            <a><img class="img-fluid" src="https://www.svgrepo.com/show/105314/table.svg" style="width:100px;height:100px;background-color:red" /></a>                                                       
                         }
                         else if (item.HallTableStatus == false && item.HallTableSize == 6)
                         {
                             <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
                             <div class="text-light">Occupancy:@item.HallTableSize</div>
-                            <img class="rounded" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:red" />
+                            <a><img class="img-fluid" src="https://www.svgrepo.com/show/26641/table.svg" style="width:100px;height:100px;background-color:red" /></a>
                         }
                         else if (item.HallTableStatus == false && item.HallTableSize == 10)
                         {
                             <br />
                             <div class="text-light">Table Num:@item.HallTableId</div>
                             <div class="text-light">Occupancy:@item.HallTableSize</div>
-                            <img class="rounded" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:red" />
+                            <a><img class="img-fluid" src="https://www.svgrepo.com/show/206580/table-desk.svg" style="width:100px;height:100px;background-color:red" /></a>
                         }
                     </div>
                 }
@@ -75,3 +76,4 @@
         </center>
     </div>
 </body>
+</html>

@@ -30,6 +30,7 @@ namespace RestaurantMVCUI.Controllers
 
         public IActionResult AddFeedback1()
         {
+            #region To Perform feeback of user rating by using dropdown in feedback 
             List<SelectListItem> status = new List<SelectListItem>()
             {
                 new SelectListItem { Value = "Select", Text = "select" },
@@ -39,6 +40,7 @@ namespace RestaurantMVCUI.Controllers
 
             ViewBag.Feed = status;
             return View();
+            #endregion
         }
 
         [HttpPost]
@@ -162,7 +164,9 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult GetAllFeedbacks()
         {
+            #region displaying all the feeback to the admin
             return View();
+            #endregion
         }
 
         [HttpGet]

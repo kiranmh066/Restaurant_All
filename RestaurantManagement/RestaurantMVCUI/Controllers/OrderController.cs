@@ -121,7 +121,13 @@ namespace RestaurantMVCUI.Controllers
                    
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
 
+<<<<<<< HEAD
+            }          
+
+
+=======
             }
+>>>>>>> 6c149b5e022e6577b73b6838d8b95d157bb0ea82
             ViewBag.TableId = tableId; 
 
             order.OrderDate = DateTime.Now;
@@ -633,8 +639,14 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> SelectTable()
         {
+<<<<<<< HEAD
+            #region Entering Halltable Number
+
+            IEnumerable<HallTable> halltable = null;
+=======
             #region Selecting Halltable Number
             IEnumerable<HallTable> hallTables = null;
+>>>>>>> 6c149b5e022e6577b73b6838d8b95d157bb0ea82
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";

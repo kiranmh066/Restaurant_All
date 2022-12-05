@@ -29,17 +29,24 @@ namespace RestaurantMVCUI.Controllers
 
         public IActionResult Privacy()
         {
+            #region Privacy page of AR Restaurant
             return View();
+            #endregion
         }
         public IActionResult Contactus()
         {
+            #region contact us  page of AR Restaurant
             return View();
+            #endregion
         }
 
 
         public IActionResult Aboutus()
         {
+            #region About us page of AR Restaurant
+
             return View();
+            #endregion
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

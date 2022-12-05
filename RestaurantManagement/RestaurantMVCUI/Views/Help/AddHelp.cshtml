@@ -29,13 +29,12 @@
                 <input type="text" asp-for="UserName" class="form-control" placeholder="Enter Your Name " required />
             </div>
             <div class="form-group" style="color:white">
-                <label>Email </label>
-                <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter Your Email" required />
+                <label>Enter your Email </label>
+                <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter  your email" required />
             </div>
             <div class="form-group" style="color:white">
-                <label>Issue</label>
-                <input type="text" asp-for="issue" class="form-control" placeholder="Enter Your Issue" required />
-                
+                <label>Your issue</label>
+                <input type="text" asp-for="issue" class="form-control" placeholder="Enter your issue" required />                
             </div>
 
             @{
@@ -44,8 +43,9 @@
             @if(true){
                 int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
                 TempData.Keep();
+
                 <input type="submit" value="Notify Manager" onclick="fun1(@hallTableId1);" class="btn btn-success" />
-               
+
             }
 
             @if (ViewBag.status == "Ok")

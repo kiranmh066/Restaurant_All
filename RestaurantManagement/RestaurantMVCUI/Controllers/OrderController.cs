@@ -116,10 +116,12 @@ namespace RestaurantMVCUI.Controllers
             List<SelectListItem> tableId = new List<SelectListItem>();
             tableId.Add(new SelectListItem { Value = "Select", Text = "select" });
             foreach (var item in halltable)
-            {   //if(item.HallTableStatus==true)
+            { 
+           
+                   
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
 
-            }          
+            }
             ViewBag.TableId = tableId; 
 
             order.OrderDate = DateTime.Now;
@@ -127,6 +129,7 @@ namespace RestaurantMVCUI.Controllers
             return View(order);
             #endregion
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddOrder1(Order order)

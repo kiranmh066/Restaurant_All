@@ -121,9 +121,13 @@ namespace RestaurantMVCUI.Controllers
                    
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
 
+<<<<<<< HEAD
             }          
 
 
+=======
+            }
+>>>>>>> 6c149b5e022e6577b73b6838d8b95d157bb0ea82
             ViewBag.TableId = tableId; 
 
             order.OrderDate = DateTime.Now;
@@ -631,60 +635,41 @@ namespace RestaurantMVCUI.Controllers
             }
             return View();
             #endregion
-        }
-        public async Task<IActionResult> UserTableEntry()
+        }        
+
+        public async Task<IActionResult> SelectTable()
         {
+<<<<<<< HEAD
             #region Entering Halltable Number
 
             IEnumerable<HallTable> halltable = null;
+=======
+            #region Selecting Halltable Number
+            IEnumerable<HallTable> hallTables = null;
+>>>>>>> 6c149b5e022e6577b73b6838d8b95d157bb0ea82
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";
+                //api controller name and httppost name given inside httppost in moviecontroller of api
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
-                        halltable = JsonConvert.DeserializeObject<IEnumerable<HallTable>>(result);
+                        hallTables = JsonConvert.DeserializeObject<IEnumerable<HallTable>>(result);
                     }
                 }
             }
-            List<SelectListItem> tableId = new List<SelectListItem>();
-
-            tableId.Add(new SelectListItem { Value = "Select", Text = "select" });
-            foreach (var item in halltable)
-            {   //if(item.HallTableStatus==true)
-                tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : " + (item.HallTableSize) + " Table No : " + item.HallTableId.ToString() + " Table Status : " + (item.HallTableStatus) });
-      
-            }
-
-            
-            ViewBag.TableId = tableId;
-
-            return View();
+            return View(hallTables);
             #endregion
         }
-
-        [HttpPost]
-        public async Task<IActionResult> UserTableEntry(Order order)
+        public IActionResult SelectedTable(HallTable hallTable)
         {
             #region Entering HallTable number
-
-            ViewBag.status = "";
-         
-            if (order.HallTableId == 0)
-            {
-                ViewBag.status = "Ok";
-                ViewBag.message = "Please Select Hall Table Number";
-                return View();
-            }
-                
-
-
-            TempData["halltableuserid"] = order.HallTableId;
+            TempData["halltableuserid"] = hallTable.HallTableId;
             TempData.Keep();
 
-            return RedirectToAction("Index","Order");
+            return RedirectToAction("Index", "Order");
             #endregion
         }
     }

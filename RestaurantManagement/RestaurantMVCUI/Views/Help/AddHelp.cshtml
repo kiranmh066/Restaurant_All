@@ -14,26 +14,27 @@
    
 </script>
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <a asp-area="" asp-controller="Order" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
     <div class="container">
 
         <form method="post" enctype="multipart/form-data">
-            <div style="background-color:red">
+            <div style="color:white">
                 <center>
                     <h3>Report  your Issue</h3>
                 </center>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:white">
                 @*  form group for automatic audjustment for various screen sizes*@
-                <label>Enter Name</label>
-                <input type="text" asp-for="UserName" class="form-control" placeholder="Enter Name " required />
+                <label>Name</label>
+                <input type="text" asp-for="UserName" class="form-control" placeholder="Enter Your Name " required />
             </div>
-            <div class="form-group">
-                <label>Enter your Email </label>
-                <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter  your email" required />
+            <div class="form-group" style="color:white">
+                <label>Email </label>
+                <input type="text" asp-for="UserEmail" class="form-control" placeholder="Enter Your Email" required />
             </div>
-            <div class="form-group">
-                <label>Your issue</label>
-                <input type="text" asp-for="issue" class="form-control" placeholder="Enter your issue" required />
+            <div class="form-group" style="color:white">
+                <label>Issue</label>
+                <input type="text" asp-for="issue" class="form-control" placeholder="Enter Your Issue" required />
                 
             </div>
 

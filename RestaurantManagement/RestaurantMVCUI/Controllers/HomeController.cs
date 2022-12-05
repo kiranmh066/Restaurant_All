@@ -20,7 +20,6 @@ namespace RestaurantMVCUI.Controllers
 
         public IActionResult Index()
         {
-
             #region Home page Of AR Restaurant
 
             return View();

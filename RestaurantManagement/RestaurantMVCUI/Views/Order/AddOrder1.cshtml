@@ -9,11 +9,10 @@
     function fun() {
 
 
-
         window.alert("Food addded succefully");
-        
+        TempData.keep;
         window.location.href = ' https://localhost:44344/'
-
+    }
 </script>
 
 <body style="background-color:#5A3B5D">
@@ -33,7 +32,7 @@
         <label>Order Time</label>
         <input type="datetime" asp-for="OrderDate" class="form-control" placeholder="Enter Order Time" required />
     </div>
-            <div class="form-group text-white" hidden>
+            <div class="form-group text-white">
         <label>Food Id</label>
         <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required disabled />
     </div>

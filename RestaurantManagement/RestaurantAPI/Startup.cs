@@ -56,9 +56,6 @@ namespace RestaurantAPI
             services.AddTransient<BillService, BillService>();//adding services
             services.AddTransient<IBillRepost, BillRepost>();
 
-            services.AddTransient<HelpServise, HelpServise>();//adding services
-            services.AddTransient<IHelpRespost, HelpRepost>();
-
             services.AddTransient<FeedbackService, FeedbackService>();//adding services
             services.AddTransient<IFeedbackRepost, FeedbackRepost>();
 

@@ -16,11 +16,11 @@
             <img src="https://www.svgrepo.com/show/143188/clear-shopping-cart.svg" style="height:30px;width:30px;" />&nbsp;Clear Cart
         </a>
                 &nbsp;
-      
+        <a asp-controller="Order" asp-action="ConfirmOrder" onclick="confirmFunction()" class="btn btn-primary"><img src="https://www.svgrepo.com/show/15204/confirm-purchase.svg" style="height:30px;width:30px;" />&nbsp;Confirm Order</a>
+                &nbsp;
 
         <a asp-controller="Order" asp-action="ViewOrdered" class="btn btn-primary"><img src="https://www.svgrepo.com/show/10154/shopping-cart-empty-side-view.svg" style="height:30px;width:30px;" />&nbsp;  Ordered</a>
                 &nbsp;
-
 
         <a asp-controller="Bill" asp-action="Index" class="btn btn-primary"><img src="https://www.svgrepo.com/show/410234/bill.svg" style="height:30px;width:30px;" />&nbsp;Get Bill</a>
                &nbsp;
@@ -30,9 +30,9 @@
                 
               
                <hr />
-           
+
            @if (true)
-           {
+            {
                     var total = 0;
             @foreach (var order in Model.Item1)
             {
@@ -97,18 +97,18 @@
                         </div>
                     }
                 }
-            }
-           
+            
+
+
+
+        }
                 @foreach (var order in Model.Item1)
                {
 
        
                         <div class="float-right">
 
-                            <a class="btn btn-success text-light font-weight-bolder" >Order total:₹@total</a>
-                            &nbsp;
-                          <a asp-controller="Order" asp-action="ConfirmOrder" onclick="confirmFunction()" class="btn btn-primary"><img src="https://www.svgrepo.com/show/15204/confirm-purchase.svg" style="height:23px;width:25px;" />&nbsp;Confirm Order</a>
-                          &nbsp;
+                            <a class="btn btn-success text-light font-weight-bolder">Order total:₹@total</a>
                             <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue ordering</a>
 
                         </div>

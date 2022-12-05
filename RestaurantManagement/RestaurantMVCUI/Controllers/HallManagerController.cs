@@ -19,12 +19,13 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            #region Showing all hall tables in the index
             IEnumerable<HallTable> hallTables = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";
-                //api controller name and httppost name given inside httppost in moviecontroller of api
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";//api controller name and httppost name given inside httppost in moviecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -32,14 +33,15 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         hallTables = JsonConvert.DeserializeObject<IEnumerable<HallTable>>(result);
                     }
+
+
+
                 }
             }
             return View(hallTables);
-            #endregion
         }
         public async Task<IActionResult> HallManagerProfile()
         {
-            #region Profile of hall mamager 
             int employeeId = Convert.ToInt32(TempData["empId"]);
             TempData.Keep();
 
@@ -57,11 +59,9 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(employee);
-            #endregion
         }
         public async Task<IActionResult> ViewBill()
         {
-            #region Viewing Bill to accept
             IEnumerable<Bill> billresult = null;
             using (HttpClient client = new HttpClient())
             {
@@ -78,16 +78,16 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(billresult);
-            #endregion
         }
 
         public async Task<IActionResult> ChangeStatus(int billId)
         {
-            #region Viewing Bill to accept And Emtying halltable
             Bill billresult = null;
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Bill/GetBillById?BillId="+billId;
+                //api controller name and httppost name given inside httppost in moviecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -103,7 +103,8 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(billresult), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Bill/UpdateBill";
+                string endPoint = _configuration["WebApiBaseUrl"] + "Bill/UpdateBill";//api controller name and its function
+
                 using (var response = await client.PutAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -111,14 +112,17 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "Payment Verified Successfull!!";
                     }
+
                     else
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = "Wrong Entries";
                     }
+
                 }
             }
-            int a = billresult.HallTableId;            
+            int a = billresult.HallTableId;
+            
             HallTable hallTable = null;
             using (HttpClient client = new HttpClient())
             {
@@ -136,7 +140,8 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
+
                 using (var response = await client.PutAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -144,15 +149,27 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = " Table No"+billresult.HallTableId+" Emptied and Payment Veified for"+billresult.UserName+" Successfully!! for Bill No"+billresult.BillId;
                     }
+
+                  
+
                 }
             }
+
+
+
+
+
+
             // to make view ordererd empty
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             IEnumerable<Order> orderresult = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;//api controller name and httppost name given inside httppost in moviecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -160,18 +177,31 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
                     }
+
+             
+
+
                 }
             }
+
+
             foreach (var item in orderresult)
             {
+               
+                //using grabage collection only for inbuilt classes
                 using (HttpClient client = new HttpClient())
                 {
-                    string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + item.OrderId; 
-                    using (var response = await client.DeleteAsync(endPoint));                  
+
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + item.OrderId;  //api controller name and its function
+
+                    using (var response = await client.DeleteAsync(endPoint));
+                  
                 }
+
+
             }
+
             return View();
-            #endregion
         }
     }
 }

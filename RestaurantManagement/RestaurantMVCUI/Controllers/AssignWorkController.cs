@@ -21,7 +21,7 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Index(int EmpId)
         {
-            #region Index of Assigning Work To Chef of Each order
+
             int data = Convert.ToInt32(TempData["OrderIdforAssign"]);
             TempData.Keep();
             Order order = null;
@@ -72,13 +72,13 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-            #endregion
         }
 
+        //[AllowAnonymous]
         public async Task<IActionResult> ViewAll()
         {
-            #region getting All Assigned Chefs and Orders Assigned To Them.
-            List<AssignWork> workresult = null;            
+            List<AssignWork> workresult = null;
+            
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorks";
@@ -92,6 +92,7 @@ namespace RestaurantMVCUI.Controllers
                     }
                 }
             }
+
             List<Order> orderresult = null;
             using (HttpClient client = new HttpClient())
             {
@@ -108,12 +109,11 @@ namespace RestaurantMVCUI.Controllers
             }
             var tupeluser = new Tuple<List<Order>, List<AssignWork>>(orderresult, workresult);
             return View(tupeluser);
-            #endregion
         }
+
 
         public async Task<IActionResult> EditAssignWork(int AssignWorkID)
         {
-            #region Updating assigned Work of Chef
             AssignWork assignWork = null;
             using (HttpClient client = new HttpClient())
             {
@@ -128,12 +128,10 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(assignWork);
-            #endregion
         }
         [HttpPost]
         public async Task<IActionResult> EditAssignWork(AssignWork assignWork)
         {
-            #region Updating Assigned work of Chef in Post method
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -154,11 +152,9 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-            #endregion
         }
         public async Task<IActionResult> DeleteAssignWork1(int AssignWorkID)
         {
-            #region Getting Assigned Work of Chef by Id for deleting Chef Work
             AssignWork assignWork = null;
             using (HttpClient client = new HttpClient())
             {
@@ -172,14 +168,13 @@ namespace RestaurantMVCUI.Controllers
                     }
                 }
             }
+
             return View(assignWork);
-            #endregion
         }
 
         [HttpPost]
         public async Task<IActionResult> DeleteAssignWork1(AssignWork assignWork)
         {
-            #region deleting Assigned Work of Chef in Post Method
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -200,7 +195,6 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-            #endregion
         }
 
     }

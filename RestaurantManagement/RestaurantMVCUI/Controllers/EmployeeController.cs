@@ -24,7 +24,6 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> Profile()
         {
-            #region getting All The Details Of Employee in the profile
             int employeeId = Convert.ToInt32(TempData["empId"]);
             TempData.Keep();
 
@@ -42,7 +41,6 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(employee);
-            #endregion
         }
 
         public IActionResult Login1()
@@ -50,17 +48,22 @@ namespace RestaurantMVCUI.Controllers
             return View();
         }
         [HttpPost]
+
         public async Task<IActionResult> Login1(Employee employee)
         {
-            #region Logging in of Employee using Email and Password and Will Redirect using Employee designation
+
             Employee employee1 = null ;
             ViewBag.status = "";
+
+
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
                 using (var response = await client.PostAsync(endPoint, content))
-                {                  
+                {
+
+                  
                     var result = await response.Content.ReadAsStringAsync();
                     employee1 = JsonConvert.DeserializeObject<Employee>(result);
                     string employee_designation = (employee1.EmpDesignation).ToString();
@@ -85,10 +88,13 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-            #endregion
+
+
+
         }
         public IActionResult Forgot()
-        {
+        {  
+
             return View();
         }
 
@@ -96,12 +102,13 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> Forgot(Employee employee)
         {
-            #region Forgot passWord Function, Updating passWord using Employee Id
             string a = employee.EmpPassword;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employee.EmpId;
-                //EmployeeId is apicontroleer passing argument name
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employee.EmpId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -109,13 +116,17 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         employee = JsonConvert.DeserializeObject<Employee>(result);
                     }
+
+
+
                 }
             }
             employee.EmpPassword = a;
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";
+                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";//api controller name and its function
+
                 using (var response = await client.PutAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -123,6 +134,7 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "Password Updated Successfull!!";
                     }
+
                     else
                     {
                         ViewBag.status = "Error";
@@ -132,8 +144,7 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View();
-            #endregion
+
         }
     }
 }
-

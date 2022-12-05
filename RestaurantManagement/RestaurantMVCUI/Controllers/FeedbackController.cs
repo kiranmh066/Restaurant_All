@@ -41,17 +41,27 @@ namespace RestaurantMVCUI.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> AddFeedback1(Feedback feedback)
         {
-            #region Taking user Feedback
-            ViewBag.status = "";           
+            ViewBag.status = "";
+            /*            if (Request.Form.Files.Count > 0)
+                        {
+                            MemoryStream ms = new MemoryStream();
+                            Request.Form.Files[0].CopyTo(ms);
+                            Employeev.ImgPoster = ms.ToArray();
+                        }*/
+            //using grabage collection only for inbuilt classes
+
             feedback.HallTableId =Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(feedback), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/AddFeedback";
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/AddFeedback";//api controller name and its function
+
                 using (var response = await client.PostAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -59,24 +69,27 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "Feedback Added Successfull!!";
                     }
+
                     else
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = "Wrong Entries";
                     }
+
                 }
             }
             return View();
-            #endregion
         }
         [HttpGet]
         public async Task<IActionResult> EditFeedack(int feedbackId)
         {
-            #region Updaing Feedback
             Feedback feedback = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetFeedbackById?feedbackId=" + feedbackId;
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetFeedbackById?feedbackId=" + feedbackId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -84,20 +97,30 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         feedback = JsonConvert.DeserializeObject<Feedback>(result);
                     }
+
+
+
                 }
             }
             return View(feedback);
-            #endregion
+
         }
         [HttpPost]
         public async Task<IActionResult> EditFeedback(Feedback feedback)
         {
-            #region Updating Feedback Post method
-            ViewBag.status = "";            
+            ViewBag.status = "";
+            /* if (Request.Form.Files.Count > 0)
+             {
+                 MemoryStream ms = new MemoryStream();
+                 Request.Form.Files[0].CopyTo(ms);
+                 employee.ImgPoster = ms.ToArray();
+             }*/
+            //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(feedback), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/UpdateFeedback";
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/UpdateFeedback";//api controller name and its function
+
                 using (var response = await client.PutAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -105,23 +128,28 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "Feedback Details Updated Successfull!!";
                     }
+
                     else
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = "Wrong Entries";
                     }
+
                 }
             }
             return View();
-            #endregion
+
+
         }
         public async Task<IActionResult> DeleteFeedback(int feedbackId)
         {
-            #region Deleting Feedback Of Customer
             Feedback feedback = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetFeedbackByid?feedbackId=" + feedbackId;
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetFeedbackByid?feedbackId=" + feedbackId;//EmployeeId is apicontroleer passing argument name//api controller name and httppost name given inside httppost in Employeecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -129,20 +157,24 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         feedback     = JsonConvert.DeserializeObject<Feedback>(result);
                     }
+
+
+
                 }
             }
             return View(feedback);
-            #endregion
+
         }
         [HttpPost]
         public async Task<IActionResult> DeleteFedback(Feedback feedback)
         {
-            #region Deleting Feedback in Post method
             ViewBag.status = "";
             //using grabage collection only for inbuilt classes
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/DeleteFeedback?feedbackId=" + feedback.FeedbackId;
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/DeleteFeedback?feedbackId=" + feedback.FeedbackId;  //api controller name and its function
+
                 using (var response = await client.DeleteAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -150,29 +182,35 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Ok";
                         ViewBag.message = "Feedback Details Deleted Successfull!!";
                     }
+
                     else
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = "Wrong Entries";
                     }
+
                 }
             }
             return View(feedback);
-            #endregion
+
         }
         public IActionResult GetAllFeedbacks()
         {
             return View();
         }
 
+
         [HttpGet]
+
         public async Task<IActionResult> GetAllFeedbacks(Feedback feedback)
         {
-            #region get all feedbacks Post method
             IEnumerable<Feedback> employeeresult = null;
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetFeedback";
+
+
+                string endPoint = _configuration["WebApiBaseUrl"] + "Feedback/GetFeedback";//api controller name and httppost name given inside httppost in moviecontroller of api
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -180,10 +218,12 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         employeeresult = JsonConvert.DeserializeObject<IEnumerable<Feedback>>(result);
                     }
+
+
+
                 }
             }
             return View(employeeresult);
-            #endregion
         }
     }
 }

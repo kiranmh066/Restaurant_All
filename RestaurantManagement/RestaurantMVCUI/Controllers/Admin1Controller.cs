@@ -29,9 +29,7 @@ namespace RestaurantMVCUI.Controllers
 
         public IActionResult AddEmployee()
         {
-            #region Adding Employee View
-
-            List<SelectListItem> Gender = new List<SelectListItem>()
+             List<SelectListItem> Gender = new List<SelectListItem>()
             {
 
                   new SelectListItem { Value = "Select", Text = "select" },
@@ -41,7 +39,7 @@ namespace RestaurantMVCUI.Controllers
             ViewBag.Gender1 = Gender;
 
           return View();
-            #endregion
+      
 
         }
 
@@ -170,7 +168,9 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult GetAllEmployees()
         {
+            #region  Index of all  the employee present
             return View();
+            #endregion 
         }
 
 
@@ -341,13 +341,16 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult GetAllFoods()
         {
+            #region  Index of Getting All food 
+
             return View();
+            #endregion
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllFoods(Food food)
         {
-            #region Getting All Food Items
+            #region Getting All Food Items from the database
             IEnumerable<Food> foodresult = null;
             using (HttpClient client = new HttpClient())
             {
@@ -481,7 +484,10 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult GetAllHallTables()
         {
+            #region  Index of Getting All the hall Tables
+
             return View();
+            #endregion
         }
 
 

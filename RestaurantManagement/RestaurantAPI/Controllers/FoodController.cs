@@ -20,37 +20,54 @@ namespace RestaurantAPI.Controllers
         [HttpGet("GetFoods")]//
         public IEnumerable<Food> GetFoods()
         {
+            #region Function for geeting the Food 
+
             return _foodService.GetFood();
+            #endregion
         }
 
 
 
         [HttpDelete("DeleteFood")]
         public IActionResult DeleteFood(int foodId)
+
         {
+            #region  Function for deleting the Food by its foodId.
+
             _foodService.DeleteFood(foodId);
             return Ok("Food deleted Successfully");
+            #endregion
         }
 
         [HttpPut("UpdateFood")]
         public IActionResult UpdateFood([FromBody] Food food)
         {
+            #region Function for Updating the Food by its object
+
             _foodService.UpdateFood(food);
             return Ok("Food Updated Successfully");
+            #endregion
         }
 
         [HttpGet("GetFoodById")]
         public Food GetFoodById(int foodId)
         {
+            #region Function for geeting the Food by its foodId
+
             return _foodService.GetFoodById(foodId);
+            #endregion
         }
 
         [HttpPost("AddFood")]
         public IActionResult AddFood([FromBody] Food foodInfo)
         {
+            #region Function for Adding the Food by its foodId
+
             _foodService.AddFood(foodInfo);
             return Ok("Register successfully!!");
+
+            #endregion
         }
-       
+
     }
 }

@@ -61,14 +61,14 @@ namespace RestaurantMVCUI.Controllers
             #region Logging in of Employee using Email and Password and Will Redirect using Employee designation
             try
             {
-                Employee employee1 = null ;
+                Employee employee1 = null;
                 ViewBag.status = "";
                 using (HttpClient client = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
                     string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
                     using (var response = await client.PostAsync(endPoint, content))
-                    {                  
+                    {
                         var result = await response.Content.ReadAsStringAsync();
                         employee1 = JsonConvert.DeserializeObject<Employee>(result);
                         string employee_designation = (employee1.EmpDesignation).ToString();
@@ -153,4 +153,3 @@ namespace RestaurantMVCUI.Controllers
         }
     }
 }
-

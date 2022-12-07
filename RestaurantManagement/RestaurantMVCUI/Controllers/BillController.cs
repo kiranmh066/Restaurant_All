@@ -89,7 +89,7 @@ namespace RestaurantMVCUI.Controllers
         }
         public async Task<IActionResult> paymentgateway(int BillId)
         {
-            #region getting Bills of The Latest user in the payment Oage
+            #region getting Bills of The Latest user in the payment Page
             int num = 0;
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();

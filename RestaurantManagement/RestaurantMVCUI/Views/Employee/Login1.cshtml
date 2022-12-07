@@ -3,8 +3,6 @@
 @{
     Layout = "~/Views/Shared/_LayoutLoginSection.cshtml";
 }
-
-
 <html>
 <head>
     <script type="text/javascript">
@@ -42,7 +40,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Employee Password</label>
-                                            <input type="text" asp-controller="Employee" asp-for="EmpPassword" class="form-control" placeholder="Enter Employee Password" required />
+                                            <input type="password" asp-controller="Employee" asp-for="EmpPassword" class="form-control" placeholder="Enter Employee Password" required />
                                         </div>
                                         <input type="submit" value="Login" class="btn btn-success" />
                                         &nbsp;&nbsp;&nbsp;

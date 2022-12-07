@@ -26,14 +26,17 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult AddHelp()
         {
-
+            #region Index of Adding Help from the user in
 
             return View();
+            #endregion 
         }
 
         [HttpPost]
         public async Task<IActionResult> AddHelp(Help help)
         {
+            #region for using Tempdata of hall table  in order to store hallid and performing the increment and dectreament in notification
+
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             ViewBag.status = "";
@@ -68,23 +71,27 @@ namespace RestaurantMVCUI.Controllers
             }
      
             return View();
+            #endregion
         }
 
         public IActionResult GetAllHelps()
         {
+            #region Index for showing All the issue in the hallManager controllert
             return View();
+            #endregion
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetAllHelps(Help help)
         {
+            #region Function for making notification  zero when the hallmanager see it
             IEnumerable<Help> helpresult = null;
             using (HttpClient client = new HttpClient())
             {
 
 
-                string endPoint = _configuration["WebApiBaseUrl"] + "Help1/GetAllHelps";//api controller name and httppost name given inside httppost in moviecontroller of api
+                string endPoint = _configuration["WebApiBaseUrl"] + "Help1/GetAllHelps";//api controller name and httppost name given inside httppost in helpcontroller of api
 
                 using (var response = await client.GetAsync(endPoint))
                 {
@@ -100,6 +107,7 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
             return View(helpresult);
+            #endregion
         }
 
 

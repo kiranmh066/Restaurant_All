@@ -20,7 +20,9 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult Index()
         {
+            #region Index of the Employee 
             return View();
+            #endregion
         }
         public async Task<IActionResult> Profile()
         {
@@ -46,8 +48,12 @@ namespace RestaurantMVCUI.Controllers
         }
 
         public IActionResult Login1()
+
         {
+            #region Index of the Login Page
+
             return View();
+            #endregion 
         }
         [HttpPost]
         public async Task<IActionResult> Login1(Employee employee)
@@ -97,7 +103,10 @@ namespace RestaurantMVCUI.Controllers
         }
         public IActionResult Forgot()
         {
+            #region getting the ui for the forget Password
+
             return View();
+            #endregion
         }
 
         [HttpPost]

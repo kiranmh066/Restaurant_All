@@ -156,9 +156,11 @@ namespace RestaurantMVCUI.Controllers
         [HttpPost]
         public async Task<IActionResult> GenerateBill(Bill bill)
         {
+            #region Displaying the message of bill paid Succcessfully
             ViewBag.status = "Ok";
             ViewBag.message = "Bill Paid Successfully!!";
-            return View();           
+            return View();
+            #endregion
         }
 
         public IActionResult BillSuccess()

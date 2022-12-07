@@ -121,7 +121,7 @@ namespace RestaurantMVCUI.Controllers
                    
                 tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
 
-            }
+            } 
             ViewBag.TableId = tableId; 
 
             order.OrderDate = DateTime.Now;
@@ -633,7 +633,8 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> SelectTable()
         {
-            #region Selecting Halltable Number
+            #region Entering Halltable Number
+
             IEnumerable<HallTable> hallTables = null;
             using (HttpClient client = new HttpClient())
             {

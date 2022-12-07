@@ -642,10 +642,6 @@ namespace RestaurantMVCUI.Controllers
 
         public async Task<IActionResult> SelectTable()
         {
-
-            
-
-         
             #region Selecting Halltable Number
             IEnumerable<HallTable> hallTables = null;
 

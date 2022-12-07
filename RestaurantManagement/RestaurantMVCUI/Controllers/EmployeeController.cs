@@ -59,37 +59,44 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> Login1(Employee employee)
         {
             #region Logging in of Employee using Email and Password and Will Redirect using Employee designation
-            Employee employee1 = null ;
-            //Employee employee1 = new Employee();
-            ViewBag.status = "";
-            using (HttpClient client = new HttpClient())
+            try
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
-                using (var response = await client.PostAsync(endPoint, content))
-                {                  
-                    var result = await response.Content.ReadAsStringAsync();
-                    employee1 = JsonConvert.DeserializeObject<Employee>(result);
-                    string employee_designation = (employee1.EmpDesignation).ToString();
-                    TempData["employee_designation"] = employee_designation;
-                    TempData.Keep();
-                    TempData["empId"] = Convert.ToInt32(employee1.EmpId);
-                    TempData.Keep();
-
-                    if (employee_designation == "CHEF")
-                        return RedirectToAction("Index", "Chef");
-                    else if (employee_designation == "HEADCHEF")
-                        return RedirectToAction("Index", "HeadChef");
-                    else if (employee_designation == "HALLMANAGER")
-                        return RedirectToAction("Index", "HallManager");
-                    else if (employee_designation == "ADMIN")
-                        return RedirectToAction("Index", "Admin1");
-                    else
+                Employee employee1 = null;
+                ViewBag.status = "";
+                using (HttpClient client = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Employee/Login";
+                    using (var response = await client.PostAsync(endPoint, content))
                     {
-                        ViewBag.status = "Error";
-                        ViewBag.message = "Wrong credentials!";
+                        var result = await response.Content.ReadAsStringAsync();
+                        employee1 = JsonConvert.DeserializeObject<Employee>(result);
+                        string employee_designation = (employee1.EmpDesignation).ToString();
+                        TempData["employee_designation"] = employee_designation;
+                        TempData.Keep();
+                        TempData["empId"] = Convert.ToInt32(employee1.EmpId);
+                        TempData.Keep();
+
+                        if (employee_designation == "CHEF")
+                            return RedirectToAction("Index", "Chef");
+                        else if (employee_designation == "HEADCHEF")
+                            return RedirectToAction("Index", "HeadChef");
+                        else if (employee_designation == "HALLMANAGER")
+                            return RedirectToAction("Index", "HallManager");
+                        else if (employee_designation == "ADMIN")
+                            return RedirectToAction("Index", "Admin1");
+                        else
+                        {
+                            ViewBag.status = "Error";
+                            ViewBag.message = "Wrong credentials!";
+                        }
                     }
                 }
+            }
+            catch (NullReferenceException e)
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "Invalid Email or Password";
             }
             return View();
             #endregion
@@ -107,52 +114,42 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> Forgot(Employee employee)
         {
             #region Forgot passWord Function, Updating passWord using Employee Id
-            try
+            string a = employee.EmpPassword;
+            using (HttpClient client = new HttpClient())
             {
-                string a = employee.EmpPassword;
-                using (HttpClient client = new HttpClient())
+                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employee.EmpId;
+                //EmployeeId is apicontroleer passing argument name
+                using (var response = await client.GetAsync(endPoint))
                 {
-                    string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employee.EmpId;
-                    //EmployeeId is apicontroleer passing argument name
-                    using (var response = await client.GetAsync(endPoint))
-                    {
-                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                        {   //dynamic viewbag we can create any variable name in run time
-                            var result = await response.Content.ReadAsStringAsync();
-                            employee = JsonConvert.DeserializeObject<Employee>(result);
-                        }
-                    }
-                }
-                employee.EmpPassword = a;
-                using (HttpClient client = new HttpClient())
-                {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
-                    string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";
-                    using (var response = await client.PutAsync(endPoint, content))
-                    {
-                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                        {   //dynamic viewbag we can create any variable name in run time
-                            ViewBag.status = "Ok";
-                            ViewBag.message = "Password Updated Successfull!!";
-                        }
-                        else
-                        {
-                            ViewBag.status = "Error";
-                            ViewBag.message = "Password not updated error";
-                        }
-
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        employee = JsonConvert.DeserializeObject<Employee>(result);
                     }
                 }
             }
-            catch(Exception ex)
-
+            employee.EmpPassword = a;
+            using (HttpClient client = new HttpClient())
             {
-                Console.WriteLine("An Exception has occurred : {0}", ex.Message);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";
+                using (var response = await client.PutAsync(endPoint, content))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        ViewBag.status = "Ok";
+                        ViewBag.message = "Password Updated Successfull!!";
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Id Doesnot Exist or Password not updated error";
+                    }
+
+                }
             }
             return View();
             #endregion
         }
-
     }
 }
-

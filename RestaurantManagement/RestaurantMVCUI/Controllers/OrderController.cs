@@ -35,11 +35,11 @@ namespace RestaurantMVCUI.Controllers
             if (option == "Subjects")
             {
                 //GetAllPatients action method will return a view with a patient records based on what a user specify the value in textbox  
-                return View(db.tbl_Food.Where(x => x.FoodType.StartsWith( search )|| search == null).ToList());
+                return View(db.tbl_Food.Where(x => x.FoodType.StartsWith(search) || search == null).ToList());
             }
             else if (option == "Gender")
             {
-                return View(db.tbl_Food.Where(x => x.FoodCuisine.StartsWith(search )|| search == null).ToList());
+                return View(db.tbl_Food.Where(x => x.FoodCuisine.StartsWith(search) || search == null).ToList());
             }
             else
             {
@@ -80,6 +80,7 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> AddOrder1(int FoodId)
         {
             #region Adding order to the Cart
+
             Order order = new Order();
             order.FoodId = FoodId;
 
@@ -116,22 +117,21 @@ namespace RestaurantMVCUI.Controllers
             List<SelectListItem> tableId = new List<SelectListItem>();
             tableId.Add(new SelectListItem { Value = "Select", Text = "select" });
             foreach (var item in halltable)
-            { 
-           
-                   
-                tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : "+(item.HallTableSize)+" Table No : "+ item.HallTableId.ToString() });
-
-<<<<<<< HEAD
-            }          
+            {
 
 
-=======
+                tableId.Add(new SelectListItem { Value = (item.HallTableId).ToString(), Text = "Table Size : " + (item.HallTableSize) + " Table No : " + item.HallTableId.ToString() });
+
+
             }
->>>>>>> 6c149b5e022e6577b73b6838d8b95d157bb0ea82
-            ViewBag.TableId = tableId; 
+
+
+            
+
+            ViewBag.TableId = tableId;
 
             order.OrderDate = DateTime.Now;
-           
+
             return View(order);
             #endregion
         }
@@ -149,7 +149,7 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTableById?hallTableId=" + hallTableId1;
-                
+
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -165,7 +165,7 @@ namespace RestaurantMVCUI.Controllers
                 StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
 
-                using (var response = await client.PutAsync(endPoint, content)) ;           
+                using (var response = await client.PutAsync(endPoint, content)) ;
             }
             using (HttpClient client = new HttpClient())
             {
@@ -176,9 +176,9 @@ namespace RestaurantMVCUI.Controllers
                 order.HallTableId = hallTableId1;
                 int count = 0;
 
-                foreach(var item in orders)
+                foreach (var item in orders)
                 {
-                    if(item.FoodId==order.FoodId)
+                    if (item.FoodId == order.FoodId)
                     {
                         int tq1 = item.Quantity;
                         int tt1 = item.OrderTotal;
@@ -188,11 +188,11 @@ namespace RestaurantMVCUI.Controllers
                         count++;
 
                     }
-                 
 
-                   
+
+
                 }
-                if(orders.Count==0)
+                if (orders.Count == 0)
                 {
                     orders.Add(order);
                 }
@@ -202,10 +202,10 @@ namespace RestaurantMVCUI.Controllers
                     orders.Add(order);
                 }
 
-           
-               
-                    
-                
+
+
+
+
 
                 TempData["status"] = true;
                 while (Convert.ToBoolean(TempData["status"]))
@@ -214,7 +214,7 @@ namespace RestaurantMVCUI.Controllers
                     return RedirectToAction("Index", "Order");
                 }
 
-               
+
 
                 foreach (var item in orders)
                 {
@@ -243,9 +243,10 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> ConfirmOrder()
         {
             #region Cinfirming Order From The Cart
-            TempData["OrderedTime"]=DateTime.Now;
+
+            TempData["OrderedTime"] = DateTime.Now;
             TempData.Keep();
-           
+
             TempData["status"] = false;
             TempData.Keep();
 
@@ -254,9 +255,9 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 int count = 0;
-               
+
                 foreach (var item in orders)
-                {   if (item.HallTableId == hallTableId1)
+                { if (item.HallTableId == hallTableId1)
                     {
 
                         StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
@@ -283,13 +284,14 @@ namespace RestaurantMVCUI.Controllers
                         }
                     }
 
-                                  
+
 
                 }
                 orders.Clear();
                 return View();
+                #endregion
             }
-            #endregion
+
         }
 
 
@@ -323,9 +325,9 @@ namespace RestaurantMVCUI.Controllers
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             List<Food> foodresult = new List<Food>();
-            foreach(var item in orders)
+            foreach (var item in orders)
             {
-                if (hallTableId1==item.HallTableId) {
+                if (hallTableId1 == item.HallTableId) {
                     Food food = null;
                     using (HttpClient client = new HttpClient())
 
@@ -348,13 +350,13 @@ namespace RestaurantMVCUI.Controllers
                         }
 
                     }
-                }                
+                }
             }
 
-            List<Order>customerorderview=new List<Order>();
-            foreach(var item in orders)
+            List<Order> customerorderview = new List<Order>();
+            foreach (var item in orders)
             {
-                if(hallTableId1 == item.HallTableId)
+                if (hallTableId1 == item.HallTableId)
                 {
                     customerorderview.Add(item);
                 }
@@ -363,6 +365,7 @@ namespace RestaurantMVCUI.Controllers
             var tupeluser = new Tuple<List<Order>, List<Food>>(customerorderview, foodresult);
 
             return View(tupeluser);
+
             #endregion
         }
 
@@ -370,11 +373,11 @@ namespace RestaurantMVCUI.Controllers
         {
             #region Cancelling/Removing Orders From Cart
             int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
-            TempData.Keep();                
+            TempData.Keep();
 
             DateTime orderedtime = Convert.ToDateTime(TempData["OrderedTime"]);
             TempData.Keep();
-            DateTime maxTime = orderedtime.AddMinutes(0.5); 
+            DateTime maxTime = orderedtime.AddMinutes(0.5);
             DateTime cancelTime = DateTime.Now;
 
             IEnumerable<Order> orderresult = null;
@@ -388,7 +391,7 @@ namespace RestaurantMVCUI.Controllers
                         var result = await response.Content.ReadAsStringAsync();
                         orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
                     }
-                    if(orderresult==null)
+                    if (orderresult == null)
                     {
                         ViewBag.status = "Error";
                         ViewBag.message = "Your Order is Already Prepared Can't cancel now";
@@ -414,7 +417,7 @@ namespace RestaurantMVCUI.Controllers
                             ViewBag.message = "Order  Canceled Successfull!!";
                         }
                     }
-                }   
+                }
             }
             //to make hall table empty
             HallTable hallTable = null;
@@ -436,7 +439,7 @@ namespace RestaurantMVCUI.Controllers
                 StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
 
-                using (var response = await client.PutAsync(endPoint, content)) ;              
+                using (var response = await client.PutAsync(endPoint, content)) ;
             }
             return View();
             #endregion
@@ -469,16 +472,16 @@ namespace RestaurantMVCUI.Controllers
             List<AssignWork> assignWorkslist = new List<AssignWork>();
             using (HttpClient client = new HttpClient())
             {
-            string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorks";
-            //api controller name and httppost name given inside httppost in moviecontroller of api
-            using (var response = await client.GetAsync(endPoint))
-            {
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {   //dynamic viewbag we can create any variable name in run time
-                    var result = await response.Content.ReadAsStringAsync();
-                    assignWorkslist = JsonConvert.DeserializeObject<List<AssignWork>>(result);
+                string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorks";
+                //api controller name and httppost name given inside httppost in moviecontroller of api
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        assignWorkslist = JsonConvert.DeserializeObject<List<AssignWork>>(result);
+                    }
                 }
-            }
             }
             var tupeluser = new Tuple<IEnumerable<Order>, List<AssignWork>>(orderresult, assignWorkslist);
             return View(tupeluser);
@@ -489,7 +492,7 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> UpdateOrder1(int OrderId)
         {
             #region Updating Order before Preparing order
-            Order order= null;
+            Order order = null;
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + OrderId;
@@ -510,7 +513,7 @@ namespace RestaurantMVCUI.Controllers
         {
             #region Updating Order Before Preparing Order In Post method
             ViewBag.status = "";
-            
+
             DateTime orderedtime = Convert.ToDateTime(TempData["OrderedTime"]);
             TempData.Keep();
             DateTime maxTime = orderedtime.AddMinutes(0.5);
@@ -531,7 +534,7 @@ namespace RestaurantMVCUI.Controllers
             }
             order.OrderTotal = order.Quantity * Convert.ToInt32(food.FoodCost);
             order.OrderStatus = false;
-            
+
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
@@ -539,7 +542,7 @@ namespace RestaurantMVCUI.Controllers
 
                 using (var response = await client.PutAsync(endPoint, content))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime <= maxTime )
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime <= maxTime)
                     {   //dynamic viewbag we can create any variable name in run time
                         ViewBag.status = "Ok";
                         ViewBag.message = "Order Details Updated Successfull!!";
@@ -565,13 +568,13 @@ namespace RestaurantMVCUI.Controllers
             DateTime cancelTime = DateTime.Now;
             ViewBag.status = "";
             Order order = null;
-            
+
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrderById?orderId=" + OrderId;
                 using (var response = await client.GetAsync(endPoint))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime<=maxTime)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime <= maxTime)
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
                         order = JsonConvert.DeserializeObject<Order>(result);
@@ -606,7 +609,7 @@ namespace RestaurantMVCUI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
                         ViewBag.status = "Ok";
-                        ViewBag.message = food.FoodName+" Order Deleted Successfully!!";
+                        ViewBag.message = food.FoodName + " Order Deleted Successfully!!";
                     }
                     else
                     {
@@ -635,18 +638,17 @@ namespace RestaurantMVCUI.Controllers
             }
             return View();
             #endregion
-        }        
+        }
 
         public async Task<IActionResult> SelectTable()
         {
-<<<<<<< HEAD
-            #region Entering Halltable Number
 
-            IEnumerable<HallTable> halltable = null;
-=======
+            
+
+         
             #region Selecting Halltable Number
             IEnumerable<HallTable> hallTables = null;
->>>>>>> 6c149b5e022e6577b73b6838d8b95d157bb0ea82
+
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTables";
@@ -666,6 +668,7 @@ namespace RestaurantMVCUI.Controllers
         public IActionResult SelectedTable(HallTable hallTable)
         {
             #region Entering HallTable number
+
             TempData["halltableuserid"] = hallTable.HallTableId;
             TempData.Keep();
 

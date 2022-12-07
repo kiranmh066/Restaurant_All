@@ -60,6 +60,7 @@ namespace RestaurantMVCUI.Controllers
         {
             #region Logging in of Employee using Email and Password and Will Redirect using Employee designation
             Employee employee1 = null ;
+            //Employee employee1 = new Employee();
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
@@ -106,43 +107,52 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> Forgot(Employee employee)
         {
             #region Forgot passWord Function, Updating passWord using Employee Id
-            string a = employee.EmpPassword;
-            using (HttpClient client = new HttpClient())
+            try
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employee.EmpId;
-                //EmployeeId is apicontroleer passing argument name
-                using (var response = await client.GetAsync(endPoint))
+                string a = employee.EmpPassword;
+                using (HttpClient client = new HttpClient())
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
-                        var result = await response.Content.ReadAsStringAsync();
-                        employee = JsonConvert.DeserializeObject<Employee>(result);
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Employee/GetEmployeeById?employeeId=" + employee.EmpId;
+                    //EmployeeId is apicontroleer passing argument name
+                    using (var response = await client.GetAsync(endPoint))
+                    {
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {   //dynamic viewbag we can create any variable name in run time
+                            var result = await response.Content.ReadAsStringAsync();
+                            employee = JsonConvert.DeserializeObject<Employee>(result);
+                        }
+                    }
+                }
+                employee.EmpPassword = a;
+                using (HttpClient client = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";
+                    using (var response = await client.PutAsync(endPoint, content))
+                    {
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {   //dynamic viewbag we can create any variable name in run time
+                            ViewBag.status = "Ok";
+                            ViewBag.message = "Password Updated Successfull!!";
+                        }
+                        else
+                        {
+                            ViewBag.status = "Error";
+                            ViewBag.message = "Password not updated error";
+                        }
+
                     }
                 }
             }
-            employee.EmpPassword = a;
-            using (HttpClient client = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(employee), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Employee/UpdateEmployee";
-                using (var response = await client.PutAsync(endPoint, content))
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {   //dynamic viewbag we can create any variable name in run time
-                        ViewBag.status = "Ok";
-                        ViewBag.message = "Password Updated Successfull!!";
-                    }
-                    else
-                    {
-                        ViewBag.status = "Error";
-                        ViewBag.message = "Password not updated error";
-                    }
+            catch(Exception ex)
 
-                }
+            {
+                Console.WriteLine("An Exception has occurred : {0}", ex.Message);
             }
             return View();
             #endregion
         }
+
     }
 }
 

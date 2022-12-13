@@ -74,15 +74,18 @@
                                             {
                                                 <div class="col-md-12 d-flex ">
                                                     <div>
-                                                        <p style="color:black">Order Status</p>
-                                                        @if (assignWork.WorkStatus == true)
-                                                        {
+                                                       
+                                                        @if (assignWork.WorkStatus == true && order.OrderStatus==true)
+                                                            {
+                                                                <p style="color:black">Order Status</p>
                                                             <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/307637/soup-in-bowl-bowl-soup-hot-food.svg" />&nbsp; Prepared Ready To Serve</td>
                                                         }
-                                                        else
-                                                        {
+                                                        else if (assignWork.WorkStatus == false && order.OrderStatus == true)
+                                                            {
+                                                                <p style="color:black">Order Status</p>
                                                             <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/147435/cooking.svg" />&nbsp; Preparing Please Wait</td>
                                                         }
+
                                                     </div>
                                                 </div>
                                                

@@ -127,7 +127,6 @@ $(document).ready(function () {
         $("#tab3").removeClass("bg-light");
     });
 })
-<<<<<<< HEAD
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -195,6 +194,3 @@ $(document).ready(function () {
         $("#tab3").removeClass("bg-light");
     });
 })
-=======
-
->>>>>>> 2837dc59ed05da5cbff47a1f6ad114654b127145

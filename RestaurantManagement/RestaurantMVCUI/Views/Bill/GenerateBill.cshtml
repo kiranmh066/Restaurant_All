@@ -1,10 +1,6 @@
 ﻿@using RestaurantEntity;
 @model Tuple<List<Bill>, List<Order>>;
 
-
-
-
-
 <body style="background-color:#5A3B5D">
     <a asp-area="" asp-controller="Bill" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
     <center>
@@ -127,25 +123,55 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-xl-10">
+                    <div class="col-xl-8">
                         <p>Thank you for your purchase</p>
                     </div>
                     <div class="col-xl-2">
                         @foreach (var item in Model.Item1)
                         {
                                     <a asp-controller="Bill" asp-action="paymentgateway" asp-route-BillId="@item.BillId" class="btn btn-success">PayNow</a>
-                            @* <form method="post">
-                                <input type="button" value="PayNow" asp-controller="Bill" asp-action="BillSuccess" asp-route-HallId="@item.HallTableId" class="btn btn-success">
-                            </form>*@
+                          
                             break;
                         }
                     </div>
+                    <div class="col-xl-2">
+                     @foreach (var item in Model.Item1)
+                        {
+                            <div id="content">
+                                <h3>Hello, this is a H3 tag</h3>
+
+                                <p>a pararaph</p>
+                            </div>
+                            <div id="editor"></div>
+                            <button id="cmd">Generate PDF</button>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+                            break;
+                        }
+                        </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 </div>   
+
+<script>
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+
+    $('#cmd').click(function () {
+        doc.fromHTML($('#content').html(), 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf');
+    });
+</script>
 </body>
 @if (ViewBag.status == "Ok")
 {

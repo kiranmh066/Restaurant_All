@@ -33,9 +33,15 @@ namespace RestaurantAPI.Controllers
 
         {
             #region  Function for deleting the Food by its foodId.
-
-            _foodService.DeleteFood(foodId);
-            return Ok("Food deleted Successfully");
+            try
+            {
+                _foodService.DeleteFood(foodId);
+                return Ok("Food deleted Successfully");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
             #endregion
         }
 
@@ -43,9 +49,15 @@ namespace RestaurantAPI.Controllers
         public IActionResult UpdateFood([FromBody] Food food)
         {
             #region Function for Updating the Food by its object
-
-            _foodService.UpdateFood(food);
-            return Ok("Food Updated Successfully");
+            try
+            {
+                _foodService.UpdateFood(food);
+                return Ok("Food Updated Successfully");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
             #endregion
         }
 
@@ -62,9 +74,15 @@ namespace RestaurantAPI.Controllers
         public IActionResult AddFood([FromBody] Food foodInfo)
         {
             #region Function for Adding the Food by its foodId
-
-            _foodService.AddFood(foodInfo);
-            return Ok("Register successfully!!");
+            try
+            {
+                _foodService.AddFood(foodInfo);
+                return Ok("Register successfully!!");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
 
             #endregion
         }

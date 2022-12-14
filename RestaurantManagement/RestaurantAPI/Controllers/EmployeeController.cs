@@ -32,9 +32,15 @@ namespace RestaurantAPI.Controllers
         public IActionResult DeleteEmployee(int employeeId)
         {
             #region Function for deleting the employee by its employeeId.
-
-            _employeeService.DeleteEmployee(employeeId);
-            return Ok("Employee deleted Successfully");
+            try
+            {
+                _employeeService.DeleteEmployee(employeeId);
+                return Ok("Employee deleted Successfully");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
             #endregion
         }
 
@@ -42,9 +48,15 @@ namespace RestaurantAPI.Controllers
         public IActionResult UpdateEmployee([FromBody] Employee employee)
         {
             #region Function for updating  the employee its object
-
-            _employeeService.UpdateEmployee(employee);
-            return Ok("Employee Updated Successfully");
+            try
+            {
+                _employeeService.UpdateEmployee(employee);
+                return Ok("Employee Updated Successfully");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
             #endregion
         }
 
@@ -62,20 +74,32 @@ namespace RestaurantAPI.Controllers
         public IActionResult AddEmployee([FromBody] Employee employeeInfo)
         {
             #region Function for updating  the employee  by its object
-
-            _employeeService.AddEmployee(employeeInfo);
-            return Ok("Register successfully!!");
+            try
+            {
+                _employeeService.AddEmployee(employeeInfo);
+                return Ok("Register successfully!!");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
             #endregion
         }
         [HttpPost("Login")]
         public Employee Login([FromBody] Employee employeeInfo)
         {
             #region Function of login
-            Employee Employee = _employeeService.Login(employeeInfo);
-            if (Employee != null)
+            try
+            {
+                Employee Employee = _employeeService.Login(employeeInfo);
+
                 return Employee;
-            else
+            }
+            catch
+            {
+
                 return null;
+            }
             #endregion
         }
     }

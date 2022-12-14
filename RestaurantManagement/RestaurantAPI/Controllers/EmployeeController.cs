@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RestaurantBLL.Services;
 using RestaurantEntity;
+using System;
 using System.Collections.Generic;
 
 namespace RestaurantAPI.Controllers
@@ -20,7 +21,10 @@ namespace RestaurantAPI.Controllers
         [HttpGet("GetEmployees")]//
         public IEnumerable<Employee> GetEmployees()
         {
+             #region Function for getting  the Employee
+
             return _employeeService.GetEmployee();
+            #endregion
         }
 
 
@@ -28,37 +32,76 @@ namespace RestaurantAPI.Controllers
         [HttpDelete("DeleteEmployee")]
         public IActionResult DeleteEmployee(int employeeId)
         {
-            _employeeService.DeleteEmployee(employeeId);
-            return Ok("Employee deleted Successfully");
+            #region Function for deleting the employee by its employeeId.
+            try
+            {
+                _employeeService.DeleteEmployee(employeeId);
+                return Ok("Employee deleted Successfully");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
+            #endregion
         }
 
         [HttpPut("UpdateEmployee")]
         public IActionResult UpdateEmployee([FromBody] Employee employee)
         {
-            _employeeService.UpdateEmployee(employee);
-            return Ok("Employee Updated Successfully");
+            #region Function for updating  the employee its object
+            try
+            {
+                _employeeService.UpdateEmployee(employee);
+                return Ok("Employee Updated Successfully");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
+            #endregion
         }
 
         [HttpGet("GetEmployeeById")]
         public Employee GetEmployeeById(int employeeId)
         {
+            #region Function for getting it all details of the   the employee by  its employeeId
+
             return _employeeService.GetEmployeeById(employeeId);
+
+            #endregion
         }
 
         [HttpPost("AddEmployee")]
         public IActionResult AddEmployee([FromBody] Employee employeeInfo)
         {
-            _employeeService.AddEmployee(employeeInfo);
-            return Ok("Register successfully!!");
+            #region Function for updating  the employee  by its object
+            try
+            {
+                _employeeService.AddEmployee(employeeInfo);
+                return Ok("Register successfully!!");
+            }
+            catch
+            {
+                return BadRequest(400);
+            }
+            #endregion
         }
         [HttpPost("Login")]
         public Employee Login([FromBody] Employee employeeInfo)
         {
-            Employee Employee = _employeeService.Login(employeeInfo);
-            if (Employee != null)
+            #region Function of login
+            try
+            {
+                Employee Employee = _employeeService.Login(employeeInfo);
+
                 return Employee;
-            else
+            }
+            catch
+            {
+
                 return null;
+            }
+            #endregion
         }
     }
 }

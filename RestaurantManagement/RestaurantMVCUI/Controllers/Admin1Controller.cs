@@ -637,6 +637,11 @@ namespace RestaurantMVCUI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
+                       
+                        
+                        
+                        
+                        
                         feedbackresult = JsonConvert.DeserializeObject<IEnumerable<Feedback>>(result);
                     }
                 }

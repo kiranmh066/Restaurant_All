@@ -186,11 +186,7 @@ namespace RestaurantMVCUI.Controllers
                         item.Quantity = order.Quantity;
                         item.OrderTotal = order.Quantity * tt;
                         count++;
-
                     }
-
-
-
                 }
                 if (orders.Count == 0)
                 {
@@ -201,6 +197,7 @@ namespace RestaurantMVCUI.Controllers
                 {
                     orders.Add(order);
                 }
+<<<<<<< HEAD
 
 
 
@@ -208,14 +205,14 @@ namespace RestaurantMVCUI.Controllers
 
 
                 TempData["status"] = true;//3
+=======
+                TempData["status"] = true;
+>>>>>>> 0a4131831597aa93bc9b321971845fd1da87507d
                 while (Convert.ToBoolean(TempData["status"]))
                 {
                     TempData.Keep();
                     return RedirectToAction("Index", "Order");
                 }
-
-
-
                 foreach (var item in orders)
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(orders), Encoding.UTF8, "application/json");
@@ -257,7 +254,8 @@ namespace RestaurantMVCUI.Controllers
                 int count = 0;
 
                 foreach (var item in orders)
-                { if (item.HallTableId == hallTableId1)
+                {   
+                    if (item.HallTableId == hallTableId1)
                     {
 
                         StringContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
@@ -269,23 +267,17 @@ namespace RestaurantMVCUI.Controllers
                             {   //dynamic viewbag we can create any variable name in run time
                                 ViewBag.status = "Ok";
                                 if (count == 1)
-                                    ViewBag.message = " " + count + "Item Ordered Successfully!";
+                                    ViewBag.message = " " + count + " Item Ordered Successfully!";
                                 else
-                                    ViewBag.message = " " + count + "Items Ordered Successfully!";
-
+                                    ViewBag.message = " " + count + " Items Ordered Successfully!";
                             }
-
                             else
                             {
                                 ViewBag.status = "Error";
                                 ViewBag.message = "Not able to order Items";
                             }
-
                         }
                     }
-
-
-
                 }
                 orders.Clear();
                 return View();
@@ -386,7 +378,7 @@ namespace RestaurantMVCUI.Controllers
                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;
                 using (var response = await client.GetAsync(endPoint))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && cancelTime <= maxTime )
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
                         orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
@@ -398,26 +390,42 @@ namespace RestaurantMVCUI.Controllers
                     }
                 }
             }
-
-
-            foreach (var item in orderresult)
+            if(orderresult!=null)
             {
-                ViewBag.status = "";
-                //using grabage collection only for inbuilt classes
-                using (HttpClient client = new HttpClient())
+                if(cancelTime <= maxTime)
                 {
-
-                    string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + item.OrderId;  //api controller name and its function
-
-                    using (var response = await client.DeleteAsync(endPoint))
+                    foreach (var item in orderresult)
                     {
-                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                        {   //dynamic viewbag we can create any variable name in run time
-                            ViewBag.status = "Ok";
-                            ViewBag.message = "Order  Canceled Successfull!!";
-                        }
+                        ViewBag.status = "";
+                        //using grabage collection only for inbuilt classes
+                        using (HttpClient client = new HttpClient())
+                        {
+
+                            string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + item.OrderId;  //api controller name and its function
+
+                            using (var response = await client.DeleteAsync(endPoint))
+                            {
+                                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                                {   //dynamic viewbag we can create any variable name in run time
+                                    ViewBag.status = "Ok";
+                                    ViewBag.message = "Order  Canceled Successfull!!";
+                                }
+                            }
+                        }   
                     }
                 }
+                else
+                {
+                    ViewBag.status = "Error";
+                    ViewBag.message = "Cannot Cancel Order!!";
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "You Not Ordered Anything!!";
+                return View();
             }
             //to make hall table empty
             HallTable hallTable = null;
@@ -467,6 +475,13 @@ namespace RestaurantMVCUI.Controllers
                         ViewBag.status = "Error";
                         ViewBag.message = "You have Not Ordered Anything";
                     }
+                    /*int k = orderresult.Count();
+                    if (k == 0)
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "You have Not Ordered Anything";
+                        return View();
+                    }*/
                 }
             }
             List<AssignWork> assignWorkslist = new List<AssignWork>();
@@ -625,17 +640,33 @@ namespace RestaurantMVCUI.Controllers
         public IActionResult ClearCart()
         {
             #region Clearing cart
-            orders.Clear();
-            if (orders.Count == 0)
+            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+            if (orders.Count >= 1)
             {
-                ViewBag.status = "Ok";
-                ViewBag.message = "Cart Emptied Successfully!!";
+                foreach (var item in orders)
+                {
+                    if (item.HallTableId == hallTableId1)
+                    {
+                        orders.Clear();
+                        ViewBag.status = "Ok";
+                        ViewBag.message = "Cart Emptied Successfully!!";
+                        return View();
+                    }
+                }
+            }
+            else if (orders.Count == 0)
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "Your Cart Is Already Empty";
+                return View();
             }
             else
             {
                 ViewBag.status = "Error";
-                ViewBag.message = "Cart not Emptied";
+                ViewBag.message = "Cannot Empty Your Cart..!!!";
             }
+            //ViewBag.status = "";
             return View();
             #endregion
         }
@@ -669,6 +700,83 @@ namespace RestaurantMVCUI.Controllers
             TempData.Keep();
 
             return RedirectToAction("Index", "Order");
+            #endregion
+        }
+
+        public async Task<IActionResult> Exit()
+        {
+            #region Exit For Customer
+
+            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+
+            IEnumerable<Order> orderresult = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByHallById?HallId=" + hallTableId1;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
+                    }
+                    if (orderresult == null)
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "You Cannot exit now";
+                    }
+                }
+            }
+
+
+            foreach (var item in orderresult)
+            {
+                ViewBag.status = "";
+                //using grabage collection only for inbuilt classes
+                using (HttpClient client = new HttpClient())
+                {
+
+                    string endPoint = _configuration["WebApiBaseUrl"] + "Order/DeleteOrder?orderId=" + item.OrderId;  //api controller name and its function
+
+                    using (var response = await client.DeleteAsync(endPoint))
+                    {
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {   //dynamic viewbag we can create any variable name in run time
+                            ViewBag.status = "Ok";
+                            //ViewBag.message = "Order  Canceled Successfull!!";
+                        }
+                    }
+                }
+            }
+            //to make hall table empty
+            HallTable hallTable = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/GetHallTableById?hallTableId=" + hallTableId1;//api controller name and its function
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {   //dynamic viewbag we can create any variable name in run time
+                        var result = await response.Content.ReadAsStringAsync();
+                        hallTable = JsonConvert.DeserializeObject<HallTable>(result);
+                    }
+                }
+            }
+            hallTable.HallTableStatus = true;
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(hallTable), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "HallTable/UpdateHallTable";//api controller name and its function
+
+                using (var response = await client.PutAsync(endPoint, content)) ;
+            }
+
+            TempData["halltableuserid"] = 0;
+            TempData.Keep();
+            orders.Clear();
+
+            return RedirectToAction("Index", "Home");
             #endregion
         }
     }

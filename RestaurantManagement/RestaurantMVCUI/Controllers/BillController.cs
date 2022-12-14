@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.Extensions.Configuration;
 using System.Text;
+using System.Linq;
 
 namespace RestaurantMVCUI.Controllers
 {
@@ -18,11 +19,39 @@ namespace RestaurantMVCUI.Controllers
             _configuration = configuration;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            #region Index of Bill Checks whether Ordered Anything
+            int hallTableId1 = Convert.ToInt32(TempData["halltableuserid"]);
+            TempData.Keep();
+
+            IEnumerable<Order> orderresult = null;
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrdersByTableId?hallTableId=" + hallTableId1;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        orderresult = JsonConvert.DeserializeObject<IEnumerable<Order>>(result);
+                    }
+                }
+            }
+            int k = orderresult.Count();
+            if (k ==0)
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "Not Ordered Anything Anything Get Bill";
+                return RedirectToAction("GetOrders1", "Order");
+            }
+            else
+            {
+                return View();
+            }
+            #endregion
         }
-     
+
         [HttpPost]
         public async Task<IActionResult> Index(Bill bill)
         {
@@ -84,6 +113,11 @@ namespace RestaurantMVCUI.Controllers
 
                 }
             }
+            /*else
+            {
+                ViewBag.status = "Error";
+                ViewBag.message = "Not Ordered Anything Anything Get Bill";
+            }*/
             return View();
             #endregion
         }

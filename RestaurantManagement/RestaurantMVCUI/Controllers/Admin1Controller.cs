@@ -42,8 +42,6 @@ namespace RestaurantMVCUI.Controllers
 
           return View();
             #endregion
-
-
         }
 
         [HttpPost]
@@ -62,7 +60,7 @@ namespace RestaurantMVCUI.Controllers
 
                     using (var response = await client.PostAsync(endPoint, content))
                     {
-                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK && (employee.EmpGender== 'M' || employee.EmpGender == 'F'))
                         {   //dynamic viewbag we can create any variable name in run time
                             ViewBag.status = "Ok";
                             ViewBag.message = "Employee Added Successfull!!";
@@ -629,6 +627,11 @@ namespace RestaurantMVCUI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {   //dynamic viewbag we can create any variable name in run time
                         var result = await response.Content.ReadAsStringAsync();
+                       
+                        
+                        
+                        
+                        
                         feedbackresult = JsonConvert.DeserializeObject<IEnumerable<Feedback>>(result);
                     }
                 }

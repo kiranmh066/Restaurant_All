@@ -27,7 +27,11 @@ namespace RestaurantDAL
         public DbSet<AssignWork> tbl_AssignWork { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
+<<<<<<< HEAD
              dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2151; Initial Catalog = Restaurant_H1Ank19; Integrated Security=True;");
+=======
+             dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2159; Initial Catalog = Restaurant_Harsh7; Integrated Security=True;");
+>>>>>>> 0a4131831597aa93bc9b321971845fd1da87507d
 
         }
     }

@@ -4,47 +4,59 @@
 
 }
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
-    <div class="container">
-        
-        <center>
-            <h3>All Bills </h3>
-        </center>
+     @if(true)
+{
+    int c = Model.Count();
 
-        <div class="row">
-            <div class="col-12 text-white">
+        @if (c != 0)
+        {
+            <div class="container">
 
-                <hr />
-                <table class="table  table-bordered table-hover">
-                    <thead>
-                        <tr style="color:white">
+                <center>
+                    <h3>All Bills </h3>
+                </center>
 
-                            <th>Bill Id</th>
-                            <th>HallTable Number</th>
-                            <th>User Name</th>
-                            <th>User Email</th>
-                            <th>Bill Date</th>
-                            <th>Bill Total</th>
-                            <th>Bill Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editHallTable of HallTablecontroller (route name) here which is HallTableId
+                <div class="row">
+                    <div class="col-12 text-white">
+
+                        <hr />
+                        <table class="table  table-bordered table-hover table-responsive">
+                            <thead>
+                                <tr style="color:white">
+
+                                    <th>Bill Id</th>
+                                    <th>HallTable Number</th>
+                                    <th>User Name</th>
+                                    <th>User Email</th>
+                                    <th>Bill Date</th>
+                                    <th>Bill Total</th>
+                                    <th>Bill Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)@*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editHallTable of HallTablecontroller (route name) here which is HallTableId
                         which can be written as http://localhost:32344/HallTables/edit HallTable?HallTableid=2//
                         *@
-                        {
-                            <tr style="color:white">
-                                <td>@item.BillId</td>
-                                <td>@item.HallTableId</td>
-                                <td>@item.UserName</td>
-                                <td>@item.UserEmail</td>
-                                <td>@item.BillDate</td>
-                                <td>@item.BillTotal</td>
-                                <td>@item.BillStatus</td>                               
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                {
+                                    <tr style="color:white">
+                                        <td>@item.BillId</td>
+                                        <td>@item.HallTableId</td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.UserEmail</td>
+                                        <td>@item.BillDate</td>
+                                        <td>@item.BillTotal</td>
+                                        <td>@item.BillStatus</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</body>
+        }
+        else
+        {
+            <h1 class="text-center text-uppercase">there is no bills</h1>
+        }
+        }
+        </body>

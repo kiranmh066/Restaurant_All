@@ -82,7 +82,7 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "AssignWork/GetAssignWorks";
-                //api controller name and httppost name given inside httppost in moviecontroller of api
+                //api controller name and httppost name given inside httppost in ordercontroller of api
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -96,7 +96,7 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Order/GetOrders";
-                //api controller name and httppost name given inside httppost in moviecontroller of api
+                //api controller name and httppost name given inside httppost in ordercontroller of api
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

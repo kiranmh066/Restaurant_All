@@ -3,6 +3,9 @@
 @model Tuple<IEnumerable<Order>,List<AssignWork>>;   
 <body style="background-color:#5A3B5D;padding-bottom:80px">
     <a asp-area="" asp-controller="Order" asp-action="GetOrders1" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+     )
+
+
     <div class="container">
         <center>
             <h2 style="color:white">View Ordered List</h2>
@@ -11,103 +14,114 @@
         @if (true)
         {
             var total = 0;
-            @foreach (var order in Model.Item1)
+            int k = Model.Item1.Count();
+            if (k != 0)
             {
-                string imageBase64Data = Convert.ToBase64String(order.Food.FoodImage);
-                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
 
-                total = total + order.OrderTotal;
-                        <div>
-                            <div class="row d-flex justify-content-center align-items-center h-100">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-body p-4">
+                @foreach (var order in Model.Item1)
+                {
+                    string imageBase64Data = Convert.ToBase64String(order.Food.FoodImage);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
 
-                                            <div class="row align-items-center">
-                                                <div class="col-md-2">
-                                                    <img src="@imageDataURL"
+                    total = total + order.OrderTotal;
+                    <div>
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col">
+                                <div class="card mb-4">
+                                    <div class="card-body p-4">
+
+                                        <div class="row align-items-center">
+                                            <div class="col-md-2">
+                                                <img src="@imageDataURL"
                                                     class="img-fluid" alt="Generic placeholder image">
+                                            </div>
+                                            <div class="col-md-2 d-flex justify-content-center">
+                                                <div>
+                                                    <p style="color:black">Table No</p>
+                                                    <p>@order.HallTableId</p>
                                                 </div>
-                                                <div class="col-md-2 d-flex justify-content-center">
-                                                    <div>
-                                                        <p style="color:black">Table No</p>
-                                                        <p>@order.HallTableId</p>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-1 d-flex justify-content-center">
+                                                <div>
+                                                    <p style="color:black">Name</p>
+                                                    <p>@order.Food.FoodName</p>
                                                 </div>
-                                                <div class="col-md-1 d-flex justify-content-center">
-                                                    <div>
-                                                        <p style="color:black">Name</p>
-                                                        <p>@order.Food.FoodName</p>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-1 d-flex justify-content-center">
+                                                <div>
+                                                    <p style="color:black">Quantity</p>
+                                                    <p>@order.Quantity</p>
                                                 </div>
-                                                <div class="col-md-1 d-flex justify-content-center">
-                                                    <div>
-                                                        <p style="color:black">Quantity</p>
-                                                        <p>@order.Quantity</p>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-3 d-flex justify-content-center">
+                                                <div>
+                                                    <p style="color:black">Order Date & Time </p>
+                                                    <p>@order.OrderDate</p>
                                                 </div>
-                                                <div class="col-md-3 d-flex justify-content-center">
-                                                    <div>
-                                                        <p style="color:black">Order Date & Time </p>
-                                                        <p>@order.OrderDate</p>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-1 d-flex justify-content-center">
+                                                <div>
+                                                    <p style="color:black"> Cost</p>
+                                                    <p> ₹@order.Food.FoodCost</p>
                                                 </div>
-                                                <div class="col-md-1 d-flex justify-content-center">
-                                                    <div>
-                                                        <p style="color:black"> Cost</p>
-                                                        <p> ₹@order.Food.FoodCost</p>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-2 d-flex justify-content-center">
+                                                <div>
+                                                    <p style="color:black" class=" font-weight-bolder">Order Total</p>
+                                                    <p class=" font-weight-bolder">₹@order.OrderTotal</p>
                                                 </div>
-                                                <div class="col-md-2 d-flex justify-content-center">
-                                                    <div>
-                                                        <p style="color:black" class=" font-weight-bolder">Order Total</p>
-                                                        <p class=" font-weight-bolder">₹@order.OrderTotal</p>
-                                                    </div>
-                                                </div>
-                                        <div class="col-md-6 d-flex justify-content-start">
-                                          
-                                            @foreach (var assignWork in Model.Item2)
+                                            </div>
+                                            <div class="col-md-6 d-flex justify-content-start">
 
-                                        {
+                                                @foreach (var assignWork in Model.Item2)
 
-                                            @if (order.HallTableId == assignWork.Order.HallTableId)
-                                            {
-                                                <div class="col-md-12 d-flex ">
-                                                    <div>
-                                                        <p style="color:black">Order Status</p>
-                                                        @if (assignWork.WorkStatus == true)
-                                                        {
-                                                            <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/307637/soup-in-bowl-bowl-soup-hot-food.svg" />&nbsp; Prepared Ready To Serve</td>
-                                                        }
-                                                        else
-                                                        {
-                                                            <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/147435/cooking.svg" />&nbsp; Preparing Please Wait</td>
-                                                        }
-                                                    </div>
-                                                </div>
-                                               
-                                                break;
-                                            }
-                                        }
-                                        </div>
-                                        <div class="col-md-6 d-flex justify-content-end" style="padding-top:40px">
-                                           
-                                        <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@order.OrderId" class="btn btn-success"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/241804/edit.svg" />&nbsp;Edit Order</a></td>
-                                        <span>&nbsp;</span>
-                                        <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="DeleteOrder1" onclick="deleteFunction()" asp-route-OrderId="@order.OrderId" class="btn btn-danger"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/243864/delete.svg" /> &nbsp;Delete Order</a></td>
-                                        </div>
+                                                {
+
+                                                    @if (order.HallTableId == assignWork.Order.HallTableId)
+                                                    {
+                                                        <div class="col-md-12 d-flex ">
+                                                            <div>
+                                                                <p style="color:black">Order Status</p>
+                                                                @if (assignWork.WorkStatus == true)
+                                                                {
+                                                                    <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/307637/soup-in-bowl-bowl-soup-hot-food.svg" />&nbsp; Prepared Ready To Serve</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td><img class="img-fluid" style="height:50px;width:50px" src="https://www.svgrepo.com/show/147435/cooking.svg" />&nbsp; Preparing Please Wait</td>
+                                                                }
+                                                            </div>
+                                                        </div>
+
+                                                        break;
+                                                    }
+                                                }
+                                            </div>
+                                            <div class="col-md-6 d-flex justify-content-end" style="padding-top:40px">
+
+                                                <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="UpdateOrder1" asp-route-OrderId="@order.OrderId" class="btn btn-success"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/241804/edit.svg" />&nbsp;Edit Order</a></td>
+                                                <span>&nbsp;</span>
+                                                <td class="col-md-2 d-flex justify-content-center float-right"><a asp-controller="Order" asp-action="DeleteOrder1" onclick="deleteFunction()" asp-route-OrderId="@order.OrderId" class="btn btn-danger"><img class="img-fluid" style="height:40px;" src="https://www.svgrepo.com/show/243864/delete.svg" /> &nbsp;Delete Order</a></td>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h1 class="text-white text-center text-uppercase "> Pleae order something you have not order </h1>
             }
 
             <div class="float-right">
                 <a class="btn btn-success text-light font-weight-bolder">Order total:₹@total</a>
                 <a asp-controller="Order" asp-action="Index" type="button" class="btn btn-primary "> Continue ordering</a>
             </div>
+
         }
+
     </div>
 </body>

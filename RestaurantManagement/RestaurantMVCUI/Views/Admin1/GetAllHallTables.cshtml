@@ -4,54 +4,67 @@
 
 }
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
-    <div class="container">
-        <center>
-            <h3>All HallTable </h3></center>
+    @if(true)
+{
+    int c = Model.Count();
+
+        @if (c != 0)
+        {
+
+            <div class="container">
+                <center>
+                    <h3>All HallTable </h3></center>
 
 
 
-        <div class="row">
-            <div class="col-12 text-white">
+                <div class="row">
+                    <div class="col-12 text-white">
 
-                <hr />
-                <table class="table  table-bordered table-hover">
-                    <thead>
-                        <tr style="color:white">
+                        <hr />
+                        <table class="table  table-bordered table-hover ">
+                            <thead>
+                                <tr style="color:white">
 
-                            <th>HallTable Id</th>
-                            <th>HallTable Size</th>
-                            
-                            <th>HallTable Status</th>
-                            
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model) @*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editHallTable of HallTablecontroller (route name) here which is HallTableId
+                                    <th>HallTable Id</th>
+                                    <th>HallTable Size</th>
+
+                                    <th>HallTable Status</th>
+
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)@*mvc controller name is asp controller and its function name is asp-action and asp-route-moveid (is used in url means ) we need pass the same argument in  editHallTable of HallTablecontroller (route name) here which is HallTableId
                         which can be written as http://localhost:32344/HallTables/edit HallTable?HallTableid=2//
                         *@
-                        {
-                            <tr style="color:white">
-                                <td>@item.HallTableId</td>
-                                <td>@item.HallTableSize</td>
-                                <td>@item.HallTableStatus</td>
-                                                               
-                                <td>
-                                    <a asp-controller="Admin1" asp-action="EditHallTable"
+                                {
+                                    <tr style="color:white">
+                                        <td>@item.HallTableId</td>
+                                        <td>@item.HallTableSize</td>
+                                        <td>@item.HallTableStatus</td>
+
+                                        <td>
+                                            <a asp-controller="Admin1" asp-action="EditHallTable"
                                    asp-route-HallTableId="@item.HallTableId"><img class="img-fluid" style="height:40px" src="https://www.svgrepo.com/show/241804/edit.svg" /></a>
-                                </td>
+                                        </td>
 
-                                <td>
-                                    <a asp-controller="Admin1" asp-action="DeleteHallTable" onclick="deleteFunction()"
+                                        <td>
+                                            <a asp-controller="Admin1" asp-action="DeleteHallTable" onclick="deleteFunction()"
                                    asp-route-HallTableId="@item.HallTableId"><img class="img-fluid" style="height:50px" src="https://www.svgrepo.com/show/243864/delete.svg" /></a>
-                                </td>
-                            </tr>
+                                        </td>
+                                    </tr>
 
-                        }
-                    </tbody>
-                </table>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</body>
+        }
+        else
+        {
+            <h1 class="text-center text-uppercase"> there is no table booked </h1>
+        }
+    }
+        </body>

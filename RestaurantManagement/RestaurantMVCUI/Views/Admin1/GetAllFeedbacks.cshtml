@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
 }
+@if (Model != null)
+{
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
     <div class="container">
        
@@ -14,7 +16,7 @@
             <div class="col-12 text-white">
 
                 <hr />
-                <table class="table  table-bordered table-hover">
+                <table class="table  table-bordered table-hover table-responsive">
                     <thead>
                         <tr style="color:white">
 
@@ -44,3 +46,9 @@
         </div>
     </div>
 </body>
+}
+else
+{
+     <h1 style="color:white ;text-align:center">There is table allocated please alllocate</h1>
+
+}

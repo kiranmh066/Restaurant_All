@@ -10,8 +10,8 @@
     <link rel="stylesheet" href=" ~/js/site.js" />   
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 " style="background-color:#D1B001">
+    <header style="height:auto;width:auto">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom " style="background-color:#D1B001 ;height:fit-content;width:fit-content">
             <div class="container"  >
                 <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -23,7 +23,7 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid " style="color:#5A3B5D">
+    <div  style="color:#5A3B5D">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

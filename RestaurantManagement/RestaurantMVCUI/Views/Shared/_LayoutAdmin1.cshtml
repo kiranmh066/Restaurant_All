@@ -2,8 +2,9 @@
 
 <html>
 <head>
-    
-    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] AR Restaurant</title>
     <link rel="shortcut icon" type="image/svg" href="~/restaurant-plate.svg" />
@@ -16,8 +17,8 @@
     </script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom  mb-3" style="background-color:#D1B001">
+    <header  style="height:auto;width:1870px">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom  mb-3  container-fluid" style="background-color:#D1B001">
             <div class="container">
                 <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
                 <a class="navbar-brand" asp-area="" asp-controller="Admin1" asp-action="Index"></a>
@@ -41,12 +42,13 @@
             <a asp-area="" asp-controller="Home" asp-action="Index" type="button" class="btn  text-light"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/378703/sign-out.svg" /></a>
           
         </nav>
+       
     </header>
-    <div style="background-color:#5A3B5D">
+    <div style="background-color:#5A3B5D ;height:1700px;" class="container-fluid">
         <a asp-area="" asp-controller="Admin1" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
         @RenderBody()
     </div>
-    <footer class="border-top footer text-muted" style="background-color:#D1B001">
+    <footer class="border-top footer text-muted" style="background-color:#D1B001;height:auto;width:1870px">
         <div class="container text-light" >
             <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
             &copy; 2022 - RestaurantMVCUI - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

@@ -100,8 +100,7 @@ namespace RestaurantMVCUI.Controllers
             #region Editing/Updating Employee Get Mthod to View
 
             Employee employee = null;
-            try
-            {
+         
                 using (HttpClient client = new HttpClient())
                 {
 
@@ -120,17 +119,8 @@ namespace RestaurantMVCUI.Controllers
 
                     }
                 }
-            }
-            catch (System.NullReferenceException ex)
-            {
-                Console.WriteLine(ex.ToString());
-
-            }
-            catch (Exception ex1)
-            {
-                Console.WriteLine(ex1.ToString());
-
-            }
+            
+       
             return View(employee);
 
                 #endregion

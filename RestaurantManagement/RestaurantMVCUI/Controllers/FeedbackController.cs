@@ -47,8 +47,8 @@ namespace RestaurantMVCUI.Controllers
         public async Task<IActionResult> AddFeedback1(Feedback feedback)
         {
             #region Taking user Feedback
-            ViewBag.status = "";           
-            feedback.HallTableId =Convert.ToInt32(TempData["halltableuserid"]);
+            ViewBag.status = "";
+            feedback.HallTableId = Convert.ToInt32(TempData["halltableuserid"]);
             TempData.Keep();
             using (HttpClient client = new HttpClient())
             {

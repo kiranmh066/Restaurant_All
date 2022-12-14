@@ -99,7 +99,7 @@ namespace RestaurantMVCUI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 string endPoint = _configuration["WebApiBaseUrl"] + "Bill/GetBills";
-                //api controller name and httppost name given inside httppost in moviecontroller of api
+                //api controller name and httppost name given inside httppost in billcontroller of api
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

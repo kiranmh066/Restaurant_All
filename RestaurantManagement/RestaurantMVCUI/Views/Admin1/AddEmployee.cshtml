@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
 
 }
+@if(Model != null)
+{
+
 <body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
     <div class="container">
 <form method="post" enctype="multipart/form-data">
@@ -75,3 +78,4 @@
 </form>
     </div>
 </body>
+}

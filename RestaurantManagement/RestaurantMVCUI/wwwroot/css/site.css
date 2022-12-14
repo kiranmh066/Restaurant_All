@@ -91,6 +91,8 @@ body {
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+    box-sizing: border-box;
+   box-sizing: content-box;
 }
 
 p {
@@ -99,6 +101,8 @@ p {
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
+    box-sizing: border-box;
+    box-sizing: content-box;
 }
 
 a,
@@ -235,6 +239,7 @@ a.article:hover {
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+   box-sizing: content-box;
 }
 
 /* ---------------------------------------------------

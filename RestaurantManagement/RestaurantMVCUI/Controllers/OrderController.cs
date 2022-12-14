@@ -83,7 +83,7 @@ namespace RestaurantMVCUI.Controllers
 
             Order order = new Order();
             order.FoodId = FoodId;
-
+                                                 
             Food food = null;
             using (HttpClient client = new HttpClient())
             {
@@ -128,9 +128,9 @@ namespace RestaurantMVCUI.Controllers
 
             
 
-            ViewBag.TableId = tableId;
+            ViewBag.TableId = tableId;//1
 
-            order.OrderDate = DateTime.Now;
+            order.OrderDate = DateTime.Now;//2
 
             return View(order);
             #endregion
@@ -207,7 +207,7 @@ namespace RestaurantMVCUI.Controllers
 
 
 
-                TempData["status"] = true;
+                TempData["status"] = true;//3
                 while (Convert.ToBoolean(TempData["status"]))
                 {
                     TempData.Keep();

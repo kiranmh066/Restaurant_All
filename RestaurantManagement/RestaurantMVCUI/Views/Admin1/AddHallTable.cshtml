@@ -1,0 +1,38 @@
+﻿@model RestaurantEntity.HallTable
+@*//this name should be the name of projects under dependencies after adding referrences in MvcUi*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin1.cshtml";
+
+}
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+    <div class="container">
+
+        <form method="post" enctype="multipart/form-data">
+            <center>
+                <h3>Add HallTable </h3>
+            </center>
+            <div class="form-group">
+                <label>Hall Table Size</label>
+                <input type="text" asp-for="HallTableSize" class="form-control" placeholder="Enter Table Size" required />
+            </div>
+            
+            <input type="submit" value="Save" class="btn btn-outline-success" /> 
+            &nbsp;&nbsp;
+            <input type="reset" value="Reset" class="btn btn-outline-secondary" />
+            <hr />
+       
+            @if (ViewBag.status == "Ok")
+            {
+                <div class="alert alert-success">
+                    @ViewBag.message
+                </div>
+            }
+            else if (ViewBag.status == "Error")
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.message
+                </div>
+            }
+        </form>
+    </div>
+</body>

@@ -1,0 +1,11 @@
+﻿<body style="background-color:#5A3B5D">
+    <a asp-area="" asp-controller="Order" asp-action="GetOrders1" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+<div class="container">
+@if (ViewBag.status == "Ok")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+        }
+    </div>
+</body>

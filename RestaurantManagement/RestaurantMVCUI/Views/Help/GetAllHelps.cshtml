@@ -1,0 +1,55 @@
+﻿@model IEnumerable<RestaurantEntity.Help>
+@{
+    Layout = "~/Views/Shared/_LayoutHallManager.cshtml";
+
+}
+
+<body style="background-color:#5A3B5D;color:white;padding-bottom:100px">
+<a asp-area="" asp-controller="HallManager" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+    <div class="container">
+
+        <center>
+            <h3>All Issue </h3>
+        </center>
+
+
+
+        <div class="row">
+            <div class="col-12 text-white">
+
+                <hr />
+                <table class="table  table-bordered table-hover">
+                    <thead>
+                        <tr style="color:white">
+                            <th>Help Id</th>
+                            <th>HallTable Id</th>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>User Issue</th>
+                        
+                    </thead>
+                    <tbody>
+                        @foreach (var Help in Model) 
+                        {
+                   
+                            <tr style="color:white">
+                                <td>@Help.HelpId</td>
+                                <td>@Help.HallTableId</td>
+                                <td>@Help.UserName</td>
+                                <td>@Help.UserEmail</td>
+                                <td>@Help.issue</td>
+                               
+                               
+
+
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+

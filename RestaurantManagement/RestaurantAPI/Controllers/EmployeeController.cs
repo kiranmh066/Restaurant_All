@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using RestaurantBLL.Services;
 using RestaurantEntity;
-using System;
 using System.Collections.Generic;
 
 namespace RestaurantAPI.Controllers
@@ -21,7 +20,7 @@ namespace RestaurantAPI.Controllers
         [HttpGet("GetEmployees")]//
         public IEnumerable<Employee> GetEmployees()
         {
-             #region Function for getting  the Employee
+            #region Function for getting  the Employee
 
             return _employeeService.GetEmployee();
             #endregion

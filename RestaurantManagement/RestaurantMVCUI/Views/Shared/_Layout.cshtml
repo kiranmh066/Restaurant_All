@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] AR Restaurant</title>
+    <link rel="shortcut icon" type="image/svg" href="~/restaurant-plate.svg" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href=" ~/js/site.js" />   
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 " style="background-color:#D1B001">
+            <div class="container"  >
+                <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
+                <a class="float-right btn-danger" asp-area="" asp-controller="Order" asp-action="Exit"><img style="width:50px;height:50px" class="img-fluid" src="https://www.svgrepo.com/show/272114/exit.svg" alt="Exit Now"></a>
+                
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid " style="color:#5A3B5D">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted " style="background-color:#D1B001; margin-bottom:-20px;">
+        <div class="container text-light">
+            <img style="width:90px;height:90px" class="img-fluid" src="https://www.svgrepo.com/show/14858/restaurant.svg" alt=" ">
+            &copy; 2022 - RestaurantMVCUI - <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

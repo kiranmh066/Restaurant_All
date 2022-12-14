@@ -1,25 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantAPI.Controllers;
+using RestaurantBLL.Services;
+using RestaurantDAL.Repost;
+using RestaurantEntity;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RestaurantBLL.Services;
-using RestaurantDAL.Repost;
 using Moq;
-using RestaurantEntity;
-using RestaurantDAL;
 using AutoFixture;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using System.Net;
 
 namespace RestaurantAPI.Controllers.Tests
 {
     [TestClass()]
     public class EmployeeControllerTests
     {
-
         EmployeeController employeeController;
         Fixture _fixture;
         Mock<IEmployeeRepost> moq;
@@ -183,41 +178,5 @@ namespace RestaurantAPI.Controllers.Tests
 
             Assert.IsNull(result);
         }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

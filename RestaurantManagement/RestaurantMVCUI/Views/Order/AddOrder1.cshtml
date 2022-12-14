@@ -1,0 +1,52 @@
+﻿@model RestaurantEntity.Order
+<script type="text/javascript">
+    function fun() {
+
+        window.alert("Food addded succefully");        
+        window.location.href = ' https://localhost:44344/'
+</script>
+
+<body style="background-color:#5A3B5D">
+    <a asp-area="" asp-controller="Order" asp-action="Index" type="button" class="btn  text-dark"><img class="img-fluid" style="height:35px" src="https://www.svgrepo.com/show/230939/back.svg"></a>
+    <div class="container" >
+    
+        <form method="post" enctype="multipart/form-data">
+            <center><h2 style="color:white">Add Order </h2></center>
+  
+            <div class="form-group text-white">
+                @*  form group for automatic audjustment for various screen sizes*@
+                <label>Order Quantity</label>
+                <input type="number" asp-for="Quantity" min="1" max="10" class="form-control" placeholder="Enter Order quantity" />
+            </div>
+            <div class="form-group text-white" hidden>
+                <label>Order Time</label>
+                <input type="datetime" asp-for="OrderDate" class="form-control" placeholder="Enter Order Time" required />
+            </div>
+            <div class="form-group text-white" hidden>
+                <label>Food Id</label>
+                <input type="text" asp-for="FoodId" class="form-control" placeholder="Enter Food ID" required/>
+            </div>
+    
+            <input type="submit" value="Save" onclick="fun();" class="btn btn-success" />
+             @*submit display message for required option required works only with submit*@
+            <input type="button" value="Reset" class="btn btn-outline-secondary" />
+
+            <hr />
+            @*submit sends form to server thats why we use submit not button type  *@
+            @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Ordercontroller *@
+            @if (ViewBag.status == "Ok")
+            {
+                <div class="alert alert-success">
+                    @ViewBag.message
+                </div>
+            }
+            else if (ViewBag.status == "Error")
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.message
+                </div>
+            }
+        </form>
+
+     </div>
+ </body>

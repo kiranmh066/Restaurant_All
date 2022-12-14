@@ -8,9 +8,7 @@ using RestaurantDAL.Repost;
 using RestaurantEntity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RestaurantAPI.Controllers.Tests
 {
@@ -161,10 +159,5 @@ namespace RestaurantAPI.Controllers.Tests
 
             Assert.AreEqual(Obj.StatusCode, 400);
         }
-        
-        
-       
-
-
     }
 }

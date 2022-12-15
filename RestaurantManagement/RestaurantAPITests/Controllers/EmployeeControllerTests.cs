@@ -43,11 +43,12 @@ namespace RestaurantAPI.Controllers.Tests
         [TestMethod()]
         public async Task GetEmployeesNegativeTest()
         {
-            var employeelist = _fixture.CreateMany<Employee>().ToList();
+            List<Employee> employeelist = null;
 
             moq.Setup(x => x.GetEmployees()).Returns(employeelist);
             employeeController = new EmployeeController(new EmployeeService(moq.Object));
-            employeeController.GetEmployees();
+            Assert.IsNull(employeeController.GetEmployees());
+
         }
         [TestMethod()]
         public void DeleteEmployeeTest()

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RestaurantBLL.Services;
 using RestaurantEntity;
+using System;
 using System.Collections.Generic;
 
 namespace RestaurantAPI.Controllers
@@ -11,11 +13,16 @@ namespace RestaurantAPI.Controllers
     public class EmployeeController : ControllerBase
     {
         private EmployeeService _employeeService;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(EmployeeService employeeService)
+        public EmployeeController(EmployeeService employeeService, ILogger<EmployeeController> logger)
         {
             _employeeService = employeeService;
+            _logger = logger;
+
         }
+     
+
 
         [HttpGet("GetEmployees")]//
         public IEnumerable<Employee> GetEmployees()
@@ -92,12 +99,25 @@ namespace RestaurantAPI.Controllers
             try
             {
                 Employee Employee = _employeeService.Login(employeeInfo);
-
-                return Employee;
+                if(Employee!=null)
+                {
+                    return Employee;
+                }
+                else
+                {
+                    _logger.LogInformation("Logging demo");
+                    _logger.LogWarning("logging Warning");
+                    _logger.LogError("Log Errror");
+                    _logger.LogCritical("Emai Log");
+                    return null;
+                }
             }
-            catch
+            catch(NullReferenceException)
             {
-
+                _logger.LogInformation("Logging demo");
+                _logger.LogWarning("logging Warning");
+                _logger.LogError("Log Errror");
+                _logger.LogCritical("Emai Log");
                 return null;
             }
             #endregion

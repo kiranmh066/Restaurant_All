@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantAPI.Controllers;
 using RestaurantBLL.Services;
@@ -23,11 +23,7 @@ namespace RestaurantAPI.Controllers.Tests
             _fixture = new Fixture();
             moq = new Mock<IEmployeeRepost>();
         }
-        [TestInitialize]
-        public void setup()
-        {
-            var moq = new Mock<EmployeeService>();
-        }
+        
         [TestMethod()]
         public async Task GetEmployeesTest()
         {
@@ -180,4 +176,4 @@ namespace RestaurantAPI.Controllers.Tests
             Assert.IsNull(result);
         }
     }
-}
+}*/

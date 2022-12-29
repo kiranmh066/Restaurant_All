@@ -12,6 +12,9 @@ using Microsoft.OpenApi.Models;
 using RestaurantBLL.Services;
 using RestaurantDAL;
 using RestaurantDAL.Repost;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.Email;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +65,38 @@ namespace RestaurantAPI
             services.AddTransient<FeedbackService, FeedbackService>();//adding services
             services.AddTransient<IFeedbackRepost, FeedbackRepost>();
 
+           
 
+            var Logger = new LoggerConfiguration()
+              .MinimumLevel.Information()
+              .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+              .Enrich.FromLogContext()
+              .WriteTo.File("LogTesting.log", LogEventLevel.Information, fileSizeLimitBytes: 10_000_000, rollOnFileSizeLimit: true, shared: true)
+              .WriteTo.Email(new EmailConnectionInfo
+              {
+                  FromEmail = "mailapp@valtech.co.in",
+                  //FromEmail = "kiran.mh@valtech.com",
+                  ToEmail = "chandan.m@valtech.com",
+                  MailServer = "192.168.130.134",
+                  //MailServer = "192.168.141.52",
+                  //NetworkCredentials = new NetworkCredential
+                  //{
+                  //    UserName = "Pankaj.Chandrakar@gmail.com",
+                  //    Password = "P@nk@j25"
+                  //},
+                  // EnableSsl = true,
+                  /* Port = 29,*/
+                  Port = 29,
+                  EmailSubject = "Error in app"
+              }, restrictedToMinimumLevel: LogEventLevel.Error, batchPostingLimit: 1)
+               .CreateLogger();
+
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder.AddSerilog(Logger);
+            });
+          
 
             services.AddControllers();
 

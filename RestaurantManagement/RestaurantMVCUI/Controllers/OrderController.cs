@@ -114,7 +114,7 @@ namespace RestaurantMVCUI.Controllers
                 }
             }
 
-            List<SelectListItem> tableId = new List<SelectListItem>();
+            /*List<SelectListItem> tableId = new List<SelectListItem>();
             tableId.Add(new SelectListItem { Value = "Select", Text = "select" });
             foreach (var item in halltable)
             {
@@ -128,7 +128,7 @@ namespace RestaurantMVCUI.Controllers
 
             
 
-            ViewBag.TableId = tableId;
+            ViewBag.TableId = tableId;*/
 
             order.OrderDate = DateTime.Now;
 
